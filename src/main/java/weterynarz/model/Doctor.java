@@ -1,11 +1,14 @@
 package weterynarz.model;
 
 public class Doctor {
+	private static int _idCounter;
+	private int _id;
 	private String _name;
 	private String _surname;
 	
 	public Doctor(String name, String surname)
 	{
+		_id = _idCounter++;
 		_name = name;
 		_surname = surname;
 	}
@@ -32,7 +35,10 @@ public class Doctor {
 	
 	public String toString()
 	{
-		return _name + " " + _surname;
+		return 
+				Integer.toString(_id) + " " + 
+				_name + " " + 
+				_surname + " ";
 	}
 
 }

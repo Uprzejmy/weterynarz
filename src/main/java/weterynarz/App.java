@@ -28,6 +28,10 @@ public class App {
 		doctors.remove(doctor);
 		System.out.println("Powinien sie wyswietlic jeden wpis");
 		doctors.printAll();
+		
+		doctors.add(new Doctor("Waldemar","Kiepski"));
+		doctors.add(new Doctor("Arnold","Boczek"));
+		doctors.printAll();
 	}
 
 }
