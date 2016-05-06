@@ -21,17 +21,52 @@ public class App {
 		
 		doctors.add(doctor);
 		doctors.add(new Doctor("Ferdynand","Kiepski"));
-		
-		System.out.println("Powinny sie wyswietlic dwa wpisy");
-		doctors.printAll();
-		
-		doctors.remove(doctor);
-		System.out.println("Powinien sie wyswietlic jeden wpis");
-		doctors.printAll();
-		
 		doctors.add(new Doctor("Waldemar","Kiepski"));
 		doctors.add(new Doctor("Arnold","Boczek"));
 		doctors.printAll();
+		
+		
+		try 
+		{
+			doctor = doctors.findById(6);
+			System.out.println(doctor.toString());
+		}
+		catch(NullPointerException e)
+		{
+			System.out.println(e.getMessage());
+		}
+		
+		try 
+		{
+			doctor = doctors.findById(1);
+			System.out.println(doctor.toString());
+		}
+		catch(NullPointerException e)
+		{
+			System.out.println(e.getMessage());
+		}
+		
+		try 
+		{
+			doctor = doctors.findByNameAndSurname("Marian","Pazdzioch");
+			System.out.println(doctor.toString());
+		}
+		catch(NullPointerException e)
+		{
+			System.out.println(e.getMessage());
+		}
+		
+		try 
+		{
+			doctor = doctors.findByNameAndSurname("Mietek","Zul");
+			System.out.println(doctor.toString());
+		}
+		catch(NullPointerException e)
+		{
+			System.out.println(e.getMessage());
+		}
+		
+		
 	}
 
 }

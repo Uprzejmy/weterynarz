@@ -33,6 +33,11 @@ public class Doctor {
 		_surname = surname;
 	}
 	
+	public int getId()
+	{
+		return _id;
+	}
+	
 	public String toString()
 	{
 		return 

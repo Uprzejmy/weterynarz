@@ -20,6 +20,28 @@ public class DoctorsRepository implements IRepository{
 		doctors.remove(Doctor.class.cast(object));
 	}
 	
+	public Doctor findById(int id)
+	{
+		for(Doctor doctor : doctors)
+		{
+			if(doctor.getId() == id)
+				return doctor;
+		}
+		
+		throw new NullPointerException("Nie odnaleziono lekarza o id: "+id);
+	}
+	
+	public Doctor findByNameAndSurname(String name, String surname)
+	{
+		for(Doctor doctor : doctors)
+		{
+			if(doctor.getName().equals(name) && doctor.getSurname().equals(surname))
+				return doctor;
+		}
+		
+		throw new NullPointerException("Nie odnaleziono lekarza o imieniu: " + name + " i nazwisku: " + surname);
+	}
+	
 	public void printAll()
 	{
 		Iterator<Doctor> i = doctors.iterator();
