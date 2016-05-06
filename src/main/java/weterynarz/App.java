@@ -1,5 +1,6 @@
 package weterynarz;
 
+import weterynarz.Utils.ExampleLoader;
 import weterynarz.model.Doctor;
 import weterynarz.model.DoctorsRepository;
 
@@ -8,7 +9,6 @@ public class App {
 	public static void main(String[] args) {
 		System.out.println("Centrum weterynaryjne \"Najladniejsze kotki internetu\"");
 		
-		
 		doctorsTest();
 	}
 	
@@ -16,15 +16,10 @@ public class App {
 	{
 		DoctorsRepository doctors = new DoctorsRepository();
 		
-		Doctor doctor;
-		doctor = new Doctor("Marian","Pazdzioch");
-		
-		doctors.add(doctor);
-		doctors.add(new Doctor("Ferdynand","Kiepski"));
-		doctors.add(new Doctor("Waldemar","Kiepski"));
-		doctors.add(new Doctor("Arnold","Boczek"));
+		ExampleLoader.loadWholeData(doctors);
 		doctors.printAll();
 		
+		Doctor doctor;
 		
 		try 
 		{
