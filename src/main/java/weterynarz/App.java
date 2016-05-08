@@ -41,6 +41,7 @@ public class App {
 			System.out.println(e.getMessage());
 		}
 		
+		/*
 		try 
 		{
 			doctor = doctors.findByNameAndSurname("Marian","Pazdzioch");
@@ -51,6 +52,7 @@ public class App {
 			System.out.println(e.getMessage());
 		}
 		
+		
 		try 
 		{
 			doctor = doctors.findByNameAndSurname("Mietek","Zul");
@@ -60,6 +62,7 @@ public class App {
 		{
 			System.out.println(e.getMessage());
 		}
+		*/
 		
 		
 	}

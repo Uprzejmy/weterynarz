@@ -1,8 +1,7 @@
 package weterynarz.model;
 
-public class Doctor {
+public class Doctor extends Item{
 	private static int _idCounter;
-	private int _id;
 	private String _name;
 	private String _surname;
 	
@@ -31,11 +30,6 @@ public class Doctor {
 	public void setSurname(String surname)
 	{
 		_surname = surname;
-	}
-	
-	public int getId()
-	{
-		return _id;
 	}
 	
 	public String toString()

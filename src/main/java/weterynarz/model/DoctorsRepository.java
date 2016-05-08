@@ -1,36 +1,23 @@
 package weterynarz.model;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-
-public class DoctorsRepository implements IRepository{
-	private ArrayList<Doctor> doctors;
-	
-	public DoctorsRepository()
-	{
-		doctors = new ArrayList<Doctor>();
-	}
-	
-	public void add(Object object)
-	{
-		doctors.add(Doctor.class.cast(object));
-	}
-
-	public void remove(Object object) {
-		doctors.remove(Doctor.class.cast(object));
-	}
+public class DoctorsRepository extends Repository{
+	//private ArrayList<Doctor> doctors = new ArrayList<Doctor>();
 	
 	public Doctor findById(int id)
 	{
-		for(Doctor doctor : doctors)
+		for(Item item : items)
 		{
-			if(doctor.getId() == id)
-				return doctor;
+			if(item.getId() == id)
+				return Doctor.class.cast(item);
 		}
 		
+		//ten exception ponizej dziala, ale lepiej zrobic wlasna obsluge (to na pozniej)
 		throw new NullPointerException("Nie odnaleziono lekarza o id: "+id);
 	}
 	
+	
+	//co z tym foreachem, bo w takiej sytuacji potrzebujê odwo³aæ siê do obiektu Doctor, a nie Item. Rzutowanie w takim miejscu byloby zasobo¿erne
+	/*
 	public Doctor findByNameAndSurname(String name, String surname)
 	{
 		for(Doctor doctor : doctors)
@@ -41,15 +28,9 @@ public class DoctorsRepository implements IRepository{
 		
 		throw new NullPointerException("Nie odnaleziono lekarza o imieniu: " + name + " i nazwisku: " + surname);
 	}
+	*/
 	
-	public void printAll()
-	{
-		Iterator<Doctor> i = doctors.iterator();
-		while(i.hasNext())
-		{
-			System.out.println(i.next().toString());
-		}
-	}
+	
 	
 
 }

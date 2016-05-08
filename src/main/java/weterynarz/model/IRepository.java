@@ -2,7 +2,7 @@ package weterynarz.model;
 
 public interface IRepository {
 	
-	public void add(Object object);
-	public void remove(Object object);
+	public void add(Item item);
+	public void remove(Item item);
 	public void printAll();
 }
