@@ -1,14 +1,27 @@
 package weterynarz.model;
 
-public class DoctorsRepository extends Repository{
-	//private ArrayList<Doctor> doctors = new ArrayList<Doctor>();
+import java.util.ArrayList;
+
+public class DoctorsRepository implements IDoctorsRepository{
+	
+	private ArrayList<Doctor> doctors = new ArrayList<Doctor>();
+	
+	public void add(Doctor doctor)
+	{
+		doctors.add(doctor);
+	}
+
+	public void remove(Doctor doctor) 
+	{
+		doctors.remove(doctor);
+	}
 	
 	public Doctor findById(int id)
 	{
-		for(Item item : items)
+		for(Doctor doctor : doctors)
 		{
-			if(item.getId() == id)
-				return Doctor.class.cast(item);
+			if(doctor.getId() == id)
+				return doctor;
 		}
 		
 		//ten exception ponizej dziala, ale lepiej zrobic wlasna obsluge (to na pozniej)

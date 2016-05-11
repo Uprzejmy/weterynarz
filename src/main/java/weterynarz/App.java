@@ -17,7 +17,7 @@ public class App {
 		DoctorsRepository doctors = new DoctorsRepository();
 		
 		ExampleLoader.loadWholeData(doctors);
-		doctors.printAll();
+		//doctors.printAll();
 		
 		Doctor doctor;
 		
