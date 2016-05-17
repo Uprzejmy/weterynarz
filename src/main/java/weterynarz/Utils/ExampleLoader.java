@@ -34,6 +34,7 @@ public class ExampleLoader {
 		animals.add(new Animals("kot","brytyjski", "szary", 4));
 		animals.add(new Animals("waz","gniewosz plamisty", "zielony", 0));
 		animals.add(new Animals("papuga","nimfa", "szara", 2));
+	}	
 
 	public static void loadClientsData(ClientsRepository clients)
 	{
