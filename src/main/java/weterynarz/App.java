@@ -1,5 +1,8 @@
 package weterynarz;
 
+
+import weterynarz.Model.Animals;
+import weterynarz.Model.AnimalsRepository;
 import weterynarz.Model.Doctor;
 import weterynarz.Model.DoctorsRepository;
 import weterynarz.Utils.ExampleLoader;
@@ -10,6 +13,7 @@ public class App {
 		System.out.println("Centrum weterynaryjne \"Najladniejsze kotki internetu\"");
 		
 		doctorsTest();
+		animalsTest();
 	}
 	
 	public static void doctorsTest()
@@ -67,4 +71,35 @@ public class App {
 		
 	}
 
+	
+	public static void animalsTest()
+	{
+		AnimalsRepository animals = new AnimalsRepository();
+		
+		ExampleLoader.loadWholeDataAnim(animals);
+		//doctors.printAll();
+		
+		Animals animal;
+		
+		try 
+		{
+			animal = animals.findBySpecies("pies");
+			System.out.println(animal);
+		}
+		catch(NullPointerException e)
+		{
+			System.out.println(e.getMessage());
+		}
+		
+		try 
+		{
+			animal = animals.findByColour("czerwony");
+			System.out.println(animal);
+		}
+		catch(NullPointerException e)
+		{
+			System.out.println(e.getMessage());
+		}
+		
+	}
 }
