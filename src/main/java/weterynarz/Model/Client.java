@@ -5,9 +5,9 @@ public class Client extends Item{
 	private String _name;
 	private String _surname;
 	private String _adress;
-	private Integer _phone;
+	private String _phone;
 	
-	public Client(String name, String surname, String adress, Integer phone)
+	public Client(String name, String surname, String adress, String phone)
 	{
 		_id = _idCounter++;
 		_name = name;
@@ -46,12 +46,12 @@ public class Client extends Item{
 		_adress = adress;
 	}
 
-	public Integer getPhone()
+	public String getPhone()
 	{
 		return _phone;
 	}
 	
-	public void setPhone(Integer phone)
+	public void setPhone(String phone)
 	{
 		_phone = phone;
 	}
