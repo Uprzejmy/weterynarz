@@ -1,5 +1,11 @@
 package weterynarz;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+import weterynarz.Interface.ICommand;
+import weterynarz.Interface.Parser;
 import weterynarz.Model.Doctor;
 import weterynarz.Model.DoctorsRepository;
 import weterynarz.Utils.ExampleLoader;
@@ -7,9 +13,28 @@ import weterynarz.Utils.ExampleLoader;
 public class App {
 
 	public static void main(String[] args) {
-		System.out.println("Centrum weterynaryjne \"Najladniejsze kotki internetu\"");
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		
-		doctorsTest();
+		System.out.println("Centrum weterynaryjne \"Najladniejsze kotki internetu\"");
+
+		boolean exit = false;
+		String cmd= "";
+	    while(exit == false)
+	    {
+	    	System.out.println("Enter command (help to display help): ");
+	    	try 
+	    	{
+				cmd = reader.readLine();
+			} 
+	    	catch (IOException e) 
+	    	{
+				System.out.println("Error reading command");
+			}
+	    	
+	    	ICommand command = Parser.Parse(cmd);
+	        exit = command.execute();
+	    	
+	    }
 	}
 	
 	public static void doctorsTest()
