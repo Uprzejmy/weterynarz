@@ -35,11 +35,11 @@ public class ExampleLoader {
 
 	public static void loadClientsData(ClientsRepository clients)
 	{
-		clients.add(new Client("Harry","Potter", "Privet Drive 4", "123456789"));
-		clients.add(new Client("Syriusz","Black", "Grimmauld Place 12", "456724192"));
-		clients.add(new Client("Ronald","Weasly", "Nora", "123443312"));
-		clients.add(new Client("Severus","Snape", "Spinner's End", "789423902"));
-		clients.add(new Client("Aberforth","Dumbledore", "The Hog's Head, Hogsmeade", "700345723"));
+		clients.add(new Client("Harry","Potter", "Privet Drive 4", "123456789", "harry@potter.pl"));
+		clients.add(new Client("Syriusz","Black", "Grimmauld Place 12", "456724192", "syriusz@black.pl"));
+		clients.add(new Client("Ronald","Weasly", "Nora", "123443312", "ronald@weasly.pl"));
+		clients.add(new Client("Severus","Snape", "Spinner's End", "789423902", "severus@snape.pl"));
+		clients.add(new Client("Aberforth","Dumbledore", "The Hog's Head, Hogsmeade", "700345723", "aberforth@dumbledore.pl"));
 
 	}
 }

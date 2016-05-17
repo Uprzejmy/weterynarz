@@ -39,6 +39,18 @@ public class ClientsRepository implements IClientsRepository{
 		throw new NullPointerException("Nie odnaleziono klienta o imieniu: " + name + " i nazwisku: " + surname);
 	}
 	
+	public Client findByEmail(String email)
+	{
+		for(Client client : _data.clients)
+		{
+			if(client.compareEmail(email))
+				return client;
+		}
+		
+		//ten exception ponizej dziala, ale lepiej zrobic wlasna obsluge (to na pozniej)
+		throw new NullPointerException("Nie odnaleziono klienta o emailu: " + email);
+	}
+	
 	
 	
 	

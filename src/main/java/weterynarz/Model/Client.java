@@ -68,6 +68,11 @@ public class Client extends Item{
 		_email = email;
 	}
 	
+	public boolean compareEmail(String email)
+	{
+		return _email.equals(email);
+	}
+	
 	public String toString()
 	{
 		return 
