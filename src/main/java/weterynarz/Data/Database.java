@@ -4,6 +4,7 @@ import java.util.HashSet;
 
 import weterynarz.Model.Client;
 import weterynarz.Model.Doctor;
+import weterynarz.Model.Hospital;
 
 public class Database {
 	
@@ -13,6 +14,7 @@ public class Database {
 	 */
 	public HashSet<Doctor> doctors = new HashSet<Doctor>();
 	public HashSet<Client> clients = new HashSet<Client>();
+	public HashSet<Hospital> hospitals = new HashSet<Hospital>();
 	//add other data sets here
 	
 	
