@@ -2,7 +2,7 @@ package weterynarz.Model;
 
 import java.util.ArrayList;
 
-public class AnimalsRepository implements IDoctorsRepository{
+public class AnimalsRepository implements IAnimalsRepository{
 
 	private ArrayList<Animals> animals = new ArrayList<Animals>();
 	
