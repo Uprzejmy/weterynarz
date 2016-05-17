@@ -1,8 +1,8 @@
 package weterynarz;
 
+import weterynarz.Model.Doctor;
+import weterynarz.Model.DoctorsRepository;
 import weterynarz.Utils.ExampleLoader;
-import weterynarz.model.Doctor;
-import weterynarz.model.DoctorsRepository;
 
 public class App {
 
@@ -41,7 +41,7 @@ public class App {
 			System.out.println(e.getMessage());
 		}
 		
-		/*
+		
 		try 
 		{
 			doctor = doctors.findByNameAndSurname("Marian","Pazdzioch");
@@ -62,7 +62,7 @@ public class App {
 		{
 			System.out.println(e.getMessage());
 		}
-		*/
+		
 		
 		
 	}

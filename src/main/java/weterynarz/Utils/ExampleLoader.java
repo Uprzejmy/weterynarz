@@ -1,7 +1,7 @@
 package weterynarz.Utils;
 
-import weterynarz.model.Doctor;
-import weterynarz.model.DoctorsRepository;
+import weterynarz.Model.Doctor;
+import weterynarz.Model.DoctorsRepository;
 
 public class ExampleLoader {
 	public static void loadWholeData(DoctorsRepository doctors)

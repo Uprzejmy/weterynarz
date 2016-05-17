@@ -1,6 +1,7 @@
-package weterynarz.model;
+package weterynarz.Model;
 
 public abstract class Item {
+	
 	protected int _id;
 	
 	public int getId()

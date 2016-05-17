@@ -1,4 +1,4 @@
-package weterynarz.model;
+package weterynarz.Model;
 
 public class Doctor extends Item{
 	private static int _idCounter;
@@ -38,6 +38,7 @@ public class Doctor extends Item{
 				Integer.toString(_id) + " " + 
 				_name + " " + 
 				_surname + " ";
+		
 	}
 
 }
