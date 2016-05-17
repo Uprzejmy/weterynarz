@@ -22,6 +22,7 @@ public final class Parser {
         {
             // Create command based on CommandName (and maybe arguments)
             case EXIT: return new ExitCommand();
+            case SOMETHING: return new DoSomethingCommand();
             default: return new DoNothingCommand();
         }
    }
