@@ -6,14 +6,16 @@ public class Client extends Item{
 	private String _surname;
 	private String _adress;
 	private String _phone;
+	private String _email;
 	
-	public Client(String name, String surname, String adress, String phone)
+	public Client(String name, String surname, String adress, String phone, String email)
 	{
 		_id = _idCounter++;
 		_name = name;
 		_surname = surname;
 		_adress = adress;
 		_phone = phone;
+		_email = email;
 	}
 	
 	public String getName()
@@ -56,6 +58,16 @@ public class Client extends Item{
 		_phone = phone;
 	}
 	
+	public String getEmail()
+	{
+		return _email;
+	}
+	
+	public void setEmail(String email)
+	{
+		_email = email;
+	}
+	
 	public String toString()
 	{
 		return 
@@ -63,7 +75,8 @@ public class Client extends Item{
 				_name + " " + 
 				_surname + " "+
 				_adress + " "+
-				_phone + " ";
+				_phone + " "+
+				_email + " ";
 	}
 
 }
