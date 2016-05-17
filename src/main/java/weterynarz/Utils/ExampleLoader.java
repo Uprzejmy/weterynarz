@@ -8,9 +8,11 @@ import weterynarz.Model.Animals;
 import weterynarz.Model.AnimalsRepository;
 
 public class ExampleLoader {
-	public static void loadWholeData(DoctorsRepository doctors)
+	public static void loadWholeData()
 	{
-		loadDoctorsData(doctors);
+		loadDoctorsData(new DoctorsRepository());
+		loadAnimalsData(new AnimalsRepository());
+		loadClientsData(new ClientsRepository());
 	}
 	
 	public static void loadDoctorsData(DoctorsRepository doctors)
@@ -20,11 +22,6 @@ public class ExampleLoader {
 		doctors.add(new Doctor("Arnold","Boczek"));
 		doctors.add(new Doctor("Marian","Pazdzioch"));
 		doctors.add(new Doctor("Halina","Kiepska"));
-	}
-	
-	public static void loadWholeDataAnim(AnimalsRepository animals)
-	{
-		loadAnimalsData(animals);
 	}
 	
 	public static void loadAnimalsData(AnimalsRepository animals)
