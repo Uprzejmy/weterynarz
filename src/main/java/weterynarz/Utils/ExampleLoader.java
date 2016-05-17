@@ -1,5 +1,7 @@
 package weterynarz.Utils;
 
+import weterynarz.Model.Client;
+import weterynarz.Model.ClientsRepository;
 import weterynarz.Model.Doctor;
 import weterynarz.Model.DoctorsRepository;
 import weterynarz.Model.Animals;
@@ -32,5 +34,14 @@ public class ExampleLoader {
 		animals.add(new Animals("kot","brytyjski", "szary", 4));
 		animals.add(new Animals("waz","gniewosz plamisty", "zielony", 0));
 		animals.add(new Animals("papuga","nimfa", "szara", 2));
+
+	public static void loadClientsData(ClientsRepository clients)
+	{
+		clients.add(new Client("Harry","Potter", "Privet Drive 4", "123456789"));
+		clients.add(new Client("Syriusz","Black", "Grimmauld Place 12", "456724192"));
+		clients.add(new Client("Ronald","Weasly", "Nora", "123443312"));
+		clients.add(new Client("Severus","Snape", "Spinner's End", "789423902"));
+		clients.add(new Client("Aberforth","Dumbledore", "The Hog's Head, Hogsmeade", "700345723"));
+
 	}
 }
