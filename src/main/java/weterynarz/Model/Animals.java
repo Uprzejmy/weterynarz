@@ -9,7 +9,7 @@ public class Animals extends Item{
 	
 	public Animals(String species, String breed, String colour, Integer numPaws)
 	{
-		_idAnim = _idAnimal++;
+		_id = _idAnimal++;
 		_species = species;
 		_breed = breed;
 		_colour = colour;
@@ -59,7 +59,7 @@ public class Animals extends Item{
 	public String toString()
 	{
 		return 
-				Integer.toString(_idAnim) + " " + 
+				Integer.toString(_id) + " " + 
 				_species+ ": " + 
 				_breed + " " + Integer.toString(_numPaws) + ", colour: " + _colour;
 	}
