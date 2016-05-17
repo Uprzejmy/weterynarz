@@ -12,6 +12,6 @@ public class HelpCommand extends Command implements ICommand{
 		System.out.println("LECZNICE - informacje o wybranej lecznicy");
 		System.out.println("EXIT - wyjscie z programu");
 		
-		return true;
+		return false;
 	}
 }
