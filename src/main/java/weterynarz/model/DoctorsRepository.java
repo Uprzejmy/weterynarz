@@ -1,6 +1,6 @@
 package weterynarz.Model;
 
-import Data.Database;
+import weterynarz.Data.Database;
 
 public class DoctorsRepository implements IDoctorsRepository{
 	

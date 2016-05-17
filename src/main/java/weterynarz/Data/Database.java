@@ -1,4 +1,4 @@
-package Data;
+package weterynarz.Data;
 
 import java.util.HashSet;
 
