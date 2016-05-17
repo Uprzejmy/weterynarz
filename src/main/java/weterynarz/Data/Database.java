@@ -2,6 +2,7 @@ package weterynarz.Data;
 
 import java.util.HashSet;
 
+import weterynarz.Model.Client;
 import weterynarz.Model.Doctor;
 
 public class Database {
@@ -11,6 +12,7 @@ public class Database {
 	 * @param Doctor - doctor's object
 	 */
 	public HashSet<Doctor> doctors = new HashSet<Doctor>();
+	public HashSet<Client> clients = new HashSet<Client>();
 	//add other data sets here
 	
 	
