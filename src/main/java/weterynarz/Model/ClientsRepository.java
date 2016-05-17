@@ -13,7 +13,7 @@ public class ClientsRepository implements IClientsRepository{
 
 	public void remove(Client client) 
 	{
-		_data.doctors.remove(client);
+		_data.clients.remove(client);
 	}
 	
 	public Client findById(int id)
@@ -36,7 +36,7 @@ public class ClientsRepository implements IClientsRepository{
 		}
 		
 		//ten exception ponizej dziala, ale lepiej zrobic wlasna obsluge (to na pozniej)
-		throw new NullPointerException("Nie odnaleziono lekarza o imieniu: " + name + " i nazwisku: " + surname);
+		throw new NullPointerException("Nie odnaleziono klienta o imieniu: " + name + " i nazwisku: " + surname);
 	}
 	
 	
