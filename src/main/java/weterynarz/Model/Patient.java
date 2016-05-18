@@ -4,9 +4,9 @@ public class Patient extends Animals{
 	private static int _idCounter;
 	private String _name;
 	
-	public Patient(String name,String species, String breed, String colour, Integer numPaws)
+	public Patient(String name,String species, String breed, String colour, Integer numPaws, int ownerId)
 	{
-		super(species, breed, colour, numPaws);
+		super(species, breed, colour, numPaws, ownerId);
 		_id = _idCounter++;
 		_name = name;
 

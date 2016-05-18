@@ -1,5 +1,7 @@
 package weterynarz.Model;
 
+import java.util.ArrayList;
+
 import weterynarz.Data.Database;
 
 public class AnimalsRepository implements IAnimalsRepository{
@@ -94,6 +96,17 @@ public class AnimalsRepository implements IAnimalsRepository{
 		{
 			System.out.println("Nie odnaleziono zwierzecia, ktore ma liczbe lap rowna "+ numofPaws);
 		}*/
+	}
+	public Animals[] findByOwnerId(int ownerId)
+	{
+		ArrayList<Animals> animals = new ArrayList<Animals>();
+		for(Animals animal : _data.animals)
+		{
+			if(animal.getOwnerId() == ownerId)
+				animals.add(animal);
+		}
+		
+		return animals.toArray(new Animals[animals.size()]);
 	}
 	
 }

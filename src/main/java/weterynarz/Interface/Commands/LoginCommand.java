@@ -6,7 +6,8 @@ import java.io.InputStreamReader;
 
 import weterynarz.Interface.Command;
 import weterynarz.Interface.ICommand;
-
+import weterynarz.Model.Animals;
+import weterynarz.Model.AnimalsRepository;
 import weterynarz.Model.Client;
 import weterynarz.Model.ClientsRepository;
 
@@ -19,11 +20,24 @@ public class LoginCommand extends Command implements ICommand{
 		try 
     	{
 			String email = reader.readLine();
+			
 			ClientsRepository clients = new ClientsRepository();
 			Client client = clients.findByEmail(email);
 			System.out.println("Twoje dane to: "+ client.toString());
+			
+			System.out.println("Twoje zwierzeta to: ");
+			AnimalsRepository animalsRepo = new AnimalsRepository();
+			for(Animals animal : animalsRepo.findByOwnerId(client.getId()))
+			{
+				System.out.println(animal.toString());
+			}
+			
 		} 
     	catch (IOException e) 
+    	{
+			System.out.println("Nie mozna pobrac email");
+		}
+		catch (NullPointerException e) 
     	{
 			System.out.println("Nie znaleziono uzytkownika o podanym adresie email");
 		}

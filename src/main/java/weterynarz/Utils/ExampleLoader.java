@@ -26,11 +26,11 @@ public class ExampleLoader {
 	
 	public static void loadAnimalsData(AnimalsRepository animals)
 	{
-		animals.add(new Animals("pies","rottweiler", "czarny", 4));
-		animals.add(new Animals("pies","basset", "bialo-brazowy", 4));
-		animals.add(new Animals("kot","brytyjski", "szary", 4));
-		animals.add(new Animals("waz","gniewosz plamisty", "zielony", 0));
-		animals.add(new Animals("papuga","nimfa", "szara", 2));
+		animals.add(new Animals("pies","rottweiler", "czarny", 4, 0));
+		animals.add(new Animals("pies","basset", "bialo-brazowy", 4, 0));
+		animals.add(new Animals("kot","brytyjski", "szary", 4, 1));
+		animals.add(new Animals("waz","gniewosz plamisty", "zielony", 0, 1));
+		animals.add(new Animals("papuga","nimfa", "szara", 2, 2));
 	}	
 
 	public static void loadClientsData(ClientsRepository clients)

@@ -6,14 +6,16 @@ public class Animals extends Item{
 	private String _breed; // rasa
 	private int _numPaws; // liczba lap
 	private String _colour; // kolor 
+	private int _ownerId;
 	
-	public Animals(String species, String breed, String colour, Integer numPaws)
+	public Animals(String species, String breed, String colour, Integer numPaws, int ownerId)
 	{
 		_id = _idAnimal++;
 		_species = species;
 		_breed = breed;
 		_colour = colour;
 		_numPaws = numPaws;
+		_ownerId = ownerId;
 	}
 	
 	public String getSpecies()
@@ -56,12 +58,25 @@ public class Animals extends Item{
 		_numPaws = numPaws;
 	}
 	
+	public int getOwnerId()
+	{
+		return _ownerId;
+	}
+	
+	public void setOwnerId(int ownerId)
+	{
+		_ownerId = ownerId;
+	}
+	
 	public String toString()
 	{
 		return 
 				Integer.toString(_id) + " " + 
 				_species+ ": " + 
-				_breed + " " + Integer.toString(_numPaws) + ", colour: " + _colour;
+				_breed + " " 
+				+ Integer.toString(_numPaws) + 
+				", colour: " + _colour + " " +
+				"owner's id: " + _ownerId;
 	}
 	
 }
