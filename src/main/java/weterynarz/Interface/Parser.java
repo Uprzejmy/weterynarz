@@ -25,6 +25,8 @@ public final class Parser {
             case DOSOMETHING: return new DoSomethingCommand();
             case LOGIN: return new LoginCommand();
             case HELP: return new HelpCommand();
+            case SPIS: return new SpisCommand();
+            case LECZNICE : return new HostpialsCommand();
             default: return new DoNothingCommand();
         }
    }

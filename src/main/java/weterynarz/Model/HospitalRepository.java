@@ -1,5 +1,7 @@
 package weterynarz.Model;
 
+import java.util.ArrayList;
+
 import weterynarz.Data.Database;
 
 public class HospitalRepository implements IHospitalRepository{
@@ -39,6 +41,16 @@ public class HospitalRepository implements IHospitalRepository{
 		throw new NullPointerException("Nie odnaleziono lecznicy o specjalizacji: " + spec);
 	}
 	
+	public Hospital[] findAll()
+	{
+		ArrayList<Hospital> hospitals = new ArrayList<Hospital>();
+		for(Hospital hospital : _data.hospitals)
+		{
+			hospitals.add(hospital);
+		}
+		
+		return hospitals.toArray(new Hospital[hospitals.size()]);
+	}
 	
 	
 	

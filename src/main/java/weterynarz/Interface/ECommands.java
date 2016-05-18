@@ -4,5 +4,7 @@ public enum ECommands {
 	EXIT,
 	DOSOMETHING,
 	HELP,
-	LOGIN
+	LOGIN,
+	SPIS,
+	LECZNICE
 }
