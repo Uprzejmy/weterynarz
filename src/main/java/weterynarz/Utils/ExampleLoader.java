@@ -47,10 +47,10 @@ public class ExampleLoader {
 	}
 	public static void loadHospitalsData(HospitalRepository hospitals)
 	{
-		hospitals.add(new Hospital("Zdrowe Lapki","Chorob konczyn","Nieduza 12"));
+		hospitals.add(new Hospital("Zdrowe Lapki","Oddzial Chorob konczyn","Nieduza 12"));
 		hospitals.add(new Hospital("Lecznicowo","Oddzial Glowny","Duza 17"));
-		hospitals.add(new Hospital("Zdrowie Zwierzat","Chorob zakaznych","Mala 28"));
-		hospitals.add(new Hospital("Nasz Krewniak","Chorob dziedzicznych","Wielka 42"));
-		hospitals.add(new Hospital("Zrosniete Kosci","Urazy","Ogromna 33"));
+		hospitals.add(new Hospital("Zdrowie Zwierzat","Oddzial Chorob zakaznych","Mala 28"));
+		hospitals.add(new Hospital("Nasz Krewniak","Oddzial Chorob dziedzicznych","Wielka 42"));
+		hospitals.add(new Hospital("Zrosniete Kosci","Oddzial Urazow","Ogromna 33"));
 	}
 }

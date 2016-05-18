@@ -11,6 +11,7 @@ public class Hospital extends Item{
 		_id = _idCounter++;
 		_name = name;
 		_spec= spec;
+		_address=address;
 	}
 	
 	public String getName()
