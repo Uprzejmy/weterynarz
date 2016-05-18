@@ -1,5 +1,9 @@
 package weterynarz.Model;
 
+
+
+import java.util.ArrayList;
+
 import weterynarz.Data.Database;
 
 public class DoctorsRepository implements IDoctorsRepository{
@@ -39,7 +43,16 @@ public class DoctorsRepository implements IDoctorsRepository{
 		throw new NullPointerException("Nie odnaleziono lekarza o imieniu: " + name + " i nazwisku: " + surname);
 	}
 	
-	
+	public Doctor[] findAll()
+	{
+		ArrayList<Doctor> doctors = new ArrayList<Doctor>();
+		for(Doctor doctor : _data.doctors)
+		{
+			doctors.add(doctor);
+		}
+		
+		return doctors.toArray(new Doctor[doctors.size()]);
+	}
 	
 	
 
