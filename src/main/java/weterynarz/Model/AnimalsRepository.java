@@ -109,4 +109,9 @@ public class AnimalsRepository implements IAnimalsRepository{
 		return animals.toArray(new Animals[animals.size()]);
 	}
 	
+	public Animals[] findAll()
+	{
+		return _data.animals.toArray(new Animals[_data.animals.size()]);
+	}
+	
 }
