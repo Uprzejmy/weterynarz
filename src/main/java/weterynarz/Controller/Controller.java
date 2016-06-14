@@ -10,7 +10,8 @@ import weterynarz.View.View;
 public class Controller {
 	private Model model;
 	private View view;
-	private ActionListener actionListener;
+	private ActionListener actionListener1;
+	private ActionListener actionListener2;
 	
 	public Controller(Model model, View view)
 	{
@@ -20,19 +21,33 @@ public class Controller {
 	
 	public void control()
 	{        
-        actionListener = new ActionListener() 
+        actionListener1 = new ActionListener() 
         {
               public void actionPerformed(ActionEvent actionEvent) 
               {                  
-                  linkBtnAndLabel();
+                  linkBtn1AndLabel();
               }
         };                
-        view.getButton().addActionListener(actionListener);   
+        view.getButton1().addActionListener(actionListener1);   
+        
+        actionListener2 = new ActionListener() 
+        {
+              public void actionPerformed(ActionEvent actionEvent) 
+              {                  
+                  linkBtn2AndLabel();
+              }
+        };                
+        view.getButton2().addActionListener(actionListener2);   
     }
     
-    private void linkBtnAndLabel()
+    private void linkBtn1AndLabel()
     {             
-        view.setText(model.getData());
+        view.setText(model.getData1());
     }    
+    
+    private void linkBtn2AndLabel()
+    {             
+        view.setText(model.getData2());
+    }  
 	
 }

@@ -10,9 +10,11 @@ public class View {
 	
 	private JFrame frame;
     private JLabel label;
-    private JButton button;
+    private JButton button1;
+    private JButton button2;
 
-    public View(String text){
+    public View(String text)
+    {
         frame = new JFrame("View");                                    
         frame.getContentPane().setLayout(new BorderLayout());                                          
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);           
@@ -22,15 +24,24 @@ public class View {
         label = new JLabel(text);
         frame.getContentPane().add(label, BorderLayout.CENTER);
         
-        button = new JButton("Button");        
-        frame.getContentPane().add(button, BorderLayout.SOUTH);        
+        button1 = new JButton("Button1");    
+        button2 = new JButton("Button2");    
+        frame.getContentPane().add(button1, BorderLayout.NORTH);    
+        frame.getContentPane().add(button2, BorderLayout.SOUTH); 
     }
         
-    public JButton getButton(){
-        return button;
+    public JButton getButton1()
+    {
+        return button1;
     }
     
-    public void setText(String text){
+    public JButton getButton2()
+    {
+        return button2;
+    }
+    
+    public void setText(String text)
+    {
         label.setText(text);
     }
 }
