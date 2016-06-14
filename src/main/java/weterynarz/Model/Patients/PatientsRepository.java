@@ -1,6 +1,7 @@
-package weterynarz.Model;
+package weterynarz.Model.Patients;
 
 import weterynarz.Data.Database;
+import weterynarz.Model.Clients.Client;
 
 public class PatientsRepository implements IPatientsRepository{
 	

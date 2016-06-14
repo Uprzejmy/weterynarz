@@ -1,4 +1,6 @@
-package weterynarz.Model;
+package weterynarz.Model.Doctors;
+
+import weterynarz.Model.Item;
 
 public class Doctor extends Item{
 	private static int _idCounter;

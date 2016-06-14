@@ -6,10 +6,10 @@ import java.io.InputStreamReader;
 
 import weterynarz.Interface.Command;
 import weterynarz.Interface.ICommand;
-import weterynarz.Model.Animals;
-import weterynarz.Model.AnimalsRepository;
-import weterynarz.Model.Client;
-import weterynarz.Model.ClientsRepository;
+import weterynarz.Model.Animals.Animal;
+import weterynarz.Model.Animals.AnimalsRepository;
+import weterynarz.Model.Clients.Client;
+import weterynarz.Model.Clients.ClientsRepository;
 
 public class LoginCommand extends Command implements ICommand{
 	public boolean execute()
@@ -27,7 +27,7 @@ public class LoginCommand extends Command implements ICommand{
 			
 			System.out.println("Twoje zwierzeta to: ");
 			AnimalsRepository animalsRepo = new AnimalsRepository();
-			for(Animals animal : animalsRepo.findByOwnerId(client.getId()))
+			for(Animal animal : animalsRepo.findByOwnerId(client.getId()))
 			{
 				System.out.println(animal.toString());
 			}

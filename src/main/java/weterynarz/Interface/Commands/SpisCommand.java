@@ -4,8 +4,8 @@ package weterynarz.Interface.Commands;
 
 import weterynarz.Interface.Command;
 import weterynarz.Interface.ICommand;
-import weterynarz.Model.Doctor;
-import weterynarz.Model.DoctorsRepository;
+import weterynarz.Model.Doctors.Doctor;
+import weterynarz.Model.Doctors.DoctorsRepository;
 
 
 

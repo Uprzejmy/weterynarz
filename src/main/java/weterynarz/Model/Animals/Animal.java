@@ -1,6 +1,8 @@
-package weterynarz.Model;
+package weterynarz.Model.Animals;
 
-public class Animals extends Item{
+import weterynarz.Model.Item;
+
+public class Animal extends Item{
 	private static int _idAnimal;
 	private String _species; // gatunek
 	private String _breed; // rasa
@@ -8,7 +10,7 @@ public class Animals extends Item{
 	private String _colour; // kolor 
 	private int _ownerId;
 	
-	public Animals(String species, String breed, String colour, Integer numPaws, int ownerId)
+	public Animal(String species, String breed, String colour, Integer numPaws, int ownerId)
 	{
 		_id = _idAnimal++;
 		_species = species;

@@ -1,4 +1,4 @@
-package weterynarz.Model;
+package weterynarz.Model.Clients;
 
 import weterynarz.Data.Database;
 

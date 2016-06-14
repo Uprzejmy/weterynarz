@@ -1,4 +1,4 @@
-package weterynarz.Model;
+package weterynarz.Model.Hospitals;
 
 import java.util.ArrayList;
 

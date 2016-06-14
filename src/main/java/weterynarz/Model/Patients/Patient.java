@@ -1,6 +1,8 @@
-package weterynarz.Model;
+package weterynarz.Model.Patients;
 
-public class Patient extends Animals{
+import weterynarz.Model.Animals.Animal;
+
+public class Patient extends Animal{
 	private static int _idCounter;
 	private String _name;
 	

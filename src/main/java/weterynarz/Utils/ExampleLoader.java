@@ -1,13 +1,13 @@
 package weterynarz.Utils;
 
-import weterynarz.Model.Client;
-import weterynarz.Model.ClientsRepository;
-import weterynarz.Model.Doctor;
-import weterynarz.Model.DoctorsRepository;
-import weterynarz.Model.Animals;
-import weterynarz.Model.AnimalsRepository;
-import weterynarz.Model.Hospital;
-import weterynarz.Model.HospitalRepository;
+import weterynarz.Model.Animals.Animal;
+import weterynarz.Model.Animals.AnimalsRepository;
+import weterynarz.Model.Clients.Client;
+import weterynarz.Model.Clients.ClientsRepository;
+import weterynarz.Model.Doctors.Doctor;
+import weterynarz.Model.Doctors.DoctorsRepository;
+import weterynarz.Model.Hospitals.Hospital;
+import weterynarz.Model.Hospitals.HospitalRepository;
 
 public class ExampleLoader {
 	public static void loadWholeData()
@@ -29,11 +29,11 @@ public class ExampleLoader {
 	
 	public static void loadAnimalsData(AnimalsRepository animals)
 	{
-		animals.add(new Animals("pies","rottweiler", "czarny", 4, 0));
-		animals.add(new Animals("pies","basset", "bialo-brazowy", 4, 0));
-		animals.add(new Animals("kot","brytyjski", "szary", 4, 1));
-		animals.add(new Animals("waz","gniewosz plamisty", "zielony", 0, 1));
-		animals.add(new Animals("papuga","nimfa", "szara", 2, 2));
+		animals.add(new Animal("pies","rottweiler", "czarny", 4, 0));
+		animals.add(new Animal("pies","basset", "bialo-brazowy", 4, 0));
+		animals.add(new Animal("kot","brytyjski", "szary", 4, 1));
+		animals.add(new Animal("waz","gniewosz plamisty", "zielony", 0, 1));
+		animals.add(new Animal("papuga","nimfa", "szara", 2, 2));
 	}	
 
 	public static void loadClientsData(ClientsRepository clients)

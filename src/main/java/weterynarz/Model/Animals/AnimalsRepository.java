@@ -1,4 +1,4 @@
-package weterynarz.Model;
+package weterynarz.Model.Animals;
 
 import java.util.ArrayList;
 
@@ -8,19 +8,19 @@ public class AnimalsRepository implements IAnimalsRepository{
 
 	private Database _data = Database.getInstance();
 	
-	public void add(Animals animal)
+	public void add(Animal animal)
 	{
 		_data.animals.add(animal);
 	}
 
-	public void remove(Animals animal) 
+	public void remove(Animal animal) 
 	{
 		_data.animals.remove(animal);
 	}
 	
-	public Animals findById(int id)
+	public Animal findById(int id)
 	{
-		for(Animals animal : _data.animals)
+		for(Animal animal : _data.animals)
 		{
 			if(animal.getId() == id)
 				return animal;
@@ -29,9 +29,9 @@ public class AnimalsRepository implements IAnimalsRepository{
 		throw new NullPointerException("Nie odnaleziono zwierzecia o id: "+id);
 	}
 	
-	public Animals findBySpecies(String species)
+	public Animal findBySpecies(String species)
 	{
-		for(Animals animal : _data.animals)
+		for(Animal animal : _data.animals)
 		{
 			if(animal.getSpecies() == species)
 				return animal;
@@ -52,9 +52,9 @@ public class AnimalsRepository implements IAnimalsRepository{
 		}*/
 	}
 
-	public Animals findByColour(String colour)
+	public Animal findByColour(String colour)
 	{
-		for(Animals animal : _data.animals)
+		for(Animal animal : _data.animals)
 		{
 			if(animal.getColour() == colour)
 				return animal;
@@ -75,9 +75,9 @@ public class AnimalsRepository implements IAnimalsRepository{
 		}*/
 	}
 
-	public Animals findByNumberofPaws(Integer numofPaws)
+	public Animal findByNumberofPaws(Integer numofPaws)
 	{
-		for(Animals animal : _data.animals)
+		for(Animal animal : _data.animals)
 		{
 			if(animal.getNumberofPaws() == numofPaws)
 				return animal;
@@ -97,21 +97,21 @@ public class AnimalsRepository implements IAnimalsRepository{
 			System.out.println("Nie odnaleziono zwierzecia, ktore ma liczbe lap rowna "+ numofPaws);
 		}*/
 	}
-	public Animals[] findByOwnerId(int ownerId)
+	public Animal[] findByOwnerId(int ownerId)
 	{
-		ArrayList<Animals> animals = new ArrayList<Animals>();
-		for(Animals animal : _data.animals)
+		ArrayList<Animal> animals = new ArrayList<Animal>();
+		for(Animal animal : _data.animals)
 		{
 			if(animal.getOwnerId() == ownerId)
 				animals.add(animal);
 		}
 		
-		return animals.toArray(new Animals[animals.size()]);
+		return animals.toArray(new Animal[animals.size()]);
 	}
 	
-	public Animals[] findAll()
+	public Animal[] findAll()
 	{
-		return _data.animals.toArray(new Animals[_data.animals.size()]);
+		return _data.animals.toArray(new Animal[_data.animals.size()]);
 	}
 	
 }
