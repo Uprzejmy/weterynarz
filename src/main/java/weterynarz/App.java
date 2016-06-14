@@ -1,16 +1,12 @@
 package weterynarz;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
-import weterynarz.Interface.ICommand;
-import weterynarz.Interface.Parser;
-
-import weterynarz.Utils.ExampleLoader;
+import weterynarz.Controller.Controller;
+import weterynarz.Model.Model;
+import weterynarz.View.View;
 
 public class App {
-
+	
+	/* --------------- v1.0 ----------------
 	public static void main(String[] args) {
 		ExampleLoader.loadWholeData();
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -37,6 +33,17 @@ public class App {
 	    }
 
 	}
+	*/
 	
+	// --------------- v2.0 ----------------
+	public static void main(String[] args) {
+		View view = new View("Weterynarz");
+		Model model = new Model();
+
+		//wait for fully initialized model and view
+		
+		Controller controller = new Controller(model,view);
+		controller.control();
+	}
 	
 }
