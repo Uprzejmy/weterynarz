@@ -1,17 +1,43 @@
 package weterynarz.Model.Doctors;
 
+import javax.persistence.*;
+
 import weterynarz.Model.Item;
 
-public class Doctor extends Item{
-	private static int _idCounter;
+@Entity
+@Table(name="doctors")
+
+public class Doctor extends Item
+{
+	@Id @GeneratedValue
+	@Column(name = "id")
+	private int _id;
+	
+	@Column(name = "name")
 	private String _name;
+	
+	@Column(name = "surname")
 	private String _surname;
+	
+	public Doctor()
+	{
+		
+	}
 	
 	public Doctor(String name, String surname)
 	{
-		_id = _idCounter++;
 		_name = name;
 		_surname = surname;
+	}
+	
+	public int getId() 
+	{
+	      return _id;
+	}
+	  
+	public void setId( int id ) 
+	{
+	      _id = id;
 	}
 	
 	public String getName()

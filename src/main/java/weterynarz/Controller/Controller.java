@@ -47,7 +47,8 @@ public class Controller {
     
     private void linkBtn2AndLabel()
     {             
-        view.setText(model.getData2());
+        view.setText(model.getDoctorData());
+        
     }  
 	
 }

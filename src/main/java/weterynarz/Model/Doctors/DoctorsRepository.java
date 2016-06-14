@@ -4,6 +4,11 @@ package weterynarz.Model.Doctors;
 
 import java.util.ArrayList;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+
 import weterynarz.Data.Database;
 
 public class DoctorsRepository implements IDoctorsRepository{
@@ -52,6 +57,25 @@ public class DoctorsRepository implements IDoctorsRepository{
 		}
 		
 		return doctors.toArray(new Doctor[doctors.size()]);
+	}
+	
+	public String repositoryTest()
+	{
+		SessionFactory sessionFactory;
+	    sessionFactory = new Configuration().configure().buildSessionFactory();
+	
+	    Session session = sessionFactory.openSession();
+	
+	    Transaction tx = session.beginTransaction();
+	
+	    Doctor doctor = new Doctor();
+	    doctor.setName("Jan");
+	    doctor.setSurname("Kowal");
+	    session.save(doctor);
+	    tx.commit();
+	    session.close();
+	    
+	    return doctor.toString();
 	}
 	
 	
