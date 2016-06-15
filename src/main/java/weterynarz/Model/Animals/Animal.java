@@ -1,5 +1,6 @@
 package weterynarz.Model.Animals;
 
+import javax.persistence.*;
 import weterynarz.Model.Item;
 
 public class Animal extends Item{
