@@ -15,7 +15,7 @@ public class View {
 
     public View(String text)
     {
-        frame = new JFrame("View");                                    
+        frame = new JFrame("Najladniejsze kotki internetu");                                    
         frame.getContentPane().setLayout(new BorderLayout());                                          
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);           
         frame.setSize(200,200);        
@@ -25,7 +25,7 @@ public class View {
         frame.getContentPane().add(label, BorderLayout.CENTER);
         
         button1 = new JButton("Button1");    
-        button2 = new JButton("Button2");    
+        button2 = new JButton("Pobierz dane");    
         frame.getContentPane().add(button1, BorderLayout.NORTH);    
         frame.getContentPane().add(button2, BorderLayout.SOUTH); 
     }
