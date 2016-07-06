@@ -1,10 +1,7 @@
 package weterynarz.Model.Animals;
 
-import javax.persistence.*;
-import weterynarz.Model.Item;
-
-public class Animal extends Item{
-	private static int _idAnimal;
+public class Animal{
+	private int _id;
 	private String _species; // gatunek
 	private String _breed; // rasa
 	private int _numPaws; // liczba lap
@@ -13,12 +10,22 @@ public class Animal extends Item{
 	
 	public Animal(String species, String breed, String colour, Integer numPaws, int ownerId)
 	{
-		_id = _idAnimal++;
+		_id = 0;
 		_species = species;
 		_breed = breed;
 		_colour = colour;
 		_numPaws = numPaws;
 		_ownerId = ownerId;
+	}
+	
+	public int getId() 
+	{
+	      return _id;
+	}
+	  
+	public void setId( int id ) 
+	{
+	      _id = id;
 	}
 	
 	public String getSpecies()

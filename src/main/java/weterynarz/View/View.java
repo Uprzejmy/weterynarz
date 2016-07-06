@@ -24,7 +24,7 @@ public class View {
         label = new JLabel(text);
         frame.getContentPane().add(label, BorderLayout.CENTER);
         
-        button1 = new JButton("Button1");    
+        button1 = new JButton("Rejestruj u¿ytkownika");    
         button2 = new JButton("Pobierz dane");    
         frame.getContentPane().add(button1, BorderLayout.NORTH);    
         frame.getContentPane().add(button2, BorderLayout.SOUTH); 

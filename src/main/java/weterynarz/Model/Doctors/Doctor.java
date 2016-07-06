@@ -6,12 +6,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import weterynarz.Model.Item;
 
 @Entity
 @Table(name="doctors")
 
-public class Doctor extends Item
+public class Doctor
 {
 	@Id @GeneratedValue
 	@Column(name = "id")
