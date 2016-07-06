@@ -23,7 +23,7 @@ public class UsersManager
 	    user.setSalt(generateSalt());
 	    user.setHashedPassword(getHash(password,user.getSalt()));
 	    
-	    _unitOfWork.getSession().save(user);
+	    _unitOfWork.save(user);
 	}
 	
 	public void login(String email, String password)

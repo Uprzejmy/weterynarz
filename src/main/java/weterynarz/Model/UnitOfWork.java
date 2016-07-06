@@ -17,16 +17,15 @@ public class UnitOfWork {
 	{
 		_sessionFactory = new Configuration().configure().buildSessionFactory();
 	}
-	
-	public Session getSession()
+
+	public void save(Object object)
 	{
-		return _session;
+		_session.save(object);
 	}
 	
 	public void start()
 	{
 		_session = _sessionFactory.openSession();
-		
 		_transaction = _session.beginTransaction();
 	}
 	
