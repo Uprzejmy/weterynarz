@@ -1,19 +1,27 @@
 package weterynarz.Model.Hospitals;
 
-import weterynarz.Model.Item;
-
-public class Hospital extends Item{
-	private static int _idCounter;
+public class Hospital{
+	private int _id;
 	private String _name;
 	private String _spec;
 	private String _address;
 	
 	public Hospital(String name, String spec, String address)
 	{
-		_id = _idCounter++;
+		_id = 0;
 		_name = name;
 		_spec= spec;
 		_address=address;
+	}
+	
+	public int getId() 
+	{
+	      return _id;
+	}
+	  
+	public void setId( int id ) 
+	{
+	      _id = id;
 	}
 	
 	public String getName()

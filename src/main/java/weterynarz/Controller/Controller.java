@@ -42,7 +42,8 @@ public class Controller {
     
     private void linkBtn1AndLabel()
     {             
-        view.setText(model.getData1());
+        view.setText("Rejestrujê u¿ytkownika...");
+        model.registerUser();
     }    
     
     private void linkBtn2AndLabel()

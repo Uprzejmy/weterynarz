@@ -1,9 +1,7 @@
 package weterynarz.Model.Clients;
 
-import weterynarz.Model.Item;
-
-public class Client extends Item{
-	private static int _idCounter;
+public class Client{
+	private int _id;
 	private String _name;
 	private String _surname;
 	private String _adress;
@@ -12,12 +10,22 @@ public class Client extends Item{
 	
 	public Client(String name, String surname, String adress, String phone, String email)
 	{
-		_id = _idCounter++;
+		_id = 0;
 		_name = name;
 		_surname = surname;
 		_adress = adress;
 		_phone = phone;
 		_email = email;
+	}
+	
+	public int getId() 
+	{
+	      return _id;
+	}
+	  
+	public void setId( int id ) 
+	{
+	      _id = id;
 	}
 	
 	public String getName()
