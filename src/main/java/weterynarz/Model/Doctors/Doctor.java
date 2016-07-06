@@ -3,16 +3,19 @@ package weterynarz.Model.Doctors;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 
 @Entity
+@SequenceGenerator(initialValue = 1, allocationSize=1, name = "doctors_ids", sequenceName = "doctors_ids")
 @Table(name="doctors")
 
 public class Doctor
 {
-	@Id @GeneratedValue
+	@Id @GeneratedValue(strategy = GenerationType.AUTO, generator = "doctors_ids")
 	@Column(name = "id")
 	private int _id;
 	
