@@ -30,14 +30,14 @@ public class UserController {
 	
     private void registerAction()
     {             
-    	registrationView.setText("Rejestrujê u¿ytkownika...");
-    	registrationView.setText(model.registerUser());
+    	//registrationView.setText("Rejestrujê u¿ytkownika...");
+    	//registrationView.setText(model.registerUser());
     }
 	
     private void loginAction()
     {             
-    	loginView.setText("Logowanie...");
-    	loginView.setText(model.loginUser());
+    	//loginView.setText("Logowanie...");
+    	//loginView.setText(model.loginUser());
     }  
     
     public void configure()
@@ -49,7 +49,7 @@ public class UserController {
                   loginAction();
               }
         };                
-        loginView.getLoginSubmitButton().addActionListener(loginActionListener);   
+        //loginView.getLoginSubmitButton().addActionListener(loginActionListener);   
         
         registerActionListener = new ActionListener() {
               public void actionPerformed(ActionEvent actionEvent) 
@@ -57,6 +57,6 @@ public class UserController {
             	  registerAction();
               }
         };                
-        registrationView.getButton().addActionListener(registerActionListener);   
+        //registrationView.getButton().addActionListener(registerActionListener);   
     }
 }
