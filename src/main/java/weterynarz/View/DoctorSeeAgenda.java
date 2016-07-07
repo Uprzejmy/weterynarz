@@ -9,7 +9,23 @@ public class DoctorSeeAgenda implements ItemListener
 {
     JPanel cards;
     JLabel label, label1;
+    JFrame frame;
 
+    public DoctorSeeAgenda()
+    {
+    	//Create and set up the window.
+        frame = new JFrame("Twoj kalendarz");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+         
+        //Create and set up the content pane.
+        addComponentToPane(frame.getContentPane());
+       
+        //Display the window.
+        //frame.pack();
+        frame.setSize(290,330);
+        frame.setResizable(false);
+    ;
+    }
      
     public void addComponentToPane(Container pane) 
     {
@@ -64,6 +80,11 @@ public class DoctorSeeAgenda implements ItemListener
         frame.setSize(290,330);
         frame.setResizable(false);
         frame.setVisible(true);
+    }
+    
+    public void setVisibility(boolean visibility)
+    {
+    	this.frame.setVisible(visibility);
     }
      
     public static void main(String[] args) {

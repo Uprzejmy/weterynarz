@@ -11,6 +11,7 @@ public class DoctorClinic implements ItemListener
 {
     JPanel cards;
     JLabel label, label1;
+    JFrame frame;
 
      
     public void addComponentToPane(Container pane) 
@@ -39,6 +40,11 @@ public class DoctorClinic implements ItemListener
     {
         CardLayout cl = (CardLayout)(cards.getLayout());
         cl.show(cards, (String)evt.getItem());
+    }
+    
+    public void setVisibility(boolean visibility)
+    {
+    	this.frame.setVisible(visibility);
     }
      
 
