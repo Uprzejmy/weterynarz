@@ -12,6 +12,8 @@ public class LoginBox implements ItemListener
     JTextField login;
     JPasswordField passwordField1;
     JFrame frame;
+    JButton zaloguj;
+    JButton rejestruj;
     static String ZALOGUJ = "zaloguj";
 
     public LoginBox()
@@ -49,8 +51,8 @@ public class LoginBox implements ItemListener
         
         
    
-        JButton zaloguj = new JButton("Zaloguj");
-        JButton rejestruj = new JButton("Zarejestruj");
+        zaloguj = new JButton("Zaloguj");
+        rejestruj = new JButton("Zarejestruj");
                   
         label = new JLabel("Uprzejmie"
         		+ " proszê wprowadziæ dane logowania.");
@@ -75,6 +77,8 @@ public class LoginBox implements ItemListener
         CardLayout cl = (CardLayout)(cards.getLayout());
         cl.show(cards, (String)evt.getItem());
     }
+    
+    
      
 
     private static void createAndShow() {
@@ -99,6 +103,29 @@ public class LoginBox implements ItemListener
     	this.frame.setVisible(visibility);
     }
      
+    public JButton logowanie()
+    {
+    	return zaloguj;
+    }
+    
+    public JButton rejestracja()
+    {
+    	return rejestruj;
+    }
+    
+    public String get_login()
+    {
+    	return login.getText();
+    }
+    
+  
+	public char[] get_pass()
+    {
+    	return passwordField1.getPassword();
+    }
+    
+    
+    
     public static void main(String[] args) {
         /* Use an appropriate Look and Feel */
         try {
