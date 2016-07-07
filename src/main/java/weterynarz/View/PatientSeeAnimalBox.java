@@ -46,6 +46,12 @@ public class PatientSeeAnimalBox {
         return button1;
     }
     
+    public void setVisibility(boolean visibility)
+    {
+    	this.frame.setVisible(visibility);
+    }
+    
+    
     public void setText(String text)
     {
         label.setText(text);

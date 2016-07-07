@@ -10,6 +10,8 @@ public class PatientWelcomeBox
 {
 	JPanel card;
     JLabel label, label2, label1;
+    JButton see;
+    JButton add;
      
     public void addComponentToPane(Container pane) 
     {
@@ -17,9 +19,9 @@ public class PatientWelcomeBox
               
         card = new JPanel();
         card.setBackground(new Color(220, 236, 237));
-        //card.setLayout(new BorderLayout());
-        JButton see = new JButton("Moje zwierz¹tka");
-        JButton add = new JButton("Dodaj zwierzaka");
+
+       see = new JButton("Moje zwierz¹tka");
+       add = new JButton("Dodaj zwierzaka");
                   
         label = new JLabel("Witamy"
         		+ " na stronie g³ównej.          ");
@@ -39,7 +41,16 @@ public class PatientWelcomeBox
         CardLayout cl = (CardLayout)(card.getLayout());
         cl.show(card, (String)evt.getItem());
     }
+    
+    public JButton seeAnimal()
+    {
+    	return see;
+    }
      
+    public JButton addAnimal()
+    {
+    	return add;
+    }
 
     private static void createAndShow() {
         //Create and set up the window.

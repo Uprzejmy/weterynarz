@@ -7,8 +7,12 @@ import javax.swing.*;
  
 public class PatientAddAnimalBox implements ItemListener
 {
-    JPanel cards;
-    JLabel label, label2, label1;
+    private JPanel cards;
+    private JLabel label;
+    private JButton zatwierdz;
+    private JTextField[] AnimalData = new JTextField[4];
+    
+    JFrame frame;
 
      
     public void addComponentToPane(Container pane) 
@@ -18,14 +22,14 @@ public class PatientAddAnimalBox implements ItemListener
         JPanel card = new JPanel();
         card.setBackground(new Color(220, 236, 237));
 
-        JButton zatwierdz = new JButton("Dodaj zwierzê");
+        zatwierdz = new JButton("Dodaj zwierzê");
                        
         label = new JLabel("Proszê wprowadzic dane zwierzêcia");
         card.add(label);
-        card.add(new JTextField("Imiê", 10));
-        card.add(new JTextField("Rasa", 10));
-        card.add(new JTextField("Liczba ³ap", 10));
-        card.add(new JTextField("Kolor", 10));
+        card.add(AnimalData[0] = new JTextField("Imiê", 10));
+        card.add(AnimalData[1] = new JTextField("Rasa", 10));
+        card.add(AnimalData[2] = new JTextField("Liczba ³ap", 10));
+        card.add(AnimalData[3] = new JTextField("Kolor", 10));
      
         card.add(zatwierdz);
         
@@ -41,6 +45,33 @@ public class PatientAddAnimalBox implements ItemListener
         CardLayout cl = (CardLayout)(cards.getLayout());
         cl.show(cards, (String)evt.getItem());
     }
+    
+    public String getAnimalData(int x)
+    {
+    	if(x == 0)
+    		return AnimalData[0].getText();
+    	else if(x == 1)
+    		return AnimalData[1].getText();
+    	else if(x == 2)
+    		return AnimalData[2].getText();
+    	else if(x ==3)
+    		return AnimalData[3].getText();
+    	
+		return null;
+    	
+    }
+
+    public JButton zatwierdzenie()
+    {
+    	return zatwierdz;
+    }
+
+
+    public void setVisibility(boolean visibility)
+    {
+    	this.frame.setVisible(visibility);
+    }
+    
      
 
     private static void createAndShow() {
