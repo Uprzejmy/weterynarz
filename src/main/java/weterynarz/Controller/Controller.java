@@ -5,7 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import weterynarz.Model.Model;
-import weterynarz.Model.Users.User;
 import weterynarz.View.View;
 
 public class Controller {
@@ -36,6 +35,7 @@ public class Controller {
               public void actionPerformed(ActionEvent actionEvent) 
               {                  
                   linkBtn2AndLabel();
+                  loginAction();
               }
         };                
         view.getButton2().addActionListener(actionListener2);   
@@ -44,7 +44,7 @@ public class Controller {
     private void linkBtn1AndLabel()
     {             
         view.setText("Rejestrujê u¿ytkownika...");
-        model.registerUser();
+        view.setText(model.registerUser());
     }    
     
     private void linkBtn2AndLabel()
@@ -55,10 +55,7 @@ public class Controller {
 	
     private void loginAction()
     {             
-        User user = model.loginUser();
-        if(user == null)
-        	view.setText("Nie udalo sie zalogowac uzytkownika (nieprawidlowe haslo?)");
-        else
-        	view.setText(user.toString());
+    	view.setText("Logowanie...");
+    	view.setText(model.loginUser());
     }  
 }
