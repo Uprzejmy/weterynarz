@@ -1,15 +1,21 @@
 package weterynarz.Model.Clients;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import weterynarz.Model.Patients.Patient;
 import weterynarz.Model.Users.User;
 
 @Entity
@@ -36,6 +42,9 @@ public class Client{
 	@OneToOne
     @JoinColumn(name = "user_id")
 	private User _user;
+	
+	@OneToMany(mappedBy = "_owner", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Patient> _patients = new ArrayList<Patient>();
 	
 	public Client(String name, String surname, String adress, String phone)
 	{
@@ -101,6 +110,20 @@ public class Client{
 
     public void setUser(User user) {
         _user = user;
+    }
+    
+    public List<Patient> getPatients() {
+        return _patients;
+    }
+
+    public void addPatient(Patient patient) {
+        _patients.add(patient);
+        patient.setOwner(this);
+    }
+
+    public void removePatient(Patient patient) {
+    	_patients.remove( patient );
+    	patient.setOwner( null );
     }
 
 	public String toString()

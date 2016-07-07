@@ -22,7 +22,7 @@
    <mapping class="weterynarz.Model.Users.User"></mapping>
    <mapping class="weterynarz.Model.Doctors.Doctor"></mapping>
    <mapping class="weterynarz.Model.Clients.Client"></mapping>
-   <mapping class="weterynarz.Model.Clients.Patient"></mapping>
+   <mapping class="weterynarz.Model.Patients.Patient"></mapping>
 
 
 </session-factory>

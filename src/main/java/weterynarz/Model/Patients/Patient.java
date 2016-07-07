@@ -38,7 +38,7 @@ public class Patient
 	
 	@ManyToOne
 	@JoinColumn(name = "owner_id")
-	private Client _client;
+	private Client _owner;
 	
 	public Patient(String name,String species, String breed, int pawsNumber, String colour)
 	{
@@ -97,6 +97,16 @@ public class Patient
 	public void setPawNumber(int pawsNumber)
 	{
 		_pawsNumber = pawsNumber;
+	}
+	
+	public Client getOwner()
+	{
+		return _owner;
+	}
+	
+	public void setOwner(Client owner)
+	{
+		_owner = owner;
 	}
 	
 	public String toString()
