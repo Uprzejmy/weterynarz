@@ -101,20 +101,10 @@ public class RegistrationBox implements ItemListener
     
     public String getPersonalData(int x)
     {
-    	if(x == 0)
-    		return PersonalData[0].getText();
-    	else if(x == 1)
-    		return PersonalData[1].getText();
-    	else if(x == 2)
-    		return PersonalData[2].getText();
-    	else if(x ==3)
-    		return PersonalData[3].getText();
-    	else if(x ==4)
-    		return PersonalData[4].getText();
-    	else if(x ==5)
-    		return PersonalData[5].getText();
+    	if(x>0 && x<6)
+    		return PersonalData[x].getText();
     	
-		return null;
+		return "";
     	
     }
     
