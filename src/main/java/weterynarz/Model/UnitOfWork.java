@@ -1,5 +1,6 @@
 package weterynarz.Model;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -7,15 +8,28 @@ import org.hibernate.cfg.Configuration;
 
 public class UnitOfWork {
 	
-	SessionFactory _sessionFactory;
+	private static SessionFactory _sessionFactory;
 	
-	Session _session;
+	private Session _session;
 	
-	Transaction _transaction;
+	private Transaction _transaction;
 	
 	public UnitOfWork()
 	{
-		_sessionFactory = new Configuration().configure().buildSessionFactory();
+		if(_sessionFactory == null)
+		{
+			try
+			{
+				_sessionFactory = new Configuration().configure().buildSessionFactory();
+			}
+			catch(HibernateException he)
+			{
+				System.out.println("Failed to build session factory");
+				throw he;
+			}
+			
+		}
+		
 	}
 
 	public void save(Object object)
@@ -23,9 +37,12 @@ public class UnitOfWork {
 		_session.save(object);
 	}
 	
+	
+	
 	public void start()
 	{
 		_session = _sessionFactory.openSession();
+		
 		_transaction = _session.beginTransaction();
 	}
 	

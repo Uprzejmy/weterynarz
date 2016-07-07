@@ -24,6 +24,8 @@ public class Model {
 	public void registerUser()
 	{
 		UnitOfWork unitOfWork = new UnitOfWork();
+		
+		
 		unitOfWork.start();
 		
 		UsersManager usersManager = new UsersManager(unitOfWork);
