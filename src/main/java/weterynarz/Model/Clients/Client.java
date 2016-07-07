@@ -1,21 +1,48 @@
 package weterynarz.Model.Clients;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+import weterynarz.Model.Users.User;
+
+@Entity
+@SequenceGenerator(initialValue = 1, allocationSize=1, name = "clients_ids", sequenceName = "clients_ids")
+@Table(name="clients")
 public class Client{
-	private int _id;
-	private String _name;
-	private String _surname;
-	private String _adress;
-	private String _phone;
-	private String _email;
 	
-	public Client(String name, String surname, String adress, String phone, String email)
+	@Id @GeneratedValue(strategy = GenerationType.AUTO, generator = "clients_ids")
+	@Column(name = "id")
+	private int _id;
+	
+	@Column(name = "name")
+	private String _name;
+	
+	@Column(name = "surname")
+	private String _surname;
+	
+	@Column(name = "address")
+	private String _address;
+	
+	@Column(name = "phone")
+	private String _phone;
+	
+	@OneToOne
+    @JoinColumn(name = "user_id")
+	private User _user;
+	
+	public Client(String name, String surname, String adress, String phone)
 	{
-		_id = 0;
 		_name = name;
 		_surname = surname;
-		_adress = adress;
+		_address = adress;
 		_phone = phone;
-		_email = email;
 	}
 	
 	public int getId() 
@@ -48,14 +75,14 @@ public class Client{
 		_surname = surname;
 	}
 
-	public String getAdress()
+	public String getAddress()
 	{
-		return _adress;
+		return _address;
 	}
 	
-	public void setAdress(String adress)
+	public void setAddress(String address)
 	{
-		_adress = adress;
+		_address = address;
 	}
 
 	public String getPhone()
@@ -68,30 +95,22 @@ public class Client{
 		_phone = phone;
 	}
 	
-	public String getEmail()
-	{
-		return _email;
-	}
-	
-	public void setEmail(String email)
-	{
-		_email = email;
-	}
-	
-	public boolean compareEmail(String email)
-	{
-		return _email.equals(email);
-	}
-	
+	public User getUser() {
+        return _user;
+    }
+
+    public void setUser(User user) {
+        _user = user;
+    }
+
 	public String toString()
 	{
 		return 
 				Integer.toString(_id) + " " + 
 				_name + " " + 
 				_surname + " "+
-				_adress + " "+
-				_phone + " "+
-				_email + " ";
+				_address + " "+
+				_phone + " ";
 	}
 
 }
