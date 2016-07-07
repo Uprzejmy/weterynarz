@@ -21,6 +21,7 @@
    
    <mapping class="weterynarz.Model.Users.User"></mapping>
    <mapping class="weterynarz.Model.Doctors.Doctor"></mapping>
+   <mapping class="weterynarz.Model.Clients.Client"></mapping>
 
 
 </session-factory>
