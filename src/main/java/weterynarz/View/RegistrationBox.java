@@ -145,7 +145,7 @@ public class RegistrationBox implements ItemListener
         //frame.pack();
         frame.setSize(290,330);
         frame.setResizable(false);
-        frame.setVisible(true);
+       // frame.setVisible(true);
     }
     
        

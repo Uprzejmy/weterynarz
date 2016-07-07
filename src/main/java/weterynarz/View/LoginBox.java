@@ -29,7 +29,7 @@ public class LoginBox implements ItemListener
         //frame.pack();
         frame.setSize(290,330);
         frame.setResizable(false);
-        frame.setVisible(false);
+      //  frame.setVisible(false);
     }
      
     public void addComponentToPane(Container pane) 
@@ -95,7 +95,7 @@ public class LoginBox implements ItemListener
         //frame.pack();
         frame.setSize(290,330);
         frame.setResizable(false);
-        frame.setVisible(true);
+      //  frame.setVisible(true);
     }
     
     public void setVisibility(boolean visibility)
