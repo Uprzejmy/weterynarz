@@ -15,7 +15,7 @@ public class UserController {
 	private RegistrationBox registrationView;
 	
 	private ActionListener loginActionListener;
-	private ActionListener loginToRegisterActionListener;
+	private ActionListener changeViewToRegisterActionListener;
 	private ActionListener registerActionListener;
 	
 	public UserController(Model model)
@@ -26,38 +26,38 @@ public class UserController {
 		
 		this.registrationView.setVisibility(false);
 		this.loginView.setVisibility(true);
-
-
-		
 	}
-    
 	
-    private void loginToRegisterAction()
+    private void changeViewToRegisterAction()
     {             
     	this.loginView.setVisibility(false);
     	this.registrationView.setVisibility(true);
-    	
     }
 	
     private void loginAction()
     {      
-    	String login = this.loginView.get_login();
-    	char[] haslo = this.loginView.get_pass();
-    	User user = this.model.loginUser(login,new String(haslo));
+    	String email = this.loginView.getEmail();
+    	String haslo = this.loginView.getPassword();
+    	
+    	User user = this.model.loginUser(email,haslo);
     	if(user != null)
     	{
     		this.loginView.setVisibility(false);
     		ContextManager.changeContext(user,"client");
     	}
-    		
-    		
     }  
     
     private void registerAction()
     {             
     	this.loginView.setVisibility(false);
     	this.registrationView.setVisibility(true);
-    	
+    	/*
+    	User user = this.model.loginUser(login,new String(haslo));
+    	if(user != null)
+    	{
+    		this.loginView.setVisibility(false);
+    		ContextManager.changeContext(user,"client");
+    	}*/
     }
 	
     
@@ -65,31 +65,30 @@ public class UserController {
 	{        
         loginActionListener = new ActionListener() 
         {
-              
-
 			public void actionPerformed(ActionEvent actionEvent) 
-              {     
-
-                  loginAction();
-              }
+            {     
+				loginAction();
+            }
         };                
         loginView.logowanie().addActionListener(loginActionListener); 
         
-        registerActionListener = new ActionListener() {
-            public void actionPerformed(ActionEvent actionEvent) 
+        registerActionListener = new ActionListener() 
+        {
+        	public void actionPerformed(ActionEvent actionEvent) 
             {                  
-          	  registerAction();
+        		registerAction();
             }
-      };  
-      registrationView.getButton().addActionListener(registerActionListener);
+        };  
+        registrationView.getButton().addActionListener(registerActionListener);
       
         
-      loginToRegisterActionListener = new ActionListener() {
+        changeViewToRegisterActionListener = new ActionListener() 
+        {
             public void actionPerformed(ActionEvent actionEvent) 
-              {                  
-            		loginToRegisterAction();
-             }
+            {                  
+            	changeViewToRegisterAction();
+            }
         };                
-        loginView.rejestracja().addActionListener(registerActionListener);   
+        loginView.rejestracja().addActionListener(changeViewToRegisterActionListener);   
     }
 }

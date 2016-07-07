@@ -113,15 +113,15 @@ public class LoginBox implements ItemListener
     	return rejestruj;
     }
     
-    public String get_login()
+    public String getEmail()
     {
     	return login.getText();
     }
     
   
-	public char[] get_pass()
+	public String getPassword()//powinno operowac na char[], ale dla ulatwienia zostawiamy jako string
     {
-    	return passwordField1.getPassword();
+    	return new String(passwordField1.getPassword());
     }
     
     
