@@ -26,11 +26,13 @@ public class ContextManager {
 	{
 		if(type.equals("client"))
 		{
+			userController = null; // potencjalnie bardzo niebezpieczne! powinienem najpierw odrejestrowac listenery? jest takie cos?
 			clientController = new ClientController(model);
 			//clientController.configure(); 
 		}
 		else if(type.equals("doctor"))
 		{
+			userController = null; // potencjalnie bardzo niebezpieczne! powinienem najpierw odrejestrowac listenery? jest takie cos?
 			doctorController = new DoctorController(model);
 			//doctorController.configure(); 
 		}
@@ -44,8 +46,8 @@ public class ContextManager {
 	public void run()
 	{
 		model = new Model();
-		//userController = new UserController(model); //default context
-		//clientController.configure(); 
+		userController = new UserController(model); //default context
+		userController.configure(); 
 	}
 
 }

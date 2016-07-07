@@ -36,26 +36,34 @@ public class Model {
 		unitOfWork.saveChanges();
 		
 		if(user != null)
+		{
+			System.out.println("zarejestrowano");
 			return user.toString();
-		
+		}
+			
+		System.out.println("nie zarejestrowano");
 		return "Couldn't register user, try different email";
 		
 	}
 	
-	public String loginUser()
+	public String loginUser(String email, String password)
 	{
 		UnitOfWork unitOfWork = new UnitOfWork();
 		
 		unitOfWork.beginTransaction();
 		
 		IUsersManager usersManager = new UsersManager(unitOfWork);
-		User user = usersManager.login("test2@test.test","demo1234");
+		User user = usersManager.login(email,password);
 		
 		unitOfWork.saveChanges();
 		
 		if(user != null)
+		{
+			System.out.println("zalogowano");
 			return user.toString();
-		
+		}
+			
+		System.out.println("nie zalogowano");
 		return "Couldn't log in, incorrect email or password";
 	}
 }

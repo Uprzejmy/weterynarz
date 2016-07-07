@@ -56,6 +56,6 @@ public class Controller {
     private void loginAction()
     {             
     	view.setText("Logowanie...");
-    	view.setText(model.loginUser());
+    	//view.setText(model.loginUser());
     }  
 }

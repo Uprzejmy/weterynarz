@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import weterynarz.Model.Model;
 import weterynarz.View.LoginBox;
 import weterynarz.View.RegistrationBox;
-import weterynarz.View.View;
 
 public class UserController {
 	
@@ -42,7 +41,7 @@ public class UserController {
     {      
     	String login = this.loginView.get_login();
     	char[] haslo = this.loginView.get_pass();
-    	this.model.loginUser();
+    	this.model.loginUser(login,new String(haslo));
     }  
     
     public void configure()
