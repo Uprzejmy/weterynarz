@@ -14,42 +14,71 @@ public class UnitOfWork {
 	
 	private Transaction _transaction;
 	
+	static // blok static jest wykonywany tylko raz, przy pierwszym odwolaniu do klasy, chyba dobre miejsce, sprawdzic
+	{
+		try
+		{
+			_sessionFactory = new Configuration().configure().buildSessionFactory();
+		}
+		catch(HibernateException he)
+		{
+			System.out.println("Failed to build session factory");
+			throw he;
+		}
+	}
+	
 	public UnitOfWork()
 	{
-		if(_sessionFactory == null)
-		{
-			try
-			{
-				_sessionFactory = new Configuration().configure().buildSessionFactory();
-			}
-			catch(HibernateException he)
-			{
-				System.out.println("Failed to build session factory");
-				throw he;
-			}
-			
-		}
-		
-	}
-
-	public void save(Object object)
-	{
-		_session.save(object);
+		_session = _sessionFactory.openSession();	
 	}
 	
-	
-	
-	public void start()
+	public Session getSession()
 	{
-		_session = _sessionFactory.openSession();
-		
+		return _session;
+	}
+	
+	public void beginTransaction()
+	{
 		_transaction = _session.beginTransaction();
 	}
 	
-	public void finalize()
-	{
-		_transaction.commit();
-	    _session.close();
-	}
+	public void saveChanges()
+    {
+        try
+        {
+            if (_transaction != null)
+                _transaction.commit();
+        }
+        catch(HibernateException he)
+        {
+        	System.out.println("Failed to commit transaction, rollbacking");
+            if (_transaction != null)
+                _transaction.rollback();
+ 
+            throw he;
+        }
+        finally
+        {
+        	_session.close();
+        }
+    }
+	
+	public void discardChanges()
+    {
+        try
+        {
+            if (_transaction != null)
+                _transaction.rollback();
+        }
+        catch(HibernateException he)
+        {
+        	System.out.println("Failed to discard changes");
+        	throw he;
+        }
+        finally
+        {
+            _session.close();
+        }
+    }
 
 }

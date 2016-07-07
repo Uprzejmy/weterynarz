@@ -1,6 +1,7 @@
 package weterynarz.Model;
 
 import weterynarz.Model.Doctors.DoctorsRepository;
+import weterynarz.Model.Users.User;
 import weterynarz.Model.Users.UsersManager;
 
 public class Model {
@@ -26,11 +27,25 @@ public class Model {
 		UnitOfWork unitOfWork = new UnitOfWork();
 		
 		
-		unitOfWork.start();
+		unitOfWork.beginTransaction();
 		
 		UsersManager usersManager = new UsersManager(unitOfWork);
 		usersManager.register("test@test.test","demo1234");
 		
-		unitOfWork.finalize();
+		unitOfWork.saveChanges();
+	}
+	
+	public User loginUser()
+	{
+		UnitOfWork unitOfWork = new UnitOfWork();
+		
+		unitOfWork.beginTransaction();
+		
+		UsersManager usersManager = new UsersManager(unitOfWork);
+		User user = usersManager.login("test@test.test","demo1234");
+		
+		unitOfWork.saveChanges();
+		
+		return user;
 	}
 }

@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import weterynarz.Model.Model;
+import weterynarz.Model.Users.User;
 import weterynarz.View.View;
 
 public class Controller {
@@ -52,4 +53,12 @@ public class Controller {
         
     }  
 	
+    private void loginAction()
+    {             
+        User user = model.loginUser();
+        if(user == null)
+        	view.setText("Nie udalo sie zalogowac uzytkownika (nieprawidlowe haslo?)");
+        else
+        	view.setText(user.toString());
+    }  
 }
