@@ -44,6 +44,7 @@ public class UserController {
     	{
     		this.loginView.setVisibility(false);
     		ContextManager.changeContext(user,"client");
+    		return;
     	}
     	
     	System.out.println("Couldn't login user, email and password mismatch");
