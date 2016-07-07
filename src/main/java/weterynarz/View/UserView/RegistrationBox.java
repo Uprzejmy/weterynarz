@@ -13,7 +13,8 @@ public class RegistrationBox implements ItemListener
     private JPasswordField passwordField1, passwordField2;
     private JButton zatwierdz = new JButton("Zatwierdü");
     private JPanel comboBoxPane;
-    private JComboBox cb;
+    @SuppressWarnings("rawtypes")
+	private JComboBox cb;
     private JPanel card2;
     private String comboBoxItems[] = {"Pacjent", "Lekarz"};
     private JTextField[] PersonalData= new JTextField[6];
@@ -31,7 +32,8 @@ public class RegistrationBox implements ItemListener
     }
 
      
-    public void addComponentToPane(Container pane) 
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	public void addComponentToPane(Container pane) 
     {
       
         comboBoxPane = new JPanel();

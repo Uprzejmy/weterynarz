@@ -4,8 +4,6 @@ import java.awt.*;
 import java.awt.event.*;
 
 import javax.swing.*;
-
-import weterynarz.Model.Hospitals.Hospital;
  
 public class DoctorClinic implements ItemListener
 {
