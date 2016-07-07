@@ -12,6 +12,7 @@ public class PatientWelcomeBox
     JLabel label, label2, label1;
     JButton see;
     JButton add;
+    JFrame frame;
      
     public void addComponentToPane(Container pane) 
     {
@@ -50,6 +51,11 @@ public class PatientWelcomeBox
     public JButton addAnimal()
     {
     	return add;
+    }
+    
+    public void setVisibility(boolean visibility)
+    {
+    	this.frame.setVisible(visibility);
     }
 
     private static void createAndShow() {

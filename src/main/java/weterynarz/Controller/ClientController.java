@@ -4,28 +4,28 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import weterynarz.Model.Model;
+import weterynarz.View.PatientWelcomeBox;
 import weterynarz.View.TestWelcomeBox;
 import weterynarz.View.View;
 
 public class ClientController {
 	
 	private Model model;
-	private TestWelcomeBox welcomeView;
+	private PatientWelcomeBox welcomeView;
 	
 	private ActionListener exampleListener;
 	
 	public ClientController(Model model)
 	{
 		this.model = model;
-		this.welcomeView = new TestWelcomeBox();
-		
+		this.welcomeView = new PatientWelcomeBox();
 		this.welcomeView.setVisibility(true);
 	}
     
 	
     private void exampleAction()
     {             
-    	welcomeView.setText("No hej!");
+    	//example
     }
 
     
@@ -38,6 +38,6 @@ public class ClientController {
             	  exampleAction();
               }
         };                
-        welcomeView.getExampleButton().addActionListener(exampleListener);   
+        welcomeView.seeAnimal().addActionListener(exampleListener);   
     }
 }
