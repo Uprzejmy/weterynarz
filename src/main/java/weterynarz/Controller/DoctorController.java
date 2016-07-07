@@ -5,16 +5,14 @@ import java.awt.event.ActionListener;
 
 import weterynarz.Model.Model;
 import weterynarz.View.TestWelcomeBox;
-import weterynarz.View.View;
 
-public class ClientController {
-	
+public class DoctorController {
 	private Model model;
 	private TestWelcomeBox welcomeView;
 	
 	private ActionListener exampleListener;
 	
-	public ClientController(Model model)
+	public DoctorController(Model model)
 	{
 		this.model = model;
 		this.welcomeView = new TestWelcomeBox();

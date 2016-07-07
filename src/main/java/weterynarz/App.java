@@ -1,5 +1,6 @@
 package weterynarz;
 
+import weterynarz.Controller.ContextManager;
 import weterynarz.Controller.UserController;
 import weterynarz.Model.Model;
 
@@ -36,13 +37,8 @@ public class App {
 	
 	// --------------- v2.0 ----------------
 	public static void main(String[] args) {
-		//View view = new View("Weterynarz");
-		Model model = new Model();
-
-		//wait for fully initialized model and view
-		
-		UserController controller = new UserController(model);
-		controller.configure();
+		ContextManager contextManager = ContextManager.getInstance();
+		contextManager.run();
 	}
 	
 }
