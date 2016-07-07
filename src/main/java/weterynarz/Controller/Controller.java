@@ -35,6 +35,7 @@ public class Controller {
               public void actionPerformed(ActionEvent actionEvent) 
               {                  
                   linkBtn2AndLabel();
+                  loginAction();
               }
         };                
         view.getButton2().addActionListener(actionListener2);   
@@ -43,7 +44,7 @@ public class Controller {
     private void linkBtn1AndLabel()
     {             
         view.setText("Rejestrujê u¿ytkownika...");
-        model.registerUser();
+        view.setText(model.registerUser());
     }    
     
     private void linkBtn2AndLabel()
@@ -52,4 +53,9 @@ public class Controller {
         
     }  
 	
+    private void loginAction()
+    {             
+    	view.setText("Logowanie...");
+    	view.setText(model.loginUser());
+    }  
 }

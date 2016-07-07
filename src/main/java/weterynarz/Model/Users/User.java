@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.NaturalId;
+
 @Entity
 @SequenceGenerator(initialValue = 1, allocationSize=1, name = "users_ids", sequenceName = "users_ids")
 @Table(name="users")
@@ -17,7 +19,8 @@ public class User
 	@Column(name = "id")
 	protected int _id;
 	
-	@Column(name = "email",length=128)//,unique=true
+	@NaturalId
+	@Column(name = "email",length=128,unique=true)
 	protected String _email;
 	
 	@Column(name = "salt",length=64)
@@ -29,7 +32,6 @@ public class User
 	
 	public User()
 	{
-		
 	}
 	
 	public User(String email)

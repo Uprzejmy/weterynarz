@@ -1,6 +1,8 @@
 package weterynarz.Model;
 
 import weterynarz.Model.Doctors.DoctorsRepository;
+import weterynarz.Model.Users.IUsersManager;
+import weterynarz.Model.Users.User;
 import weterynarz.Model.Users.UsersManager;
 
 public class Model {
@@ -21,14 +23,39 @@ public class Model {
 		return drepo.repositoryTest();
 	}
 	
-	public void registerUser()
+	public String registerUser()
 	{
 		UnitOfWork unitOfWork = new UnitOfWork();
-		unitOfWork.start();
 		
-		UsersManager usersManager = new UsersManager(unitOfWork);
-		usersManager.register("test@test.test","demo1234");
 		
-		unitOfWork.finalize();
+		unitOfWork.beginTransaction();
+		
+		IUsersManager usersManager = new UsersManager(unitOfWork);
+		User user = usersManager.register("test2@test.test","demo1234");
+
+		unitOfWork.saveChanges();
+		
+		if(user != null)
+			return user.toString();
+		
+		return "Couldn't register user, try different email";
+		
+	}
+	
+	public String loginUser()
+	{
+		UnitOfWork unitOfWork = new UnitOfWork();
+		
+		unitOfWork.beginTransaction();
+		
+		IUsersManager usersManager = new UsersManager(unitOfWork);
+		User user = usersManager.login("test2@test.test","demo1234");
+		
+		unitOfWork.saveChanges();
+		
+		if(user != null)
+			return user.toString();
+		
+		return "Couldn't log in, incorrect email or password";
 	}
 }
