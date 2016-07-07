@@ -4,11 +4,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import weterynarz.Model.Model;
-import weterynarz.View.DoctorAnimals;
-import weterynarz.View.DoctorClinic;
-import weterynarz.View.DoctorSeeAgenda;
-import weterynarz.View.DoctorWelcomeBox;
-import weterynarz.View.DoctorDetails;
+import weterynarz.View.DoctorView.DoctorAnimals;
+import weterynarz.View.DoctorView.DoctorClinic;
+import weterynarz.View.DoctorView.DoctorDetails;
+import weterynarz.View.DoctorView.DoctorSeeAgenda;
+import weterynarz.View.DoctorView.DoctorWelcomeBox;
 
 
 

@@ -1,4 +1,4 @@
-package weterynarz.View;
+package weterynarz.View.UserView;
 
 import java.awt.*;
 import java.awt.event.*;

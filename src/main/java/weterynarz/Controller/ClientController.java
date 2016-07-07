@@ -4,9 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import weterynarz.Model.Model;
-import weterynarz.View.PatientAddAnimalBox;
-import weterynarz.View.PatientSeeAnimalBox;
-import weterynarz.View.PatientWelcomeBox;
+import weterynarz.View.PatientView.PatientAddAnimalBox;
+import weterynarz.View.PatientView.PatientSeeAnimalBox;
+import weterynarz.View.PatientView.PatientWelcomeBox;
 
 
 public class ClientController {

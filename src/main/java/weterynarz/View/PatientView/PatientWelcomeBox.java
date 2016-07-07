@@ -1,67 +1,48 @@
-package weterynarz.View;
+package weterynarz.View.PatientView;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.text.SimpleDateFormat;
 
 import javax.swing.*;
 
-import java.util.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
-public class DoctorWelcomeBox
+public class PatientWelcomeBox
 {
 	JPanel card;
-    JLabel label, labelx, label2, label1;
-    JButton daneosobowe, alistofanim, lecznice, calendar;
+    JLabel label, label2, label1;
+    JButton see;
+    JButton add;
     JFrame frame;
-    
-    public DoctorWelcomeBox()
+     
+    public PatientWelcomeBox()
     {
-    	//Create and set up the window.
+    	
         frame = new JFrame("Witaj!");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-         
-        //Create and set up the content pane.
+        
         addComponentToPane(frame.getContentPane());
        
-        //Display the window.
-        //frame.pack();
         frame.setSize(290,330);
         frame.setResizable(false);
-      //  frame.setVisible(false);
+        frame.setVisible(false);
     }
-     
+    
     public void addComponentToPane(Container pane) 
     {
       
-    	DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-    	Date date = new Date();
+              
         card = new JPanel();
         card.setBackground(new Color(220, 236, 237));
-        //card.setLayout(new BorderLayout());
-        calendar = new JButton("           Moj Terminarz            ");
-        // calendar.setBounds(20, 100, 40, 40);
-        // calendar.setBorder(null);
 
-        daneosobowe = new JButton("     Moje Dane Osobowe     ");
-        alistofanim = new JButton("Zwierzeta pod moja opieka");
-        lecznice = new JButton("   Lista dostepnych lecznic  ");
+       see = new JButton("Moje zwierz¹tka");
+       add = new JButton("Dodaj zwierzaka");
                   
-        label = new JLabel("Witamy na stronie glownej!");
-        labelx = new JLabel(dateFormat.format(date));
-       // labelx.setLocation(200, 200);
+        label = new JLabel("Witamy"
+        		+ " na stronie g³ównej.          ");
         
         card.add(label);
-       
-        card.add(daneosobowe);
-        card.add(calendar);
-        card.add(alistofanim);
-        card.add(lecznice);
-        
-        card.add(labelx);
+        card.add(see);
+        card.add(add);
         
         
        // Create the panel that contains the "cards".
@@ -74,14 +55,28 @@ public class DoctorWelcomeBox
         CardLayout cl = (CardLayout)(card.getLayout());
         cl.show(card, (String)evt.getItem());
     }
+    
+    public JButton seeAnimal()
+    {
+    	return see;
+    }
      
+    public JButton addAnimal()
+    {
+    	return add;
+    }
+    
+    public void setVisibility(boolean visibility)
+    {
+    	this.frame.setVisible(visibility);
+    }
 
     private static void createAndShow() {
         //Create and set up the window.
         JFrame frame = new JFrame("Witaj!");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
         //Create and set up the content pane.
-        DoctorWelcomeBox demo = new DoctorWelcomeBox();
+        PatientWelcomeBox demo = new PatientWelcomeBox();
         demo.addComponentToPane(frame.getContentPane());
        
          
@@ -92,31 +87,6 @@ public class DoctorWelcomeBox
         frame.setSize(290,330);
         frame.setResizable(false);
         frame.setVisible(true);
-    }
-    
-    public JButton daneOsobowe()
-    {
-    	return daneosobowe;
-    }
-    
-    public JButton aListOfAnim()
-    {
-    	return alistofanim;
-    }
-    
-    public JButton Lecznice()
-    {
-    	return lecznice;
-    }
-    
-    public JButton Calendar()
-    {
-    	return calendar;
-    }
-    
-    public void setVisibility(boolean visibility)
-    {
-    	this.frame.setVisible(visibility);
     }
      
     public static void main(String[] args) {
@@ -147,4 +117,3 @@ public class DoctorWelcomeBox
 	
 
 }
-

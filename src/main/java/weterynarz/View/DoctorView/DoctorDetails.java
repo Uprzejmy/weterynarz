@@ -1,11 +1,11 @@
-package weterynarz.View;
+package weterynarz.View.DoctorView;
 
 import java.awt.*;
 
 import javax.swing.*;
 
 
-public class PatientSeeAnimalBox {
+public class DoctorDetails {
 	
 	private JFrame frame;
     private JLabel label;
@@ -13,9 +13,9 @@ public class PatientSeeAnimalBox {
 
    
 
-    public PatientSeeAnimalBox(String[] text)
+    public DoctorDetails(String[] text)
     {
-        frame = new JFrame("Twoje zwierzêta");                                                                            
+        frame = new JFrame("Twoje dane osobowe");                                                                            
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
         frame.setLayout(new GridLayout(10,0));
         button1 = new JButton("Pobierz dane");
@@ -37,7 +37,7 @@ public class PatientSeeAnimalBox {
         frame.getContentPane().setBackground(new Color(220, 236, 237));    
         frame.setResizable(false);
         frame.setSize(290,330);        
-       // frame.setVisible(true);
+        frame.setVisible(true);
     }
     
    
@@ -61,4 +61,3 @@ public class PatientSeeAnimalBox {
     
 	
 }
-

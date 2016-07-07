@@ -5,8 +5,8 @@ import java.awt.event.ActionListener;
 
 import weterynarz.Model.Model;
 import weterynarz.Model.Users.User;
-import weterynarz.View.LoginBox;
-import weterynarz.View.RegistrationBox;
+import weterynarz.View.UserView.LoginBox;
+import weterynarz.View.UserView.RegistrationBox;
 
 public class UserController {
 	
