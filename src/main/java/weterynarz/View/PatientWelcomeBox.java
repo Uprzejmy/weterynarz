@@ -14,6 +14,19 @@ public class PatientWelcomeBox
     JButton add;
     JFrame frame;
      
+    public PatientWelcomeBox()
+    {
+    	
+        frame = new JFrame("Witaj!");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        addComponentToPane(frame.getContentPane());
+       
+        frame.setSize(290,330);
+        frame.setResizable(false);
+        frame.setVisible(false);
+    }
+    
     public void addComponentToPane(Container pane) 
     {
       
