@@ -4,40 +4,69 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import weterynarz.Model.Model;
+import weterynarz.View.PatientAddAnimalBox;
+import weterynarz.View.PatientSeeAnimalBox;
 import weterynarz.View.PatientWelcomeBox;
-import weterynarz.View.TestWelcomeBox;
-import weterynarz.View.View;
+
 
 public class ClientController {
 	
 	private Model model;
 	private PatientWelcomeBox welcomeView;
+	private PatientAddAnimalBox addAnimal;
+	private PatientSeeAnimalBox seeAnimal;
 	
-	private ActionListener exampleListener;
+	
+	private ActionListener changeToSeeAnimalListener;
+	private ActionListener changeToAddAnimalListener;
 	
 	public ClientController(Model model)
 	{
 		this.model = model;
 		this.welcomeView = new PatientWelcomeBox();
 		this.welcomeView.setVisibility(true);
+		this.addAnimal = new PatientAddAnimalBox();
+		this.addAnimal.setVisibility(false);
+		this.seeAnimal = new PatientSeeAnimalBox(null);
+		this.seeAnimal.setVisibility(false);
 	}
     
 	
-    private void exampleAction()
+    private void changeToSeeAnimalAction()
     {             
-    	//example
+    	this.welcomeView.setVisibility(false);
+    	this.seeAnimal.setVisibility(true);
+    	
     }
+    
+    private void changeToAddAnimalAction()
+    {             
+    	this.welcomeView.setVisibility(false);
+    	this.addAnimal.setVisibility(true);
+    	
+    }
+
 
     
     public void configure()
 	{        
-    	exampleListener = new ActionListener() 
+    	changeToSeeAnimalListener = new ActionListener() 
         {
               public void actionPerformed(ActionEvent actionEvent) 
               {                  
-            	  exampleAction();
+            	  changeToSeeAnimalAction();
               }
         };                
-        welcomeView.seeAnimal().addActionListener(exampleListener);   
-    }
+        welcomeView.seeAnimal().addActionListener(changeToSeeAnimalListener);   
+    
+    
+    changeToAddAnimalListener = new ActionListener() 
+    {
+          public void actionPerformed(ActionEvent actionEvent) 
+          {                  
+        	  changeToAddAnimalAction();
+          }
+    };                
+    welcomeView.addAnimal().addActionListener(changeToAddAnimalListener);   
+	}
 }
