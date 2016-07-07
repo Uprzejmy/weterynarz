@@ -1,49 +1,55 @@
-package weterynarz.View;
+package weterynarz.View.DoctorView;
 
 import java.awt.*;
 import java.awt.event.*;
 
 import javax.swing.*;
  
-public class PatientAddAnimalBox implements ItemListener
+public class DoctorSeeAgenda implements ItemListener
 {
-    private JPanel cards;
-    private JLabel label;
-    private JButton zatwierdz;
-    private JTextField[] AnimalData = new JTextField[4];
-    
+    JPanel cards;
+    JLabel label, label1;
     JFrame frame;
 
-    public PatientAddAnimalBox()
+    public DoctorSeeAgenda()
     {
-    	
-        frame = new JFrame("Dodaj zwierzaka");
+    	//Create and set up the window.
+        frame = new JFrame("Twoj kalendarz");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
+         
+        //Create and set up the content pane.
         addComponentToPane(frame.getContentPane());
        
+        //Display the window.
+        //frame.pack();
         frame.setSize(290,330);
         frame.setResizable(false);
-        frame.setVisible(false);
+    ;
     }
-    
+     
     public void addComponentToPane(Container pane) 
     {
       
                         
         JPanel card = new JPanel();
         card.setBackground(new Color(220, 236, 237));
-
-        zatwierdz = new JButton("Dodaj zwierzê");
                        
-        label = new JLabel("Proszê wprowadzic dane zwierzêcia");
+        label = new JLabel("<html><h2>Terminarz</h2><br> <b>  P W  S  Cz  Pi  So  N   </b><br> "
+        		+ "<br> <i> 27 28 29 30 </i> 01 02 03 <br> 04 05 06 07 "
+        		+ "<FONT COLOR=RED><b>08</b></FONT> 09 10 "
+        		+ "<br> 11 12 13 14 15 16 17 <br> 18 19 20 21 22 23 24"
+        		+ "<br> 25 26 27 <b><i>28</i></b> 29 30 31</html>");
+        
+        label1 = new JLabel("<html><br><br><br><b>28 lipca</b>, godzina <b>10.30</b>"
+        		+ " - wizyta pana Severusa <br> Snape'a z kotem brytyjskim </html>");
         card.add(label);
-        card.add(AnimalData[0] = new JTextField("Imiê", 10));
-        card.add(AnimalData[1] = new JTextField("Rasa", 10));
-        card.add(AnimalData[2] = new JTextField("Liczba ³ap", 10));
-        card.add(AnimalData[3] = new JTextField("Kolor", 10));
-     
-        card.add(zatwierdz);
+        card.add(label1);
+
+//        <p style="color:##B22222">Color text and
+  //      		<span style="color:limegreen;">another color</span>,
+        //and now back to the same. Oh, and here's a
+        //<span style="background-color:PaleGreen;">different background color</span>
+        //just in case you need it!</p>
         
        // Create the panel that contains the "cards".
         cards = new JPanel(new CardLayout());
@@ -57,33 +63,6 @@ public class PatientAddAnimalBox implements ItemListener
         CardLayout cl = (CardLayout)(cards.getLayout());
         cl.show(cards, (String)evt.getItem());
     }
-    
-    public String getAnimalData(int x)
-    {
-    	if(x == 0)
-    		return AnimalData[0].getText();
-    	else if(x == 1)
-    		return AnimalData[1].getText();
-    	else if(x == 2)
-    		return AnimalData[2].getText();
-    	else if(x ==3)
-    		return AnimalData[3].getText();
-    	
-		return null;
-    	
-    }
-
-    public JButton zatwierdzenie()
-    {
-    	return zatwierdz;
-    }
-
-
-    public void setVisibility(boolean visibility)
-    {
-    	this.frame.setVisible(visibility);
-    }
-    
      
 
     private static void createAndShow() {
@@ -92,7 +71,7 @@ public class PatientAddAnimalBox implements ItemListener
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
          
         //Create and set up the content pane.
-        PatientAddAnimalBox demo = new PatientAddAnimalBox();
+        DoctorSeeAgenda demo = new DoctorSeeAgenda();
         demo.addComponentToPane(frame.getContentPane());
        
          
@@ -101,6 +80,11 @@ public class PatientAddAnimalBox implements ItemListener
         frame.setSize(290,330);
         frame.setResizable(false);
         frame.setVisible(true);
+    }
+    
+    public void setVisibility(boolean visibility)
+    {
+    	this.frame.setVisible(visibility);
     }
      
     public static void main(String[] args) {

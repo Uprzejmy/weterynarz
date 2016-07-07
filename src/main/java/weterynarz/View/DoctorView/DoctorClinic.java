@@ -1,76 +1,66 @@
-package weterynarz.View;
+package weterynarz.View.DoctorView;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.text.SimpleDateFormat;
 
 import javax.swing.*;
-import java.util.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
-public class DoctorWelcomeBox
+import weterynarz.Model.Hospitals.Hospital;
+ 
+public class DoctorClinic implements ItemListener
 {
-	JPanel card;
-    JLabel label, labelx, label2, label1;
+    JPanel cards;
+    JLabel label, label1;
+    JFrame frame;
+
      
     public void addComponentToPane(Container pane) 
     {
       
-    	DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-    	Date date = new Date();
-        card = new JPanel();
+                        
+        JPanel card = new JPanel();
         card.setBackground(new Color(220, 236, 237));
-        //card.setLayout(new BorderLayout());
-        JButton calendar = new JButton("           Moj Terminarz            ");
-        // calendar.setBounds(20, 100, 40, 40);
-        // calendar.setBorder(null);
-
-        JButton daneosobowe = new JButton("     Moje Dane Osobowe     ");
-        JButton alistofanim = new JButton("Zwierzeta pod moja opieka");
-        JButton lecznice = new JButton("   Lista dostepnych lecznic  ");
-                  
-        label = new JLabel("Witamy na stronie glownej!");
-        labelx = new JLabel(dateFormat.format(date));
-       // labelx.setLocation(200, 200);
+                       
+        label = new JLabel("<html><br><h3>KLINIKA 1:</h3> Zdrowe Lapki -> Oddzial Chorob konczyn -> Nieduza 12<br>"
+        		+ "<br><h3>KLINIKA 2:</h3> Lecznicowo -> Oddzial Glowny -> Duza 17<br>"
+        		+ "<br><h3>KLINIKA 3:</h3> Zdrowie Zwierzat -> Oddzial Chorob zakaznych -> Mala 28<br>"
+        		+ "<br><h3>KLINIKA 4:</h3> Nasz Krewniak -> Oddzial Chorob dziedzicznych -> Wielka 42<br>"
+        		+ "<br><h3>KLINIKA 4:</h3> Zrosniete Kosci -> Oddzial Urazow -> Ogromna 33<br> </html>");
         
         card.add(label);
-       
-        card.add(daneosobowe);
-        card.add(calendar);
-        card.add(alistofanim);
-        card.add(lecznice);
-        
-        card.add(labelx);
-        
-        
+
        // Create the panel that contains the "cards".
-       
-        pane.add(card, BorderLayout.CENTER);
+        cards = new JPanel(new CardLayout());
+        cards.add(card);
+         
+        pane.add(cards, BorderLayout.CENTER);
     }
      
     public void itemStateChanged(ItemEvent evt) 
     {
-        CardLayout cl = (CardLayout)(card.getLayout());
-        cl.show(card, (String)evt.getItem());
+        CardLayout cl = (CardLayout)(cards.getLayout());
+        cl.show(cards, (String)evt.getItem());
+    }
+    
+    public void setVisibility(boolean visibility)
+    {
+    	this.frame.setVisible(visibility);
     }
      
 
     private static void createAndShow() {
         //Create and set up the window.
-        JFrame frame = new JFrame("Witaj!");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+        JFrame frame = new JFrame("Rejestracja");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+         
         //Create and set up the content pane.
-        DoctorWelcomeBox demo = new DoctorWelcomeBox();
+        DoctorClinic demo = new DoctorClinic();
         demo.addComponentToPane(frame.getContentPane());
        
          
         //Display the window.
         //frame.pack();
-        
-                
-        frame.setSize(290,330);
+        frame.setSize(420,420);
         frame.setResizable(false);
         frame.setVisible(true);
     }
@@ -100,7 +90,4 @@ public class DoctorWelcomeBox
             }
         });
     }
-	
-
 }
-

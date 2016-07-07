@@ -5,8 +5,8 @@ import java.awt.event.ActionListener;
 
 import weterynarz.Model.Model;
 import weterynarz.Model.Users.User;
-import weterynarz.View.LoginBox;
-import weterynarz.View.RegistrationBox;
+import weterynarz.View.UserView.LoginBox;
+import weterynarz.View.UserView.RegistrationBox;
 
 public class UserController {
 	
@@ -47,6 +47,7 @@ public class UserController {
     		return;
     	}
     	
+    	this.loginView.addLabel();
     	System.out.println("Couldn't login user, email and password mismatch");
 		return;
     }  
@@ -60,7 +61,7 @@ public class UserController {
     	if(!password.equals(password2))
     	{
     		System.out.println("Passwords mismatch");
-    		//zrobic cos
+    		this.registrationView.addLabel();
     		return;
     	}
     	
@@ -72,6 +73,7 @@ public class UserController {
     		return;
     	}
     	
+    	this.registrationView.addLabel();
     	System.out.println("Couldn't register user, try different email");
 		return;
     }
