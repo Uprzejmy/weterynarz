@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import weterynarz.Model.Model;
+import weterynarz.Model.Users.User;
 import weterynarz.View.LoginBox;
 import weterynarz.View.RegistrationBox;
 
@@ -42,7 +43,9 @@ public class UserController {
     {      
     	String login = this.loginView.get_login();
     	char[] haslo = this.loginView.get_pass();
-    	this.model.loginUser(login,new String(haslo));
+    	User user = this.model.loginUser(login,new String(haslo));
+    	if(user != null)
+    		ContextManager.changeContext(user,"client");
     }  
     
     private void registerAction()

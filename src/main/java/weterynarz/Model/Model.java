@@ -46,7 +46,7 @@ public class Model {
 		
 	}
 	
-	public String loginUser(String email, String password)
+	public User loginUser(String email, String password)
 	{
 		UnitOfWork unitOfWork = new UnitOfWork();
 		
@@ -59,11 +59,11 @@ public class Model {
 		
 		if(user != null)
 		{
-			System.out.println("zalogowano");
-			return user.toString();
+			System.out.println("User logged in correctly");
+			return user;
 		}
 			
-		System.out.println("nie zalogowano");
-		return "Couldn't log in, incorrect email or password";
+		System.out.println("Couldn't log in, incorrect email or password");
+		return null;
 	}
 }
