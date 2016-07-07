@@ -37,7 +37,7 @@ public class PatientSeeAnimalBox {
         frame.getContentPane().setBackground(new Color(220, 236, 237));    
         frame.setResizable(false);
         frame.setSize(290,330);        
-        frame.setVisible(true);
+       // frame.setVisible(true);
     }
     
    
@@ -45,6 +45,12 @@ public class PatientSeeAnimalBox {
     {
         return button1;
     }
+    
+    public void setVisibility(boolean visibility)
+    {
+    	this.frame.setVisible(visibility);
+    }
+    
     
     public void setText(String text)
     {
