@@ -23,7 +23,7 @@ public class UserController {
 		this.loginView = new LoginBox();
 		this.registrationView = new RegistrationBox();
 		
-		this.loginView.setVisibility(false);
+		this.registrationView.setVisibility(false);
 		this.loginView.setVisibility(true);
 	}
     
@@ -57,6 +57,6 @@ public class UserController {
             	  registerAction();
               }
         };                
-        registrationView.getRegisterSubmitButton().addActionListener(registerActionListener);   
+        registrationView.getButton().addActionListener(registerActionListener);   
     }
 }
