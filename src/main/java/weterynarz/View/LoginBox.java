@@ -7,7 +7,7 @@ import javax.swing.*;
  
 public class LoginBox implements ItemListener
 {
-    JPanel cards;
+    JPanel cards, card;
     JLabel label, label2, label1;
     JTextField login;
     JPasswordField passwordField1;
@@ -36,7 +36,7 @@ public class LoginBox implements ItemListener
     {
       
               
-        JPanel card = new JPanel();
+        card = new JPanel();
         card.setBackground(new Color(220, 236, 237));
         //card.setLayout(new BorderLayout());
         passwordField1 = new JPasswordField(10);
@@ -124,6 +124,16 @@ public class LoginBox implements ItemListener
     	return new String(passwordField1.getPassword());
     }
     
+	public void addLabel()
+    {
+    	
+    	label2 = new JLabel();
+    	label2.setText("<html>Couldn't login user<br>email and password mismatch</html>");
+  	  	
+    	card.add(label2);
+    	frame.revalidate();
+    	
+    }
     
     
     public static void main(String[] args) {

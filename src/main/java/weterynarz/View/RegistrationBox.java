@@ -9,7 +9,7 @@ public class RegistrationBox implements ItemListener
 {
 	private JFrame frame;
 	private JPanel cards;
-    private JLabel label;
+    private JLabel label, label2;
     private JPasswordField passwordField1, passwordField2;
     private JButton zatwierdz = new JButton("Zatwierdü");
     private JPanel comboBoxPane;
@@ -23,7 +23,6 @@ public class RegistrationBox implements ItemListener
     	
         frame = new JFrame("Rejestracja");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
         addComponentToPane(frame.getContentPane());
        
         frame.setSize(290,330);
@@ -66,6 +65,7 @@ public class RegistrationBox implements ItemListener
         card2.add(label2);
         card2.add(passwordField2);
         card2.add(zatwierdz);
+        card2.add(new JLabel("<html>           <br><br><br><br><br></html>"));
         
 
         cards = new JPanel(new CardLayout());
@@ -118,7 +118,18 @@ public class RegistrationBox implements ItemListener
     	return passwordField2.getPassword();
     }
    
-     
+    public void addLabel()
+    {
+    	
+    	label2 = new JLabel();
+
+    	label2.setText("<html>Something went wrong<br>Check your data :(</html>");
+    	
+    	card2.add(label2);
+    	frame.revalidate();
+
+    }
+        
 
     private static void createAndShow() 
     {
