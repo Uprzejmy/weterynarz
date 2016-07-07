@@ -23,7 +23,7 @@ public class Model {
 		return drepo.repositoryTest();
 	}
 	
-	public String registerUser()
+	public User registerUser(String email, String password)
 	{
 		UnitOfWork unitOfWork = new UnitOfWork();
 		
@@ -31,31 +31,39 @@ public class Model {
 		unitOfWork.beginTransaction();
 		
 		IUsersManager usersManager = new UsersManager(unitOfWork);
-		User user = usersManager.register("test2@test.test","demo1234");
+		User user = usersManager.register(email,password);
 
 		unitOfWork.saveChanges();
 		
 		if(user != null)
-			return user.toString();
-		
-		return "Couldn't register user, try different email";
+		{
+			System.out.println("Registration successful");
+			return user;
+		}
+			
+		System.out.println("Couldn't register user, try different email");
+		return null;
 		
 	}
 	
-	public String loginUser()
+	public User loginUser(String email, String password)
 	{
 		UnitOfWork unitOfWork = new UnitOfWork();
 		
 		unitOfWork.beginTransaction();
 		
 		IUsersManager usersManager = new UsersManager(unitOfWork);
-		User user = usersManager.login("test2@test.test","demo1234");
+		User user = usersManager.login(email,password);
 		
 		unitOfWork.saveChanges();
 		
 		if(user != null)
-			return user.toString();
-		
-		return "Couldn't log in, incorrect email or password";
+		{
+			System.out.println("User logged in correctly");
+			return user;
+		}
+			
+		System.out.println("Couldn't log in, incorrect email or password");
+		return null;
 	}
 }

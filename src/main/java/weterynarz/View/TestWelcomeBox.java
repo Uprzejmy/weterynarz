@@ -1,103 +1,98 @@
 package weterynarz.View;
 
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.BorderLayout;
+import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.event.ItemEvent;
 
-import javax.swing.*;
- 
-public class PatientAddAnimalBox implements ItemListener
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
+public class TestWelcomeBox 
 {
-    private JPanel cards;
-    private JLabel label;
-    private JButton zatwierdz;
-    private JTextField[] AnimalData = new JTextField[4];
-    
+	JPanel card;
+    JLabel label, label2, label1;
+    JButton showAnimalsButton;
     JFrame frame;
-
-    public PatientAddAnimalBox()
+    
+    public TestWelcomeBox()
     {
-    	
-        frame = new JFrame("Dodaj zwierzaka");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
+    	frame = new JFrame("Witaj!");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+        //Create and set up the content pane.
         addComponentToPane(frame.getContentPane());
        
+        //Display the window.
+        //frame.pack();
+        
         frame.setSize(290,330);
         frame.setResizable(false);
         frame.setVisible(false);
     }
-    
+     
     public void addComponentToPane(Container pane) 
     {
       
-                        
-        JPanel card = new JPanel();
+              
+        card = new JPanel();
         card.setBackground(new Color(220, 236, 237));
-
-        zatwierdz = new JButton("Dodaj zwierzê");
-                       
-        label = new JLabel("Proszê wprowadzic dane zwierzêcia");
+        //card.setLayout(new BorderLayout());
+        showAnimalsButton = new JButton("Moje zwierz¹tka");
+        JButton add = new JButton("Dodaj zwierzaka");
+                  
+        label = new JLabel("Witamy"
+        		+ " na stronie g³ównej.          ");
+        
         card.add(label);
-        card.add(AnimalData[0] = new JTextField("Imiê", 10));
-        card.add(AnimalData[1] = new JTextField("Rasa", 10));
-        card.add(AnimalData[2] = new JTextField("Liczba ³ap", 10));
-        card.add(AnimalData[3] = new JTextField("Kolor", 10));
-     
-        card.add(zatwierdz);
+        card.add(showAnimalsButton);
+        card.add(add);
+        
         
        // Create the panel that contains the "cards".
-        cards = new JPanel(new CardLayout());
-        cards.add(card);
-         
-        pane.add(cards, BorderLayout.CENTER);
+       
+        pane.add(card, BorderLayout.CENTER);
     }
      
     public void itemStateChanged(ItemEvent evt) 
     {
-        CardLayout cl = (CardLayout)(cards.getLayout());
-        cl.show(cards, (String)evt.getItem());
+        CardLayout cl = (CardLayout)(card.getLayout());
+        cl.show(card, (String)evt.getItem());
     }
     
-    public String getAnimalData(int x)
-    {
-    	if(x == 0)
-    		return AnimalData[0].getText();
-    	else if(x == 1)
-    		return AnimalData[1].getText();
-    	else if(x == 2)
-    		return AnimalData[2].getText();
-    	else if(x ==3)
-    		return AnimalData[3].getText();
-    	
-		return null;
-    	
-    }
-
-    public JButton zatwierdzenie()
-    {
-    	return zatwierdz;
-    }
-
-
     public void setVisibility(boolean visibility)
     {
     	this.frame.setVisible(visibility);
     }
     
+    public void setText(String text)
+    {
+    	this.label.setText(text);
+    }
+    
+    public JButton getExampleButton()
+    {
+    	return showAnimalsButton;
+    }
      
 
     private static void createAndShow() {
         //Create and set up the window.
-        JFrame frame = new JFrame("Rejestracja");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-         
+        JFrame frame = new JFrame("Witaj!");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
         //Create and set up the content pane.
-        PatientAddAnimalBox demo = new PatientAddAnimalBox();
+        PatientWelcomeBox demo = new PatientWelcomeBox();
         demo.addComponentToPane(frame.getContentPane());
        
          
         //Display the window.
         //frame.pack();
+        
+                
         frame.setSize(290,330);
         frame.setResizable(false);
         frame.setVisible(true);

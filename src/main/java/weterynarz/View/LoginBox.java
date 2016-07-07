@@ -11,8 +11,26 @@ public class LoginBox implements ItemListener
     JLabel label, label2, label1;
     JTextField login;
     JPasswordField passwordField1;
+    JFrame frame;
+    JButton zaloguj;
+    JButton rejestruj;
     static String ZALOGUJ = "zaloguj";
 
+    public LoginBox()
+    {
+    	//Create and set up the window.
+        frame = new JFrame("Zaloguj");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+         
+        //Create and set up the content pane.
+        addComponentToPane(frame.getContentPane());
+       
+        //Display the window.
+        //frame.pack();
+        frame.setSize(290,330);
+        frame.setResizable(false);
+      //  frame.setVisible(false);
+    }
      
     public void addComponentToPane(Container pane) 
     {
@@ -33,8 +51,8 @@ public class LoginBox implements ItemListener
         
         
    
-        JButton zaloguj = new JButton("Zaloguj");
-        JButton rejestruj = new JButton("Zarejestruj");
+        zaloguj = new JButton("Zaloguj");
+        rejestruj = new JButton("Zarejestruj");
                   
         label = new JLabel("Uprzejmie"
         		+ " proszê wprowadziæ dane logowania.");
@@ -59,6 +77,8 @@ public class LoginBox implements ItemListener
         CardLayout cl = (CardLayout)(cards.getLayout());
         cl.show(cards, (String)evt.getItem());
     }
+    
+    
      
 
     private static void createAndShow() {
@@ -75,9 +95,37 @@ public class LoginBox implements ItemListener
         //frame.pack();
         frame.setSize(290,330);
         frame.setResizable(false);
-        frame.setVisible(true);
+      //  frame.setVisible(true);
+    }
+    
+    public void setVisibility(boolean visibility)
+    {
+    	this.frame.setVisible(visibility);
     }
      
+    public JButton logowanie()
+    {
+    	return zaloguj;
+    }
+    
+    public JButton rejestracja()
+    {
+    	return rejestruj;
+    }
+    
+    public String getEmail()
+    {
+    	return login.getText();
+    }
+    
+  
+	public String getPassword()//powinno operowac na char[], ale dla ulatwienia zostawiamy jako string
+    {
+    	return new String(passwordField1.getPassword());
+    }
+    
+    
+    
     public static void main(String[] args) {
         /* Use an appropriate Look and Feel */
         try {
