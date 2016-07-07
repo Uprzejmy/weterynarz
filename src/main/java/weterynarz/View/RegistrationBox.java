@@ -7,9 +7,27 @@ import javax.swing.*;
  
 public class RegistrationBox implements ItemListener
 {
+	JFrame frame;
     JPanel cards;
     JLabel label, label2, label1;
     JPasswordField passwordField1, passwordField2;
+    
+    public RegistrationBox()
+    {
+    	//Create and set up the window.
+        frame = new JFrame("Rejestracja");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+         
+        //Create and set up the content pane.
+        addComponentToPane(frame.getContentPane());
+       
+         
+        //Display the window.
+        //frame.pack();
+        frame.setSize(290,330);
+        frame.setResizable(false);
+        frame.setVisible(false);
+    }
 
      
     public void addComponentToPane(Container pane) 
@@ -67,6 +85,11 @@ public class RegistrationBox implements ItemListener
     {
         CardLayout cl = (CardLayout)(cards.getLayout());
         cl.show(cards, (String)evt.getItem());
+    }
+    
+    public void setVisibility(boolean visibility)
+    {
+    	this.frame.setVisible(visibility);
     }
      
 
