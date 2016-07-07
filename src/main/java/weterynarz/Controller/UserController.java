@@ -14,6 +14,7 @@ public class UserController {
 	private RegistrationBox registrationView;
 	
 	private ActionListener loginActionListener;
+	private ActionListener loginToRegisterActionListener;
 	private ActionListener registerActionListener;
 	
 	public UserController(Model model)
@@ -24,13 +25,13 @@ public class UserController {
 		
 		this.registrationView.setVisibility(false);
 		this.loginView.setVisibility(true);
-		//this.loginView.logowanie().addActionListener(loginActionListener);
-		//this.loginView.rejestracja().addActionListener(registerActionListener);
+
+
 		
 	}
     
 	
-    private void registerAction()
+    private void loginToRegisterAction()
     {             
     	this.loginView.setVisibility(false);
     	this.registrationView.setVisibility(true);
@@ -43,6 +44,14 @@ public class UserController {
     	char[] haslo = this.loginView.get_pass();
     	this.model.loginUser(login,new String(haslo));
     }  
+    
+    private void registerAction()
+    {             
+    	this.loginView.setVisibility(false);
+    	this.registrationView.setVisibility(true);
+    	
+    }
+	
     
     public void configure()
 	{        
@@ -64,14 +73,15 @@ public class UserController {
           	  registerAction();
             }
       };  
-      loginView.rejestracja().addActionListener(registerActionListener);
+      registrationView.getButton().addActionListener(registerActionListener);
+      
         
-        ///registerActionListener = new ActionListener() {
-        //      public void actionPerformed(ActionEvent actionEvent) 
-        //      {                  
-        //    	  registerAction();
-        //      }
-       // };                
-        //registrationView.getButton().addActionListener(registerActionListener);   
+      loginToRegisterActionListener = new ActionListener() {
+            public void actionPerformed(ActionEvent actionEvent) 
+              {                  
+            		loginToRegisterAction();
+             }
+        };                
+        loginView.rejestracja().addActionListener(registerActionListener);   
     }
 }
