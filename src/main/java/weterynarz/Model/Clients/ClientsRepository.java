@@ -1,58 +1,39 @@
 package weterynarz.Model.Clients;
 
-import weterynarz.Data.Database;
+import java.util.List;
+
+import weterynarz.Model.UnitOfWork;
+import weterynarz.Model.Doctors.Doctor;
 
 public class ClientsRepository implements IClientsRepository{
 	
-	private Database _data = Database.getInstance();
+	UnitOfWork _unitOfWork;
+	
+	public ClientsRepository(UnitOfWork unitOfWork)
+	{
+		_unitOfWork = unitOfWork;
+	}
 	
 	public void add(Client client)
 	{
-		_data.clients.add(client);
+	    _unitOfWork.getSession().save(client);
 	}
 
 	public void remove(Client client) 
 	{
-		_data.clients.remove(client);
+		 _unitOfWork.getSession().delete(client);
 	}
 	
 	public Client findById(int id)
 	{
-		for(Client client : _data.clients)
-		{
-			if(client.getId() == id)
-				return client;
-		}
-		
-		throw new NullPointerException("Nie odnaleziono lekarza o id: "+id);
+		return _unitOfWork.getSession().get(Client.class, id);
 	}
-		
-	public Client findByNameAndSurname(String name, String surname)
+	
+	@SuppressWarnings("unchecked")
+	public List<Doctor> findAll()
 	{
-		for(Client client : _data.clients)
-		{
-			if(client.getName().equals(name) && client.getSurname().equals(surname))
-				return client;
-		}
-		
-		//ten exception ponizej dziala, ale lepiej zrobic wlasna obsluge (to na pozniej)
-		throw new NullPointerException("Nie odnaleziono klienta o imieniu: " + name + " i nazwisku: " + surname);
+		List<Doctor> clients = _unitOfWork.getSession().createQuery("select c from Client c").getResultList();
+		return clients;
 	}
-	
-	public Client findByEmail(String email)
-	{
-		for(Client client : _data.clients)
-		{
-			if(client.compareEmail(email))
-				return client;
-		}
-		
-		//ten exception ponizej dziala, ale lepiej zrobic wlasna obsluge (to na pozniej)
-		throw new NullPointerException("Nie odnaleziono klienta o emailu: " + email);
-	}
-	
-	
-	
-	
 
 }

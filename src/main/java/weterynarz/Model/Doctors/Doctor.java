@@ -12,11 +12,9 @@ import javax.persistence.Table;
 
 import weterynarz.Model.Users.User;
 
-
 @Entity
 @SequenceGenerator(initialValue = 1, allocationSize=1, name = "doctors_ids", sequenceName = "doctors_ids")
 @Table(name="doctors")
-
 public class Doctor
 {
 	@Id @GeneratedValue(strategy = GenerationType.AUTO, generator = "doctors_ids")
@@ -29,13 +27,22 @@ public class Doctor
 	@Column(name = "surname")
 	private String _surname;
 	
+	@Column(name = "address")
+	private String _address;
+	
+	@Column(name = "phone")
+	private String _phone;
+	
 	@OneToOne
     @JoinColumn(name = "user_id")
 	private User _user;
 	
-	public Doctor()
+	public Doctor(String name, String surname, String adress, String phone)
 	{
-		
+		_name = name;
+		_surname = surname;
+		_address = adress;
+		_phone = phone;
 	}
 	
 	public Doctor(String name, String surname)
@@ -74,6 +81,26 @@ public class Doctor
 		_surname = surname;
 	}
 	
+	public String getAddress()
+	{
+		return _address;
+	}
+	
+	public void setAddress(String address)
+	{
+		_address = address;
+	}
+
+	public String getPhone()
+	{
+		return _phone;
+	}
+	
+	public void setPhone(String phone)
+	{
+		_phone = phone;
+	}
+	
 	public User getUser() {
         return _user;
     }
@@ -87,7 +114,9 @@ public class Doctor
 		return 
 				Integer.toString(_id) + " " + 
 				_name + " " + 
-				_surname + " ";
+				_surname + " "+
+				_address + " "+
+				_phone + " ";
 		
 	}
 

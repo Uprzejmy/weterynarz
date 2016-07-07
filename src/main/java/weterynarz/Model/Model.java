@@ -1,28 +1,11 @@
 package weterynarz.Model;
 
-import weterynarz.Model.Doctors.DoctorsRepository;
 import weterynarz.Model.Users.IUsersManager;
 import weterynarz.Model.Users.User;
 import weterynarz.Model.Users.UsersManager;
 
 public class Model {
-	
-	public String getData1()
-	{
-		return "weterynarz";
-	}
-	
-	public String getData2()
-	{
-		return "test";
-	}
-	
-	public String getDoctorData()
-	{
-		DoctorsRepository drepo = new DoctorsRepository();
-		return drepo.repositoryTest();
-	}
-	
+
 	public User registerUser(String email, String password)
 	{
 		UnitOfWork unitOfWork = new UnitOfWork();

@@ -1,7 +1,9 @@
 package weterynarz.Model.Doctors;
 
+import java.util.List;
+
 import weterynarz.Model.IRepository;
 
 public interface IDoctorsRepository extends IRepository<Doctor>{
-	Doctor findByNameAndSurname(String name, String surname);
+	public List<Doctor> findAll();
 }
