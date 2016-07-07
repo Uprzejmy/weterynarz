@@ -49,15 +49,27 @@ public class UserController {
     
     private void registerAction()
     {             
-    	this.loginView.setVisibility(false);
-    	this.registrationView.setVisibility(true);
-    	/*
-    	User user = this.model.loginUser(login,new String(haslo));
+    	String email = this.registrationView.getPersonalData(5);
+    	String password = new String(this.registrationView.getPassword());
+    	String password2 = new String(this.registrationView.getConfirmation());
+    	
+    	if(!password.equals(password2))
+    	{
+    		System.out.println("Passwords mismatch");
+    		//zrobic cos
+    		return;
+    	}
+    	
+    	User user = this.model.registerUser(email,password);
     	if(user != null)
     	{
-    		this.loginView.setVisibility(false);
+    		this.registrationView.setVisibility(false);
     		ContextManager.changeContext(user,"client");
-    	}*/
+    		return;
+    	}
+    	
+    	System.out.println("Couldn't register user, try different email");
+		return;
     }
 	
     
