@@ -45,7 +45,12 @@ public class UserController {
     	char[] haslo = this.loginView.get_pass();
     	User user = this.model.loginUser(login,new String(haslo));
     	if(user != null)
+    	{
+    		this.loginView.setVisibility(false);
     		ContextManager.changeContext(user,"client");
+    	}
+    		
+    		
     }  
     
     private void registerAction()
