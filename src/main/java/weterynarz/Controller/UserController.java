@@ -17,7 +17,7 @@ public class UserController {
 	private ActionListener loginActionListener;
 	private ActionListener registerActionListener;
 	
-	public UserController(Model model, View view)
+	public UserController(Model model)
 	{
 		this.model = model;
 		this.loginView = new LoginBox();

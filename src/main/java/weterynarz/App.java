@@ -1,8 +1,7 @@
 package weterynarz;
 
-import weterynarz.Controller.Controller;
+import weterynarz.Controller.UserController;
 import weterynarz.Model.Model;
-import weterynarz.View.View;
 
 public class App {
 	
@@ -37,13 +36,13 @@ public class App {
 	
 	// --------------- v2.0 ----------------
 	public static void main(String[] args) {
-		View view = new View("Weterynarz");
+		//View view = new View("Weterynarz");
 		Model model = new Model();
 
 		//wait for fully initialized model and view
 		
-		Controller controller = new Controller(model,view);
-		controller.control();
+		UserController controller = new UserController(model);
+		controller.configure();
 	}
 	
 }
