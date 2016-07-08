@@ -13,7 +13,6 @@ import java.util.List;
 public class DoctorAnimals {
 	
 	private JFrame frame;
-    private JLabel label;
     private JButton backToWelcomeButton;
 
     public DoctorAnimals(List<Patient> patients)
@@ -50,14 +49,4 @@ public class DoctorAnimals {
     {
     	this.frame.setVisible(visibility);
     }
-    
-    
-    public void setText(String text)
-    {
-        label.setText(text);
-    }
-
-
-    
-	
 }

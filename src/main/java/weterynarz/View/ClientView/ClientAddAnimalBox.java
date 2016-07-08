@@ -1,11 +1,11 @@
-package weterynarz.View.PatientView;
+package weterynarz.View.ClientView;
 
 import java.awt.*;
 import java.awt.event.*;
 
 import javax.swing.*;
  
-public class PatientAddAnimalBox implements ItemListener
+public class ClientAddAnimalBox implements ItemListener
 {
     private JPanel cards;
     private JLabel label;
@@ -14,7 +14,7 @@ public class PatientAddAnimalBox implements ItemListener
     
     JFrame frame;
 
-    public PatientAddAnimalBox()
+    public ClientAddAnimalBox()
     {
     	
         frame = new JFrame("Dodaj zwierzaka");
@@ -78,54 +78,9 @@ public class PatientAddAnimalBox implements ItemListener
     	return zatwierdz;
     }
 
-
     public void setVisibility(boolean visibility)
     {
     	this.frame.setVisible(visibility);
     }
     
-     
-
-    private static void createAndShow() {
-        //Create and set up the window.
-        JFrame frame = new JFrame("Rejestracja");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-         
-        //Create and set up the content pane.
-        PatientAddAnimalBox demo = new PatientAddAnimalBox();
-        demo.addComponentToPane(frame.getContentPane());
-       
-         
-        //Display the window.
-        //frame.pack();
-        frame.setSize(290,330);
-        frame.setResizable(false);
-        frame.setVisible(true);
-    }
-     
-    public static void main(String[] args) {
-        /* Use an appropriate Look and Feel */
-        try {
-            //UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-            UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
-        } catch (UnsupportedLookAndFeelException ex) {
-            ex.printStackTrace();
-        } catch (IllegalAccessException ex) {
-            ex.printStackTrace();
-        } catch (InstantiationException ex) {
-            ex.printStackTrace();
-        } catch (ClassNotFoundException ex) {
-            ex.printStackTrace();
-        }
-        /* Turn off metal's use of bold fonts */
-        UIManager.put("swing.boldMetal", Boolean.FALSE);
-         
-        //Schedule a job for the event dispatch thread:
-        //creating and showing this application's GUI.
-        javax.swing.SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                createAndShow();
-            }
-        });
-    }
 }

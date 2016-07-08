@@ -25,7 +25,7 @@ public class DoctorSeeAgenda implements ItemListener
         //frame.pack();
         frame.setSize(290,330);
         frame.setResizable(false);
-    ;
+        frame.setVisible(false);
     }
      
     public void addComponentToPane(Container pane) 
@@ -48,12 +48,6 @@ public class DoctorSeeAgenda implements ItemListener
         
         backToWelcomeButton = new JButton("Wroc");
         card.add(backToWelcomeButton);
-
-//        <p style="color:##B22222">Color text and
-  //      		<span style="color:limegreen;">another color</span>,
-        //and now back to the same. Oh, and here's a
-        //<span style="background-color:PaleGreen;">different background color</span>
-        //just in case you need it!</p>
         
        // Create the panel that contains the "cards".
         cards = new JPanel(new CardLayout());
@@ -73,52 +67,8 @@ public class DoctorSeeAgenda implements ItemListener
         return backToWelcomeButton;
     }
      
-
-    private static void createAndShow() {
-        //Create and set up the window.
-        JFrame frame = new JFrame("Rejestracja");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-         
-        //Create and set up the content pane.
-        DoctorSeeAgenda demo = new DoctorSeeAgenda();
-        demo.addComponentToPane(frame.getContentPane());
-       
-         
-        //Display the window.
-        //frame.pack();
-        frame.setSize(290,330);
-        frame.setResizable(false);
-        frame.setVisible(true);
-    }
-    
     public void setVisibility(boolean visibility)
     {
     	this.frame.setVisible(visibility);
-    }
-     
-    public static void main(String[] args) {
-        /* Use an appropriate Look and Feel */
-        try {
-            //UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-            UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
-        } catch (UnsupportedLookAndFeelException ex) {
-            ex.printStackTrace();
-        } catch (IllegalAccessException ex) {
-            ex.printStackTrace();
-        } catch (InstantiationException ex) {
-            ex.printStackTrace();
-        } catch (ClassNotFoundException ex) {
-            ex.printStackTrace();
-        }
-        /* Turn off metal's use of bold fonts */
-        UIManager.put("swing.boldMetal", Boolean.FALSE);
-         
-        //Schedule a job for the event dispatch thread:
-        //creating and showing this application's GUI.
-        javax.swing.SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                createAndShow();
-            }
-        });
     }
 }

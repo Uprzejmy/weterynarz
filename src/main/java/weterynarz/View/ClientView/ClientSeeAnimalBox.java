@@ -1,19 +1,17 @@
-package weterynarz.View.PatientView;
+package weterynarz.View.ClientView;
 
 import java.awt.*;
 
 import javax.swing.*;
 
 
-public class PatientSeeAnimalBox {
+public class ClientSeeAnimalBox {
 	
 	private JFrame frame;
     private JLabel label;
     private JButton button1;
 
-   
-
-    public PatientSeeAnimalBox(String[] text)
+    public ClientSeeAnimalBox(String[] text)
     {
         frame = new JFrame("Twoje zwierzêta");                                                                            
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
@@ -37,10 +35,9 @@ public class PatientSeeAnimalBox {
         frame.getContentPane().setBackground(new Color(220, 236, 237));    
         frame.setResizable(false);
         frame.setSize(290,330);        
-       // frame.setVisible(true);
+        frame.setVisible(false);
     }
     
-   
     public JButton getButton1()
     {
         return button1;
@@ -50,7 +47,6 @@ public class PatientSeeAnimalBox {
     {
     	this.frame.setVisible(visibility);
     }
-    
     
     public void setText(String text)
     {
