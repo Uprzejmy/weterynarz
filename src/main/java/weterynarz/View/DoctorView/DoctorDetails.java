@@ -11,7 +11,6 @@ public class DoctorDetails {
 	
 	private JFrame frame;
     private JLabel label;
-    private JButton button1;
     private JButton backToWelcomeButton;
     
     List<JLabel> dataLabels;
@@ -21,15 +20,14 @@ public class DoctorDetails {
         frame = new JFrame("Twoje dane osobowe");                                                                            
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
         frame.setLayout(new GridLayout(10,0));
-        button1 = new JButton("Pobierz dane");
         backToWelcomeButton = new JButton("Wroc");
-        frame.add(button1);
         frame.add(backToWelcomeButton);
         
         dataLabels = new ArrayList<JLabel>();
         for(int i=0;i<4;i++)
         {
         	dataLabels.add(new JLabel());
+        	frame.add(dataLabels.get(i));
         }
        
         frame.getContentPane().setBackground(new Color(220, 236, 237));    
@@ -44,12 +42,6 @@ public class DoctorDetails {
     	dataLabels.get(1).setText(surname);
     	dataLabels.get(2).setText(address);
     	dataLabels.get(3).setText(phone);
-    }
-    
-   
-    public JButton getButton1()
-    {
-        return button1;
     }
     
     public void setVisibility(boolean visibility)

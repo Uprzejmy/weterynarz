@@ -14,19 +14,14 @@ public class DoctorAnimals {
 	
 	private JFrame frame;
     private JLabel label;
-    private JButton button1;
     private JButton backToWelcomeButton;
-
-   
 
     public DoctorAnimals(List<Patient> patients)
     {
         frame = new JFrame("Zwierzete pod opieka");                                                                            
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
         frame.setLayout(new GridLayout(10,0));
-        button1 = new JButton("Pobierz dane");
         backToWelcomeButton = new JButton("Wroc");
-        frame.add(button1);
         frame.add(backToWelcomeButton);
         
         List<JLabel> labels = new ArrayList<JLabel>();
@@ -44,12 +39,6 @@ public class DoctorAnimals {
         frame.setResizable(false);
         frame.setSize(290,330);        
         frame.setVisible(false);
-    }
-    
-   
-    public JButton getButton1()
-    {
-        return button1;
     }
     
     public JButton getBackToWelcomeButton()
