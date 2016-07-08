@@ -20,32 +20,53 @@ public class ClientController {
 	
 	private ActionListener changeToSeeAnimalListener;
 	private ActionListener changeToAddAnimalListener;
+	private ActionListener backToWelcomeListener;
+	private ActionListener addAnimalListener;
 	
 	public ClientController(Model model,User user)
 	{
 		this.model = model;
 		this.user = user;
 		this.welcomeView = new ClientWelcomeBox();
-		this.welcomeView.setVisibility(true);
 		this.addAnimal = new ClientAddAnimalBox();
+		this.seeAnimal = new ClientSeeAnimalBox();
+
+		this.welcomeView.setVisibility(true);
 		this.addAnimal.setVisibility(false);
-		this.seeAnimal = new ClientSeeAnimalBox(null);
 		this.seeAnimal.setVisibility(false);
 	}
     
 	
     private void changeToSeeAnimalAction()
-    {             
+    {   
+    	this.seeAnimal.updatePatients(this.model.findPatientsByUser(this.user));
     	this.welcomeView.setVisibility(false);
     	this.seeAnimal.setVisibility(true);
-    	
     }
     
     private void changeToAddAnimalAction()
     {             
     	this.welcomeView.setVisibility(false);
     	this.addAnimal.setVisibility(true);
+    }
+    
+    private void changeToWelcomeAction()
+    {
+    	this.addAnimal.setVisibility(false);
+    	this.seeAnimal.setVisibility(false);
+    	this.welcomeView.setVisibility(true);
+    }
+    
+    private void addPatientAction()
+    {      
+        String name = this.addAnimal.getAnimalData(0);
+        String breed = this.addAnimal.getAnimalData(1);
+        String pawsNumber = this.addAnimal.getAnimalData(2);
+        String color = this.addAnimal.getAnimalData(3);
     	
+        model.createPatient(user,name,breed,pawsNumber,color);
+    	this.addAnimal.setVisibility(false);
+    	this.welcomeView.setVisibility(true);
     }
 
 
@@ -62,13 +83,33 @@ public class ClientController {
         welcomeView.seeAnimal().addActionListener(changeToSeeAnimalListener);   
     
     
-    changeToAddAnimalListener = new ActionListener() 
-    {
-          public void actionPerformed(ActionEvent actionEvent) 
-          {                  
-        	  changeToAddAnimalAction();
-          }
-    };                
-    welcomeView.addAnimal().addActionListener(changeToAddAnimalListener);   
+	    changeToAddAnimalListener = new ActionListener() 
+	    {
+	          public void actionPerformed(ActionEvent actionEvent) 
+	          {                  
+	        	  changeToAddAnimalAction();
+	          }
+	    };                
+	    welcomeView.addAnimal().addActionListener(changeToAddAnimalListener);   
+	    
+	    
+	    backToWelcomeListener = new ActionListener() 
+        {
+              public void actionPerformed(ActionEvent actionEvent) 
+              {                  
+            	  changeToWelcomeAction();
+              }
+        };                
+        this.addAnimal.getBackToWelcomeButton().addActionListener(backToWelcomeListener);   
+        this.seeAnimal.getBackToWelcomeButton().addActionListener(backToWelcomeListener);
+        
+        addAnimalListener = new ActionListener() 
+	    {
+	          public void actionPerformed(ActionEvent actionEvent) 
+	          {                  
+	        	  addPatientAction();
+	          }
+	    };                
+	    this.addAnimal.getAddAnimalButton().addActionListener(addAnimalListener);  
 	}
 }

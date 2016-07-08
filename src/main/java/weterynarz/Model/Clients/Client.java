@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -46,8 +47,12 @@ public class Client{
     @JoinColumn(name = "user_id")
 	private User _user;
 	
-	@OneToMany(mappedBy = "_owner", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "_owner",fetch=FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Patient> _patients = new ArrayList<Patient>();
+	
+	public Client()
+	{
+	}
 	
 	public Client(String name, String surname, String adress, String phone)
 	{

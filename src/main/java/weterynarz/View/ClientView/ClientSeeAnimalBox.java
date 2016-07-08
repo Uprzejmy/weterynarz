@@ -1,46 +1,45 @@
 package weterynarz.View.ClientView;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.*;
+
+import weterynarz.Model.Patients.Patient;
 
 
 public class ClientSeeAnimalBox {
 	
 	private JFrame frame;
-    private JLabel label;
-    private JButton button1;
+    private JButton backToWelcomeButton;
+    
+    List<JLabel> labels = new ArrayList<JLabel>();
+    
 
-    public ClientSeeAnimalBox(String[] text)
+    public ClientSeeAnimalBox()
     {
         frame = new JFrame("Twoje zwierzêta");                                                                            
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
         frame.setLayout(new GridLayout(10,0));
-        button1 = new JButton("Pobierz dane");
-        frame.add(button1);
-        
-        JLabel[] labels = new JLabel[text.length];
-        for (int i = 0; i < text.length; i++)
-        {
-            labels[i] = new JLabel(text[i]);
-        }
-        for (int i = 0; i < labels.length; i++)
-        {
+        backToWelcomeButton = new JButton("Wroc");
+        frame.add(backToWelcomeButton);
 
-        	frame.add(labels[i]);
-        	
-        }
-       
-       
         frame.getContentPane().setBackground(new Color(220, 236, 237));    
         frame.setResizable(false);
         frame.setSize(290,330);        
         frame.setVisible(false);
     }
-    
-    public JButton getButton1()
+
+    public void updatePatients(List<Patient> patients)
     {
-        return button1;
+    	this.resetFrame();
+    	
+        for(Patient patient : patients)
+        {
+        	JLabel label = new JLabel(patient.toString());
+        	frame.add(label);
+        }
     }
     
     public void setVisibility(boolean visibility)
@@ -48,13 +47,22 @@ public class ClientSeeAnimalBox {
     	this.frame.setVisible(visibility);
     }
     
-    public void setText(String text)
+    public JButton getBackToWelcomeButton()
     {
-        label.setText(text);
+        return backToWelcomeButton;
     }
-
-
     
-	
+    private void resetFrame()
+    {
+    	frame = new JFrame("Twoje zwierzêta");                                                                            
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+        frame.setLayout(new GridLayout(10,0));
+        frame.add(backToWelcomeButton);
+
+        frame.getContentPane().setBackground(new Color(220, 236, 237));    
+        frame.setResizable(false);
+        frame.setSize(290,330);        
+        frame.setVisible(false);
+    }
 }
 

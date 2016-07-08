@@ -28,14 +28,12 @@ public class ClientWelcomeBox
     }
     
     public void addComponentToPane(Container pane) 
-    {
-      
-              
+    {    
         card = new JPanel();
         card.setBackground(new Color(220, 236, 237));
 
-       see = new JButton("Moje zwierz¹tka");
-       add = new JButton("Dodaj zwierzaka");
+        see = new JButton("Moje zwierz¹tka");
+        add = new JButton("Dodaj zwierzaka");
                   
         label = new JLabel("Witamy"
         		+ " na stronie g³ównej.          ");
@@ -43,9 +41,6 @@ public class ClientWelcomeBox
         card.add(label);
         card.add(see);
         card.add(add);
-        
-        
-       // Create the panel that contains the "cards".
        
         pane.add(card, BorderLayout.CENTER);
     }

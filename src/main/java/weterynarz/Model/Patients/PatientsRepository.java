@@ -3,7 +3,7 @@ package weterynarz.Model.Patients;
 import java.util.List;
 
 import weterynarz.Model.UnitOfWork;
-import weterynarz.Model.Doctors.Doctor;
+import weterynarz.Model.Clients.Client;
 
 public class PatientsRepository implements IPatientsRepository{
 	
@@ -30,9 +30,8 @@ public class PatientsRepository implements IPatientsRepository{
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Doctor> findAll()
+	public List<Patient> findByOwner(Client client)
 	{
-		List<Doctor> doctors = _unitOfWork.getSession().createQuery("select d from Doctor d").getResultList();
-		return doctors;
+		return _unitOfWork.getSession().createQuery("select p from Patient p where _owner: ownerId").setParameter("ownerId",client.getId()).getResultList();
 	}
 }
