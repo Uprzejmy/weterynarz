@@ -4,18 +4,37 @@ import java.awt.*;
 import java.awt.event.*;
 
 import javax.swing.*;
+
  
 public class DoctorClinic implements ItemListener
 {
     JPanel cards;
     JLabel label, label1;
     JFrame frame;
+    private JButton backToWelcomeButton;
+    
+    public DoctorClinic()
+    {
+    	//Create and set up the window.
+        frame = new JFrame("Kliniki");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+         
+        //Create and set up the content pane.
+        addComponentToPane(frame.getContentPane());
+       
+         
+        //Display the window.
+        //frame.pack();
+        frame.setSize(420,420);
+        frame.setResizable(false);
+        frame.setVisible(false);
+    }
 
      
     public void addComponentToPane(Container pane) 
     {
       
-                        
+             
         JPanel card = new JPanel();
         card.setBackground(new Color(220, 236, 237));
                        
@@ -26,6 +45,8 @@ public class DoctorClinic implements ItemListener
         		+ "<br><h3>KLINIKA 4:</h3> Zrosniete Kosci -> Oddzial Urazow -> Ogromna 33<br> </html>");
         
         card.add(label);
+        backToWelcomeButton = new JButton("Wroc");
+        card.add(backToWelcomeButton);
 
        // Create the panel that contains the "cards".
         cards = new JPanel(new CardLayout());
@@ -43,6 +64,11 @@ public class DoctorClinic implements ItemListener
     public void setVisibility(boolean visibility)
     {
     	this.frame.setVisible(visibility);
+    }
+    
+    public JButton getBackToWelcomeButton()
+    {
+        return backToWelcomeButton;
     }
      
 

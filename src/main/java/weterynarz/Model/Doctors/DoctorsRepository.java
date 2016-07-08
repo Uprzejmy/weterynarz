@@ -3,6 +3,7 @@ package weterynarz.Model.Doctors;
 import java.util.List;
 
 import weterynarz.Model.UnitOfWork;
+import weterynarz.Model.Users.User;
 
 public class DoctorsRepository implements IDoctorsRepository{
 	
@@ -26,6 +27,11 @@ public class DoctorsRepository implements IDoctorsRepository{
 	public Doctor findById(int id)
 	{
 		return _unitOfWork.getSession().get(Doctor.class, id);
+	}
+	
+	public Doctor findByUser(User user)
+	{
+		return _unitOfWork.getSession().byNaturalId(Doctor.class).using("_user",user).load();
 	}
 	
 	@SuppressWarnings("unchecked")

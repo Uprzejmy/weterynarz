@@ -4,13 +4,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import weterynarz.Model.Model;
+import weterynarz.Model.Users.User;
 import weterynarz.View.PatientView.PatientAddAnimalBox;
 import weterynarz.View.PatientView.PatientSeeAnimalBox;
 import weterynarz.View.PatientView.PatientWelcomeBox;
 
 
 public class ClientController {
-	
+	private User user;
 	private Model model;
 	private PatientWelcomeBox welcomeView;
 	private PatientAddAnimalBox addAnimal;
@@ -20,9 +21,10 @@ public class ClientController {
 	private ActionListener changeToSeeAnimalListener;
 	private ActionListener changeToAddAnimalListener;
 	
-	public ClientController(Model model)
+	public ClientController(Model model,User user)
 	{
 		this.model = model;
+		this.user = user;
 		this.welcomeView = new PatientWelcomeBox();
 		this.welcomeView.setVisibility(true);
 		this.addAnimal = new PatientAddAnimalBox();

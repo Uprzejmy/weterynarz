@@ -2,8 +2,13 @@ package weterynarz.Controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import weterynarz.Model.Model;
+import weterynarz.Model.Doctors.Doctor;
+import weterynarz.Model.Patients.Patient;
+import weterynarz.Model.Users.User;
 import weterynarz.View.DoctorView.DoctorAnimals;
 import weterynarz.View.DoctorView.DoctorClinic;
 import weterynarz.View.DoctorView.DoctorDetails;
@@ -13,6 +18,7 @@ import weterynarz.View.DoctorView.DoctorWelcomeBox;
 
 
 public class DoctorController {
+	private User user;
 	private Model model;
 	private DoctorWelcomeBox welcomeView;
 	private DoctorSeeAgenda personalCalendar;
@@ -24,15 +30,19 @@ public class DoctorController {
 	private ActionListener seePersonalClinicListener;
 	private ActionListener seePersonalDataListener;
 	private ActionListener seePersonalAnimalsListener;
+	private ActionListener backToWelcomeListener;
 	
-	public DoctorController(Model model)
+	public DoctorController(Model model,User user)
 	{
+		List<Patient> patients = new ArrayList<Patient>();
+		
 		this.model = model;
+		this.user = user;
 		this.welcomeView = new DoctorWelcomeBox();
 		this.personalCalendar = new DoctorSeeAgenda();
 		this.personalClinic = new DoctorClinic();
-		this.personalData = new DoctorDetails(null);
-		this.personalAnimals = new DoctorAnimals(null);
+		this.personalData = new DoctorDetails();
+		this.personalAnimals = new DoctorAnimals(patients);
 		
 		this.welcomeView.setVisibility(true);
 		this.personalCalendar.setVisibility(false);
@@ -57,6 +67,8 @@ public class DoctorController {
     
     private void seePersonalDataAction()
     {             
+    	Doctor doctor = this.model.findDoctorByUser(user);
+    	this.personalData.setDetails(doctor.getName(), doctor.getSurname(), doctor.getAddress(), doctor.getPhone());
     	this.welcomeView.setVisibility(false);
     	this.personalData.setVisibility(true);
     }
@@ -65,6 +77,15 @@ public class DoctorController {
     {             
     	this.welcomeView.setVisibility(false);
     	this.personalAnimals.setVisibility(true);
+    }
+    
+    private void seeWelcomeAction()
+    {
+    	this.personalAnimals.setVisibility(false);
+    	this.personalData.setVisibility(false);
+    	this.personalClinic.setVisibility(false);
+    	this.personalCalendar.setVisibility(false);
+    	this.welcomeView.setVisibility(true);
     }
     
     
@@ -106,5 +127,17 @@ public class DoctorController {
               }
         };                
         welcomeView.aListOfAnim().addActionListener(seePersonalAnimalsListener);   
+        
+        backToWelcomeListener = new ActionListener() 
+        {
+              public void actionPerformed(ActionEvent actionEvent) 
+              {                  
+            	  seeWelcomeAction();
+              }
+        };                
+        personalAnimals.getBackToWelcomeButton().addActionListener(backToWelcomeListener);   
+        personalCalendar.getBackToWelcomeButton().addActionListener(backToWelcomeListener);   
+        personalData.getBackToWelcomeButton().addActionListener(backToWelcomeListener);   
+        personalClinic.getBackToWelcomeButton().addActionListener(backToWelcomeListener);   
     }
 }

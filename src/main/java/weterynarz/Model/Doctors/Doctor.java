@@ -10,6 +10,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.NaturalId;
+
 import weterynarz.Model.Users.User;
 
 @Entity
@@ -34,8 +36,14 @@ public class Doctor
 	private String _phone;
 	
 	@OneToOne
+	@NaturalId
     @JoinColumn(name = "user_id")
 	private User _user;
+	
+	public Doctor()
+	{
+		
+	}
 	
 	public Doctor(String name, String surname, String adress, String phone)
 	{

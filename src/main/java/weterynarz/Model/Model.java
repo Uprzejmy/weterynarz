@@ -53,7 +53,6 @@ public class Model {
 			
 		System.out.println("Couldn't register user, try different email");
 		return null;
-		
 	}
 	
 	public User loginUser(String email, String password)
@@ -74,6 +73,27 @@ public class Model {
 		}
 			
 		System.out.println("Couldn't log in, incorrect email or password");
+		return null;
+	}
+	
+	public Doctor findDoctorByUser(User user)
+	{
+		UnitOfWork unitOfWork = new UnitOfWork();
+		
+		unitOfWork.beginTransaction();
+		
+		IDoctorsRepository doctorsRepository = new DoctorsRepository(unitOfWork);
+		Doctor doctor = doctorsRepository.findByUser(user);
+		
+		unitOfWork.saveChanges();
+		
+		if(doctor != null)
+		{
+			System.out.println("Doctor has been found");
+			return doctor;
+		}
+			
+		System.out.println("Couldn't find doctor");
 		return null;
 	}
 }

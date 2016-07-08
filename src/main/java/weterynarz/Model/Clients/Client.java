@@ -15,6 +15,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.NaturalId;
+
 import weterynarz.Model.Patients.Patient;
 import weterynarz.Model.Users.User;
 
@@ -40,6 +42,7 @@ public class Client{
 	private String _phone;
 	
 	@OneToOne
+	@NaturalId
     @JoinColumn(name = "user_id")
 	private User _user;
 	

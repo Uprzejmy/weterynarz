@@ -10,6 +10,7 @@ public class DoctorSeeAgenda implements ItemListener
     JPanel cards;
     JLabel label, label1;
     JFrame frame;
+    private JButton backToWelcomeButton;
 
     public DoctorSeeAgenda()
     {
@@ -44,6 +45,9 @@ public class DoctorSeeAgenda implements ItemListener
         		+ " - wizyta pana Severusa <br> Snape'a z kotem brytyjskim </html>");
         card.add(label);
         card.add(label1);
+        
+        backToWelcomeButton = new JButton("Wroc");
+        card.add(backToWelcomeButton);
 
 //        <p style="color:##B22222">Color text and
   //      		<span style="color:limegreen;">another color</span>,
@@ -62,6 +66,11 @@ public class DoctorSeeAgenda implements ItemListener
     {
         CardLayout cl = (CardLayout)(cards.getLayout());
         cl.show(cards, (String)evt.getItem());
+    }
+    
+    public JButton getBackToWelcomeButton()
+    {
+        return backToWelcomeButton;
     }
      
 

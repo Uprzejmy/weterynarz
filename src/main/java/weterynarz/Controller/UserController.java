@@ -74,7 +74,7 @@ public class UserController {
     	if(user != null)
     	{
     		this.registrationView.setVisibility(false);
-    		ContextManager.changeContext(user,"client");
+    		ContextManager.changeContext(user,type);
     		return;
     	}
     	
