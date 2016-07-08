@@ -1,23 +1,70 @@
 package weterynarz.Model.Clients;
 
-import weterynarz.Model.Item;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Client extends Item{
-	private static int _idCounter;
-	private String _name;
-	private String _surname;
-	private String _adress;
-	private String _phone;
-	private String _email;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.NaturalId;
+
+import weterynarz.Model.Patients.Patient;
+import weterynarz.Model.Users.User;
+
+@Entity
+@SequenceGenerator(initialValue = 1, allocationSize=1, name = "clients_ids", sequenceName = "clients_ids")
+@Table(name="clients")
+public class Client{
 	
-	public Client(String name, String surname, String adress, String phone, String email)
+	@Id @GeneratedValue(strategy = GenerationType.AUTO, generator = "clients_ids")
+	@Column(name = "id")
+	private int _id;
+	
+	@Column(name = "name")
+	private String _name;
+	
+	@Column(name = "surname")
+	private String _surname;
+	
+	@Column(name = "address")
+	private String _address;
+	
+	@Column(name = "phone")
+	private String _phone;
+	
+	@OneToOne
+	@NaturalId
+    @JoinColumn(name = "user_id")
+	private User _user;
+	
+	@OneToMany(mappedBy = "_owner", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Patient> _patients = new ArrayList<Patient>();
+	
+	public Client(String name, String surname, String adress, String phone)
 	{
-		_id = _idCounter++;
 		_name = name;
 		_surname = surname;
-		_adress = adress;
+		_address = adress;
 		_phone = phone;
-		_email = email;
+	}
+	
+	public int getId() 
+	{
+	      return _id;
+	}
+	  
+	public void setId( int id ) 
+	{
+	      _id = id;
 	}
 	
 	public String getName()
@@ -40,14 +87,14 @@ public class Client extends Item{
 		_surname = surname;
 	}
 
-	public String getAdress()
+	public String getAddress()
 	{
-		return _adress;
+		return _address;
 	}
 	
-	public void setAdress(String adress)
+	public void setAddress(String address)
 	{
-		_adress = adress;
+		_address = address;
 	}
 
 	public String getPhone()
@@ -60,30 +107,36 @@ public class Client extends Item{
 		_phone = phone;
 	}
 	
-	public String getEmail()
-	{
-		return _email;
-	}
-	
-	public void setEmail(String email)
-	{
-		_email = email;
-	}
-	
-	public boolean compareEmail(String email)
-	{
-		return _email.equals(email);
-	}
-	
+	public User getUser() {
+        return _user;
+    }
+
+    public void setUser(User user) {
+        _user = user;
+    }
+    
+    public List<Patient> getPatients() {
+        return _patients;
+    }
+
+    public void addPatient(Patient patient) {
+        _patients.add(patient);
+        patient.setOwner(this);
+    }
+
+    public void removePatient(Patient patient) {
+    	_patients.remove( patient );
+    	patient.setOwner( null );
+    }
+
 	public String toString()
 	{
 		return 
 				Integer.toString(_id) + " " + 
 				_name + " " + 
 				_surname + " "+
-				_adress + " "+
-				_phone + " "+
-				_email + " ";
+				_address + " "+
+				_phone + " ";
 	}
 
 }

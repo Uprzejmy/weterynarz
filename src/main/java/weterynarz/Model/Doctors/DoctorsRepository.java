@@ -1,83 +1,43 @@
 package weterynarz.Model.Doctors;
 
+import java.util.List;
 
-
-import java.util.ArrayList;
-
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
-
-import weterynarz.Data.Database;
+import weterynarz.Model.UnitOfWork;
+import weterynarz.Model.Users.User;
 
 public class DoctorsRepository implements IDoctorsRepository{
 	
-	private Database _data = Database.getInstance();
+	UnitOfWork _unitOfWork;
+	
+	public DoctorsRepository(UnitOfWork unitOfWork)
+	{
+		_unitOfWork = unitOfWork;
+	}
 	
 	public void add(Doctor doctor)
 	{
-		_data.doctors.add(doctor);
+	    _unitOfWork.getSession().save(doctor);
 	}
 
 	public void remove(Doctor doctor) 
 	{
-		_data.doctors.remove(doctor);
+		 _unitOfWork.getSession().delete(doctor);
 	}
 	
 	public Doctor findById(int id)
 	{
-		for(Doctor doctor : _data.doctors)
-		{
-			if(doctor.getId() == id)
-				return doctor;
-		}
-		
-		throw new NullPointerException("Nie odnaleziono lekarza o id: "+id);
+		return _unitOfWork.getSession().get(Doctor.class, id);
 	}
-		
-	public Doctor findByNameAndSurname(String name, String surname)
+	
+	public Doctor findByUser(User user)
 	{
-		for(Doctor doctor : _data.doctors)
-		{
-			if(doctor.getName().equals(name) && doctor.getSurname().equals(surname))
-				return doctor;
-		}
-		
-		//ten exception ponizej dziala, ale lepiej zrobic wlasna obsluge (to na pozniej)
-		throw new NullPointerException("Nie odnaleziono lekarza o imieniu: " + name + " i nazwisku: " + surname);
+		return _unitOfWork.getSession().byNaturalId(Doctor.class).using("_user",user).load();
 	}
 	
-	public Doctor[] findAll()
+	@SuppressWarnings("unchecked")
+	public List<Doctor> findAll()
 	{
-		ArrayList<Doctor> doctors = new ArrayList<Doctor>();
-		for(Doctor doctor : _data.doctors)
-		{
-			doctors.add(doctor);
-		}
-		
-		return doctors.toArray(new Doctor[doctors.size()]);
+		List<Doctor> doctors = _unitOfWork.getSession().createQuery("select d from Doctor d").getResultList();
+		return doctors;
 	}
-	
-	public String repositoryTest()
-	{
-		SessionFactory sessionFactory;
-	    sessionFactory = new Configuration().configure().buildSessionFactory();
-	
-	    Session session = sessionFactory.openSession();
-	
-	    Transaction tx = session.beginTransaction();
-	
-	    Doctor doctor = new Doctor();
-	    doctor.setName("Jan");
-	    doctor.setSurname("Kowal");
-	    session.save(doctor);
-	    tx.commit();
-	    session.close();
-	    
-	    return doctor.toString();
-	}
-	
-	
-
 }
