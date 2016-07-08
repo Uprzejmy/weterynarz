@@ -54,9 +54,14 @@ public class UserController {
     
     private void registerAction()
     {             
-    	String email = this.registrationView.getPersonalData(5);
+    	String name = this.registrationView.getPersonalData(0);
+    	String surname = this.registrationView.getPersonalData(1);
+    	String address = this.registrationView.getPersonalData(2);
+    	String phone = this.registrationView.getPersonalData(3);
+    	String email = this.registrationView.getPersonalData(4);
     	String password = new String(this.registrationView.getPassword());
     	String password2 = new String(this.registrationView.getConfirmation());
+    	String type = this.registrationView.getType();
     	
     	if(!password.equals(password2))
     	{
@@ -65,7 +70,7 @@ public class UserController {
     		return;
     	}
     	
-    	User user = this.model.registerUser(email,password);
+    	User user = this.model.registerUser(email,password,name,surname,address,phone,type);
     	if(user != null)
     	{
     		this.registrationView.setVisibility(false);

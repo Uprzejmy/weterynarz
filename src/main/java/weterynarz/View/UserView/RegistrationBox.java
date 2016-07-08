@@ -57,10 +57,9 @@ public class RegistrationBox implements ItemListener
         card2.add(label);
         card2.add(PersonalData[0] = new JTextField("Imiê", 20));
         card2.add(PersonalData[1] = new JTextField("Nazwisko", 20));
-        card2.add(PersonalData[2] = new JTextField("Ulica", 20));
-        card2.add(PersonalData[3] = new JTextField("Nr domu", 5));
-        card2.add(PersonalData[4] = new JTextField("Telefon", 9));
-        card2.add(PersonalData[5] = new JTextField("Adres e-mail", 20));
+        card2.add(PersonalData[2] = new JTextField("Adres", 20));
+        card2.add(PersonalData[3] = new JTextField("Telefon", 9));
+        card2.add(PersonalData[4] = new JTextField("Adres e-mail", 20));
      
         card2.add(label1);
         card2.add(passwordField1);
@@ -92,18 +91,18 @@ public class RegistrationBox implements ItemListener
         return zatwierdz;
     }
     
-    public int get_id()
+    public String getType()
     {
     	if(cb.getSelectedItem().equals(comboBoxItems[0]))
-    		return 0;
+    		return "client";
     	else
-    		return 1;
+    		return "doctor";
     			
     }
     
     public String getPersonalData(int x)
     {
-    	if(x>=0 && x<6)
+    	if(x>=0 && x<5)
     		return PersonalData[x].getText();
     	
 		return "";
