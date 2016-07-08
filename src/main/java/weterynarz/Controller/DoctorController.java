@@ -49,10 +49,8 @@ public class DoctorController {
 		this.personalClinic.setVisibility(false);
 		this.personalData.setVisibility(false);
 		this.personalAnimals.setVisibility(false);
-		
 	}
     
-	
     private void seePersonalCalendarAction()
     {             
     	this.welcomeView.setVisibility(false);

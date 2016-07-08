@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-import weterynarz.View.PatientView.PatientWelcomeBox;
+import weterynarz.View.ClientView.ClientWelcomeBox;
 
 public class TestWelcomeBox 
 {
@@ -87,7 +87,7 @@ public class TestWelcomeBox
         JFrame frame = new JFrame("Witaj!");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
         //Create and set up the content pane.
-        PatientWelcomeBox demo = new PatientWelcomeBox();
+        ClientWelcomeBox demo = new ClientWelcomeBox();
         demo.addComponentToPane(frame.getContentPane());
        
          

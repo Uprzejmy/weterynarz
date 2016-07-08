@@ -10,7 +10,6 @@ import java.util.List;
 public class DoctorDetails {
 	
 	private JFrame frame;
-    private JLabel label;
     private JButton backToWelcomeButton;
     
     List<JLabel> dataLabels;
@@ -53,14 +52,4 @@ public class DoctorDetails {
     {
         return backToWelcomeButton;
     }
-    
-    
-    public void setText(String text)
-    {
-        label.setText(text);
-    }
-
-
-    
-	
 }
