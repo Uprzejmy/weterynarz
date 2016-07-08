@@ -40,6 +40,10 @@ public class Patient
 	@JoinColumn(name = "owner_id")
 	private Client _owner;
 	
+	public Patient()
+	{
+	}
+	
 	public Patient(String name,String species, String breed, int pawsNumber, String colour)
 	{
 		_name = name;

@@ -1,9 +1,7 @@
 package weterynarz.Model.Clients;
 
-import java.util.List;
-
 import weterynarz.Model.UnitOfWork;
-import weterynarz.Model.Doctors.Doctor;
+import weterynarz.Model.Users.User;
 
 public class ClientsRepository implements IClientsRepository{
 	
@@ -24,16 +22,19 @@ public class ClientsRepository implements IClientsRepository{
 		 _unitOfWork.getSession().delete(client);
 	}
 	
+	public void update(Client client) 
+	{
+		 _unitOfWork.getSession().update(client);
+	}
+	
 	public Client findById(int id)
 	{
 		return _unitOfWork.getSession().get(Client.class, id);
 	}
 	
-	@SuppressWarnings("unchecked")
-	public List<Doctor> findAll()
+	public Client findByUser(User user)
 	{
-		List<Doctor> clients = _unitOfWork.getSession().createQuery("select c from Client c").getResultList();
-		return clients;
+		return _unitOfWork.getSession().byNaturalId(Client.class).using("_user",user).load();
 	}
 
 }

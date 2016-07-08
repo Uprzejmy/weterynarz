@@ -1,11 +1,16 @@
 package weterynarz.Model;
 
+import java.util.List;
+
 import weterynarz.Model.Clients.Client;
 import weterynarz.Model.Clients.ClientsRepository;
 import weterynarz.Model.Clients.IClientsRepository;
 import weterynarz.Model.Doctors.Doctor;
 import weterynarz.Model.Doctors.DoctorsRepository;
 import weterynarz.Model.Doctors.IDoctorsRepository;
+import weterynarz.Model.Patients.IPatientsRepository;
+import weterynarz.Model.Patients.Patient;
+import weterynarz.Model.Patients.PatientsRepository;
 import weterynarz.Model.Users.IUsersManager;
 import weterynarz.Model.Users.User;
 import weterynarz.Model.Users.UsersManager;
@@ -95,5 +100,41 @@ public class Model {
 			
 		System.out.println("Couldn't find doctor");
 		return null;
+	}
+	
+	public List<Patient> findPatientsByUser(User user)
+	{
+		UnitOfWork unitOfWork = new UnitOfWork();
+		
+		unitOfWork.beginTransaction();
+		
+		IClientsRepository clientsRepository = new ClientsRepository(unitOfWork);
+		Client client = clientsRepository.findByUser(user);
+		List<Patient> patients = client.getPatients();
+
+		unitOfWork.saveChanges();
+		
+		return patients;
+	}
+	
+	public void createPatient(User user,String name, String breed,String pawsNumber,String color)
+	{
+		UnitOfWork unitOfWork = new UnitOfWork();
+		
+		unitOfWork.beginTransaction();
+		
+		IClientsRepository clientsRepository = new ClientsRepository(unitOfWork);
+		Client client = clientsRepository.findByUser(user);
+		
+		Patient patient = new Patient(name,breed,breed,Integer.parseInt(pawsNumber),color);
+		patient.setOwner(client);
+		client.addPatient(patient);
+		
+		IPatientsRepository patientsRepository = new PatientsRepository(unitOfWork);
+		patientsRepository.add(patient);
+		
+		clientsRepository.update(client);
+		
+		unitOfWork.saveChanges();
 	}
 }
