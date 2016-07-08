@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import weterynarz.Model.Model;
+import weterynarz.Model.Doctors.Doctor;
 import weterynarz.Model.Users.User;
 import weterynarz.View.UserView.LoginBox;
 import weterynarz.View.UserView.RegistrationBox;
@@ -40,10 +41,15 @@ public class UserController {
     	String haslo = this.loginView.getPassword();
     	
     	User user = this.model.loginUser(email,haslo);
+    	Doctor doctor = this.model.findDoctorByUser(user); //probuje znalezc doktora z takim id jak user
     	if(user != null)
     	{
     		this.loginView.setVisibility(false);
-    		ContextManager.changeContext(user,"client");
+    		if(doctor == null) //jezeli znaleziono
+    			ContextManager.changeContext(user,"client"); //to znaczy ze zalogowany user byl doktorem
+    		else //jezeli nie znaleziono
+    			ContextManager.changeContext(user,"doctor"); //to znaczy ze zalogowany user byl klientem
+    		
     		return;
     	}
     	
