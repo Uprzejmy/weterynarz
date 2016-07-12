@@ -4,6 +4,8 @@ import java.awt.*;
 import java.awt.event.*;
 
 import javax.swing.*;
+
+import weterynarz.EContexts;
  
 public class RegistrationBox implements ItemListener
 {
@@ -91,12 +93,12 @@ public class RegistrationBox implements ItemListener
         return zatwierdz;
     }
     
-    public String getType()
+    public EContexts getType()
     {
     	if(cb.getSelectedItem().equals(comboBoxItems[0]))
-    		return "client";
+    		return EContexts.CLIENT;
     	else
-    		return "doctor";	
+    		return EContexts.DOCTOR;
     }
     
     public String getPersonalData(int x)

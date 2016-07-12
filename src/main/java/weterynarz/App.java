@@ -1,6 +1,5 @@
 package weterynarz;
 
-import weterynarz.Controller.ContextManager;
 
 public class App {
 	// --------------- v2.0 ----------------

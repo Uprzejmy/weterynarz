@@ -3,13 +3,14 @@ package weterynarz.Controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import weterynarz.Context;
+import weterynarz.ContextManager;
+import weterynarz.EContexts;
 import weterynarz.Model.Model;
-import weterynarz.Model.Doctors.Doctor;
-import weterynarz.Model.Users.User;
 import weterynarz.View.UserView.LoginBox;
 import weterynarz.View.UserView.RegistrationBox;
 
-public class UserController {
+public class UserController implements IController {
 	
 	private Model model;
 	private LoginBox loginView;
@@ -40,16 +41,11 @@ public class UserController {
     	String email = this.loginView.getEmail();
     	String haslo = this.loginView.getPassword();
     	
-    	User user = this.model.loginUser(email,haslo);
-    	Doctor doctor = this.model.findDoctorByUser(user); //probuje znalezc doktora z takim id jak user
-    	if(user != null)
+    	Context context = this.model.loginUser(email,haslo);
+    	if(context != null)
     	{
     		this.loginView.setVisibility(false);
-    		if(doctor == null) //jezeli znaleziono
-    			ContextManager.changeContext(user,"client"); //to znaczy ze zalogowany user byl doktorem
-    		else //jezeli nie znaleziono
-    			ContextManager.changeContext(user,"doctor"); //to znaczy ze zalogowany user byl klientem
-    		
+    		ContextManager.changeContext(context);
     		return;
     	}
     	
@@ -67,7 +63,7 @@ public class UserController {
     	String email = this.registrationView.getPersonalData(4);
     	String password = new String(this.registrationView.getPassword());
     	String password2 = new String(this.registrationView.getConfirmation());
-    	String type = this.registrationView.getType();
+    	EContexts type = this.registrationView.getType();
     	
     	if(!password.equals(password2))
     	{
@@ -76,11 +72,11 @@ public class UserController {
     		return;
     	}
     	
-    	User user = this.model.registerUser(email,password,name,surname,address,phone,type);
-    	if(user != null)
+    	Context context = this.model.registerUser(email,password,name,surname,address,phone,type);
+    	if(context != null)
     	{
     		this.registrationView.setVisibility(false);
-    		ContextManager.changeContext(user,type);
+    		ContextManager.changeContext(context);
     		return;
     	}
     	

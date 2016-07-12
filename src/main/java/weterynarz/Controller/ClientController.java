@@ -3,15 +3,15 @@ package weterynarz.Controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import weterynarz.Context;
 import weterynarz.Model.Model;
-import weterynarz.Model.Users.User;
 import weterynarz.View.ClientView.ClientAddAnimalBox;
 import weterynarz.View.ClientView.ClientSeeAnimalBox;
 import weterynarz.View.ClientView.ClientWelcomeBox;
 
 
-public class ClientController {
-	private User user;
+public class ClientController implements IController{
+	private Context context;
 	private Model model;
 	private ClientWelcomeBox welcomeView;
 	private ClientAddAnimalBox addAnimal;
@@ -23,10 +23,10 @@ public class ClientController {
 	private ActionListener backToWelcomeListener;
 	private ActionListener addAnimalListener;
 	
-	public ClientController(Model model,User user)
+	public ClientController(Model model,Context context)
 	{
 		this.model = model;
-		this.user = user;
+		this.context = context;
 		this.welcomeView = new ClientWelcomeBox();
 		this.addAnimal = new ClientAddAnimalBox();
 		this.seeAnimal = new ClientSeeAnimalBox();
@@ -39,7 +39,7 @@ public class ClientController {
 	
     private void changeToSeeAnimalAction()
     {   
-    	this.seeAnimal.updatePatients(this.model.findPatientsByUser(this.user));
+    	this.seeAnimal.updatePatients(this.model.findPatientsByUser(this.context.getUser()));
     	this.welcomeView.setVisibility(false);
     	this.seeAnimal.setVisibility(true);
     }
@@ -64,7 +64,7 @@ public class ClientController {
         String pawsNumber = this.addAnimal.getAnimalData(2);
         String color = this.addAnimal.getAnimalData(3);
     	
-        model.createPatient(user,name,breed,pawsNumber,color);
+        model.createPatient(this.context.getUser(),name,breed,pawsNumber,color);
     	this.addAnimal.setVisibility(false);
     	this.welcomeView.setVisibility(true);
     }

@@ -1,12 +1,8 @@
 package ModelTest;
 
-import static org.junit.Assert.*;
-
 import org.junit.Before;
-import org.junit.Test;
 
 import weterynarz.Model.Model;
-import weterynarz.Model.Users.User;
 
 public class ModelTest2 {
 
@@ -19,12 +15,12 @@ public class ModelTest2 {
 		model = new Model();
 	}
 
-	
-
+	/* logic has changed @Uprzejmy
 	@Test
 	public void testLoginUser() {
 		User testuser = model.loginUser("dyzio@lipna.lipa", "1234");
 		assertEquals(testuser, null);
 	}
+	*/
 
 }

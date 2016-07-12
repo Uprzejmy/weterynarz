@@ -7,7 +7,14 @@ import java.security.SecureRandom;
 import java.util.Base64;
 import java.util.Random;
 
+import weterynarz.EContexts;
 import weterynarz.Model.UnitOfWork;
+import weterynarz.Model.Clients.Client;
+import weterynarz.Model.Clients.ClientsRepository;
+import weterynarz.Model.Clients.IClientsRepository;
+import weterynarz.Model.Doctors.Doctor;
+import weterynarz.Model.Doctors.DoctorsRepository;
+import weterynarz.Model.Doctors.IDoctorsRepository;
 
 public class UsersManager implements IUsersManager
 {
@@ -16,6 +23,25 @@ public class UsersManager implements IUsersManager
 	public UsersManager(UnitOfWork unitOfWork)
 	{
 		_unitOfWork = unitOfWork;
+	}
+	
+	public EContexts getUserType(User user)
+	{
+		IDoctorsRepository doctorsRepository = new DoctorsRepository(_unitOfWork);
+		Doctor doctor = doctorsRepository.findByUser(user);
+		if(doctor!=null)
+		{
+			return EContexts.DOCTOR;
+		}
+		
+		IClientsRepository clientsRepository = new ClientsRepository(_unitOfWork);
+		Client client = clientsRepository.findByUser(user);
+		if(client!=null)
+		{
+			return EContexts.CLIENT;
+		}
+		
+		throw new RuntimeException("Unsupported user type");
 	}
 	
 	public User register(String email, String password)

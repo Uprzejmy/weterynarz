@@ -2,6 +2,8 @@ package weterynarz.Model;
 
 import java.util.List;
 
+import weterynarz.Context;
+import weterynarz.EContexts;
 import weterynarz.Model.Clients.Client;
 import weterynarz.Model.Clients.ClientsRepository;
 import weterynarz.Model.Clients.IClientsRepository;
@@ -17,7 +19,7 @@ import weterynarz.Model.Users.UsersManager;
 
 public class Model {
 
-	public User registerUser(String email, String password,String name,String surname,String address,String phone,String type)
+	public Context registerUser(String email, String password,String name,String surname,String address,String phone,EContexts type)
 	{
 		UnitOfWork unitOfWork = new UnitOfWork();
 		
@@ -26,41 +28,48 @@ public class Model {
 		IUsersManager usersManager = new UsersManager(unitOfWork);
 		User user = usersManager.register(email,password);
 		
-		if(type.equals("doctor"))
+		switch(type)
 		{
-			System.out.println("Registering doctor");
-			IDoctorsRepository doctorsRepository = new DoctorsRepository(unitOfWork);
-			Doctor doctor = new Doctor(name,surname,address,phone);
-			doctor.setUser(user);
-			doctorsRepository.add(doctor);
+			case DOCTOR:
+			{
+				System.out.println("Registering doctor");
+				IDoctorsRepository doctorsRepository = new DoctorsRepository(unitOfWork);
+				Doctor doctor = new Doctor(name,surname,address,phone);
+				doctor.setUser(user);
+				doctorsRepository.add(doctor);
+				break;
+			}
+			case CLIENT:
+			{
+				System.out.println("Registering client");
+				IClientsRepository clientsRepository = new ClientsRepository(unitOfWork);
+				Client client = new Client(name,surname,address,phone);
+				client.setUser(user);
+				clientsRepository.add(client);
+				break;
+			}
+			default:
+			{
+				unitOfWork.discardChanges();
+				throw new RuntimeException("Unsupported user type");
+			}
+				
 		}
-		else if(type.equals("client"))
-		{
-			System.out.println("Registering client");
-			IClientsRepository clientsRepository = new ClientsRepository(unitOfWork);
-			Client client = new Client(name,surname,address,phone);
-			client.setUser(user);
-			clientsRepository.add(client);
-		}
-		else
-		{
-			unitOfWork.discardChanges();
-			throw new RuntimeException("Unsupported user type");
-		}
-		
+
 		unitOfWork.saveChanges();
+		//registration is done, now login part
 		
 		if(user != null)
 		{
 			System.out.println("Registration successful");
-			return user;
+			return new Context(user,type);
 		}
 			
 		System.out.println("Couldn't register user, try different email");
 		return null;
 	}
 	
-	public User loginUser(String email, String password)
+	public Context loginUser(String email, String password)
 	{
 		UnitOfWork unitOfWork = new UnitOfWork();
 		
@@ -69,13 +78,13 @@ public class Model {
 		IUsersManager usersManager = new UsersManager(unitOfWork);
 		User user = usersManager.login(email,password);
 		
-		unitOfWork.saveChanges();
-		
 		if(user != null)
-		{
+    	{
 			System.out.println("User logged in correctly");
-			return user;
-		}
+			EContexts type = usersManager.getUserType(user);
+			unitOfWork.saveChanges();
+    		return new Context(user,type);
+    	}
 			
 		System.out.println("Couldn't log in, incorrect email or password");
 		return null;
