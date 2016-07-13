@@ -2,13 +2,9 @@ package weterynarz.Controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
-
 import weterynarz.Context;
 import weterynarz.Model.Model;
 import weterynarz.Model.Doctors.Doctor;
-import weterynarz.Model.Patients.Patient;
 import weterynarz.View.DoctorView.DoctorAnimals;
 import weterynarz.View.DoctorView.DoctorClinic;
 import weterynarz.View.DoctorView.DoctorDetails;
@@ -34,15 +30,13 @@ public class DoctorController implements IController {
 	
 	public DoctorController(Model model,Context context)
 	{
-		List<Patient> patients = new ArrayList<Patient>();
-		
 		this.model = model;
 		this.context = context;
 		this.welcomeView = new DoctorWelcomeBox();
 		this.personalCalendar = new DoctorSeeAgenda();
 		this.personalClinic = new DoctorClinic();
 		this.personalData = new DoctorDetails();
-		this.personalAnimals = new DoctorAnimals(patients);
+		this.personalAnimals = new DoctorAnimals();
 		
 		this.welcomeView.setVisibility(true);
 		this.personalCalendar.setVisibility(false);
@@ -73,6 +67,7 @@ public class DoctorController implements IController {
     
     private void seePersonalAnimalsAction()
     {             
+    	this.personalAnimals.updateAnimals(this.model.findDoctorByUser(this.context.getUser()).getPatients());
     	this.welcomeView.setVisibility(false);
     	this.personalAnimals.setVisibility(true);
     }

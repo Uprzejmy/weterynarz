@@ -11,6 +11,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import weterynarz.Model.Clients.Client;
+import weterynarz.Model.Doctors.Doctor;
 
 @Entity
 @SequenceGenerator(initialValue = 1, allocationSize=1, name = "patients_ids", sequenceName = "patients_ids")
@@ -40,6 +41,10 @@ public class Patient
 	@JoinColumn(name = "owner_id")
 	private Client _owner;
 	
+	@ManyToOne
+	@JoinColumn(name = "doctor_id")
+	private Doctor _doctor;
+
 	public Patient()
 	{
 	}
@@ -111,6 +116,14 @@ public class Patient
 	public void setOwner(Client owner)
 	{
 		_owner = owner;
+	}
+	
+	public Doctor getDoctor() {
+		return _doctor;
+	}
+
+	public void setDoctor(Doctor doctor) {
+		_doctor = doctor;
 	}
 	
 	public String toString()
