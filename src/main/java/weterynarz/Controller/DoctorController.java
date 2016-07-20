@@ -2,13 +2,9 @@ package weterynarz.Controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
-
+import weterynarz.Context;
 import weterynarz.Model.Model;
 import weterynarz.Model.Doctors.Doctor;
-import weterynarz.Model.Patients.Patient;
-import weterynarz.Model.Users.User;
 import weterynarz.View.DoctorView.DoctorAnimals;
 import weterynarz.View.DoctorView.DoctorClinic;
 import weterynarz.View.DoctorView.DoctorDetails;
@@ -17,8 +13,8 @@ import weterynarz.View.DoctorView.DoctorWelcomeBox;
 
 
 
-public class DoctorController {
-	private User user;
+public class DoctorController implements IController {
+	private Context context;
 	private Model model;
 	private DoctorWelcomeBox welcomeView;
 	private DoctorSeeAgenda personalCalendar;
@@ -32,17 +28,15 @@ public class DoctorController {
 	private ActionListener seePersonalAnimalsListener;
 	private ActionListener backToWelcomeListener;
 	
-	public DoctorController(Model model,User user)
+	public DoctorController(Model model,Context context)
 	{
-		List<Patient> patients = new ArrayList<Patient>();
-		
 		this.model = model;
-		this.user = user;
+		this.context = context;
 		this.welcomeView = new DoctorWelcomeBox();
 		this.personalCalendar = new DoctorSeeAgenda();
 		this.personalClinic = new DoctorClinic();
 		this.personalData = new DoctorDetails();
-		this.personalAnimals = new DoctorAnimals(patients);
+		this.personalAnimals = new DoctorAnimals();
 		
 		this.welcomeView.setVisibility(true);
 		this.personalCalendar.setVisibility(false);
@@ -65,7 +59,7 @@ public class DoctorController {
     
     private void seePersonalDataAction()
     {             
-    	Doctor doctor = this.model.findDoctorByUser(user);
+    	Doctor doctor = this.model.findDoctorByUser(this.context.getUser());
     	this.personalData.setDetails(doctor.getName(), doctor.getSurname(), doctor.getAddress(), doctor.getPhone());
     	this.welcomeView.setVisibility(false);
     	this.personalData.setVisibility(true);
@@ -73,6 +67,7 @@ public class DoctorController {
     
     private void seePersonalAnimalsAction()
     {             
+    	this.personalAnimals.updateAnimals(this.model.findDoctorByUser(this.context.getUser()).getPatients());
     	this.welcomeView.setVisibility(false);
     	this.personalAnimals.setVisibility(true);
     }

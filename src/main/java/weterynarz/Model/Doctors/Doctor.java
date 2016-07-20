@@ -1,17 +1,24 @@
 package weterynarz.Model.Doctors;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.NaturalId;
 
+import weterynarz.Model.Patients.Patient;
 import weterynarz.Model.Users.User;
 
 @Entity
@@ -39,6 +46,9 @@ public class Doctor
 	@NaturalId
     @JoinColumn(name = "user_id")
 	private User _user;
+	
+	@OneToMany(mappedBy = "_doctor",fetch=FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Patient> _patients = new ArrayList<Patient>();
 	
 	public Doctor()
 	{
@@ -115,6 +125,20 @@ public class Doctor
 
     public void setUser(User user) {
         _user = user;
+    }
+    
+    public List<Patient> getPatients() {
+        return _patients;
+    }
+
+    public void addPatient(Patient patient) {
+        _patients.add(patient);
+        patient.setDoctor(this);
+    }
+
+    public void removePatient(Patient patient) {
+    	_patients.remove( patient );
+    	patient.setOwner( null );
     }
 	
 	public String toString()

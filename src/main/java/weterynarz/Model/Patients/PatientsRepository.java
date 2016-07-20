@@ -4,6 +4,7 @@ import java.util.List;
 
 import weterynarz.Model.UnitOfWork;
 import weterynarz.Model.Clients.Client;
+import weterynarz.Model.Doctors.Doctor;
 
 public class PatientsRepository implements IPatientsRepository{
 	
@@ -33,5 +34,11 @@ public class PatientsRepository implements IPatientsRepository{
 	public List<Patient> findByOwner(Client client)
 	{
 		return _unitOfWork.getSession().createQuery("select p from Patient p where _owner: ownerId").setParameter("ownerId",client.getId()).getResultList();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Patient> findByDoctor(Doctor doctor)
+	{
+		return _unitOfWork.getSession().createQuery("select p from Patient p where _doctor: doctorId").setParameter("doctorId",doctor.getId()).getResultList();
 	}
 }
