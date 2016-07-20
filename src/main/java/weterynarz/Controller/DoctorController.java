@@ -1,21 +1,18 @@
 package weterynarz.Controller;
 
+import weterynarz.Context;
+import weterynarz.Model.Doctors.Doctor;
+import weterynarz.Model.IDoctorModel;
+import weterynarz.View.DoctorView.*;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import weterynarz.Context;
-import weterynarz.Model.Model;
-import weterynarz.Model.Doctors.Doctor;
-import weterynarz.View.DoctorView.DoctorAnimals;
-import weterynarz.View.DoctorView.DoctorClinic;
-import weterynarz.View.DoctorView.DoctorDetails;
-import weterynarz.View.DoctorView.DoctorSeeAgenda;
-import weterynarz.View.DoctorView.DoctorWelcomeBox;
 
 
 
 public class DoctorController implements IController {
 	private Context context;
-	private Model model;
+	private IDoctorModel model;
 	private DoctorWelcomeBox welcomeView;
 	private DoctorSeeAgenda personalCalendar;
 	private DoctorClinic personalClinic;
@@ -28,7 +25,7 @@ public class DoctorController implements IController {
 	private ActionListener seePersonalAnimalsListener;
 	private ActionListener backToWelcomeListener;
 	
-	public DoctorController(Model model,Context context)
+	public DoctorController(IDoctorModel model,Context context)
 	{
 		this.model = model;
 		this.context = context;

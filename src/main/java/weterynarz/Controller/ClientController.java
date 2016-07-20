@@ -1,18 +1,18 @@
 package weterynarz.Controller;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import weterynarz.Context;
-import weterynarz.Model.Model;
+import weterynarz.Model.IClientModel;
 import weterynarz.View.ClientView.ClientAddAnimalBox;
 import weterynarz.View.ClientView.ClientSeeAnimalBox;
 import weterynarz.View.ClientView.ClientWelcomeBox;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 
 public class ClientController implements IController{
 	private Context context;
-	private Model model;
+	private IClientModel model;
 	private ClientWelcomeBox welcomeView;
 	private ClientAddAnimalBox addAnimal;
 	private ClientSeeAnimalBox seeAnimal;
@@ -23,7 +23,7 @@ public class ClientController implements IController{
 	private ActionListener backToWelcomeListener;
 	private ActionListener addAnimalListener;
 	
-	public ClientController(Model model,Context context)
+	public ClientController(IClientModel model,Context context)
 	{
 		this.model = model;
 		this.context = context;

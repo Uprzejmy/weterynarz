@@ -2,13 +2,8 @@ package ModelTest;
 
 import java.util.Random;
 
-import org.junit.Before;
-
-import weterynarz.Model.Model;
-import weterynarz.Model.Users.User;
-
 public class ModelTest {
-
+	/*
 	User user;
 	Model model;
 
@@ -17,7 +12,7 @@ public class ModelTest {
 		user = new User();
 		model = new Model();
 	}
-	
+	*/
 	@SuppressWarnings("unused")
 	private String randomString()
 	{

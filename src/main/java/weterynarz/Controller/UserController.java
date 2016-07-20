@@ -1,18 +1,18 @@
 package weterynarz.Controller;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import weterynarz.Context;
 import weterynarz.ContextManager;
 import weterynarz.EContexts;
-import weterynarz.Model.Model;
+import weterynarz.Model.IUserModel;
 import weterynarz.View.UserView.LoginBox;
 import weterynarz.View.UserView.RegistrationBox;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 public class UserController implements IController {
 	
-	private Model model;
+	private IUserModel model;
 	private LoginBox loginView;
 	private RegistrationBox registrationView;
 	
@@ -20,7 +20,7 @@ public class UserController implements IController {
 	private ActionListener changeViewToRegisterActionListener;
 	private ActionListener registerActionListener;
 	
-	public UserController(Model model)
+	public UserController(IUserModel model)
 	{
 		this.model = model;
 		this.loginView = new LoginBox();
@@ -39,9 +39,9 @@ public class UserController implements IController {
     private void loginAction()
     {      
     	String email = this.loginView.getEmail();
-    	String haslo = this.loginView.getPassword();
+    	String password = this.loginView.getPassword();
     	
-    	Context context = this.model.loginUser(email,haslo);
+    	Context context = this.model.loginUser(email,password);
     	if(context != null)
     	{
     		this.loginView.setVisibility(false);
