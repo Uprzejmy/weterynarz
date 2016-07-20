@@ -11,6 +11,8 @@ public class ContextManager {
 	
 	private ContextManager()
 	{
+		model = new Model();
+		changeContext(new Context());
 	}
 	
 	public static ContextManager getInstance()
@@ -27,13 +29,6 @@ public class ContextManager {
 		currentController = ControllerFactory.createController(model,context);
 		currentController.configure();
 			
-	}
-	
-	public void run()
-	{
-		model = new Model();
-		Context context = new Context(null,EContexts.USER); // nie podoba mi siê, pomyslec nad tym
-		changeContext(context);
 	}
 
 }

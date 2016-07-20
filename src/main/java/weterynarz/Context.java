@@ -6,6 +6,12 @@ public class Context {
 	private User user;
 	private EContexts type;
 
+	public Context()
+	{
+		this.user = null;
+		this.type = EContexts.USER;
+	}
+
 	public Context(User user, EContexts type)
 	{
 		this.user = user;
@@ -28,5 +34,4 @@ public class Context {
 		this.type = type;
 	}
 
-	
 }
