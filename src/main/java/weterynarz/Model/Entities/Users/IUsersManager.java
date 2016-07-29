@@ -1,4 +1,4 @@
-package weterynarz.Model.Users;
+package weterynarz.Model.Entities.Users;
 
 import weterynarz.EContexts;
 

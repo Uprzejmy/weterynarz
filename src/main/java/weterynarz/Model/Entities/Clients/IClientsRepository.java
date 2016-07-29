@@ -1,7 +1,7 @@
-package weterynarz.Model.Clients;
+package weterynarz.Model.Entities.Clients;
 
 import weterynarz.Model.IRepository;
-import weterynarz.Model.Users.User;
+import weterynarz.Model.Entities.Users.User;
 
 public interface IClientsRepository extends IRepository<Client>{
 	public Client findByUser(User user);

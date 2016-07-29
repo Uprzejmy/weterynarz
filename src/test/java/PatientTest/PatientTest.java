@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import weterynarz.Model.Patients.Patient;
+import weterynarz.Model.Entities.Patients.Patient;
 
 public class PatientTest {
 

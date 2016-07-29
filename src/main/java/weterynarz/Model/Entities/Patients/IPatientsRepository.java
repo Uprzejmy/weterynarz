@@ -1,10 +1,10 @@
-package weterynarz.Model.Patients;
+package weterynarz.Model.Entities.Patients;
 
 import java.util.List;
 
 import weterynarz.Model.IRepository;
-import weterynarz.Model.Clients.Client;
-import weterynarz.Model.Doctors.Doctor;
+import weterynarz.Model.Entities.Clients.Client;
+import weterynarz.Model.Entities.Doctors.Doctor;
 
 public interface IPatientsRepository extends IRepository<Patient>{
 	public List<Patient> findByOwner(Client client);

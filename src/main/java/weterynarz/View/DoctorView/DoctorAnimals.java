@@ -4,7 +4,7 @@ import java.awt.*;
 
 import javax.swing.*;
 
-import weterynarz.Model.Patients.Patient;
+import weterynarz.Model.Entities.Patients.Patient;
 
 import java.util.ArrayList;
 import java.util.List;

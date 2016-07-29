@@ -1,9 +1,9 @@
 package weterynarz.Controller;
 
 import weterynarz.Context;
-import weterynarz.Model.ClientModel;
-import weterynarz.Model.DoctorModel;
-import weterynarz.Model.UserModel;
+import weterynarz.Model.Client.ClientModel;
+import weterynarz.Model.Doctor.DoctorModel;
+import weterynarz.Model.User.UserModel;
 
 public final class ControllerFactory {
 	//important, "static" class

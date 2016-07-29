@@ -1,7 +1,8 @@
-package weterynarz.Model;
+package weterynarz.Model.User;
 
 import weterynarz.Context;
 import weterynarz.EContexts;
+import weterynarz.Model.IModel;
 
 /**
  * Created by Uprzejmy on 2016-07-20.

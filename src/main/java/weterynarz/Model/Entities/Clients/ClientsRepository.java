@@ -1,8 +1,7 @@
-package weterynarz.Model.Clients;
+package weterynarz.Model.Entities.Clients;
 
 import org.hibernate.Session;
-import weterynarz.Model.UnitOfWork;
-import weterynarz.Model.Users.User;
+import weterynarz.Model.Entities.Users.User;
 
 public class ClientsRepository implements IClientsRepository{
 	

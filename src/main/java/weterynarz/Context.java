@@ -1,6 +1,6 @@
 package weterynarz;
 
-import weterynarz.Model.Users.User;
+import weterynarz.Model.Entities.Users.User;
 
 public class Context {
 	private User user;

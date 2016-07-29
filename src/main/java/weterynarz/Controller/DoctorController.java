@@ -1,8 +1,8 @@
 package weterynarz.Controller;
 
 import weterynarz.Context;
-import weterynarz.Model.Doctors.Doctor;
-import weterynarz.Model.IDoctorModel;
+import weterynarz.Model.Entities.Doctors.Doctor;
+import weterynarz.Model.Doctor.IDoctorModel;
 import weterynarz.View.DoctorView.*;
 
 import java.awt.event.ActionEvent;

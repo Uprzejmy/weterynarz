@@ -1,16 +1,19 @@
-package weterynarz.Model;
+package weterynarz.Model.User;
 
 import weterynarz.Context;
 import weterynarz.EContexts;
-import weterynarz.Model.Clients.Client;
-import weterynarz.Model.Clients.ClientsRepository;
-import weterynarz.Model.Clients.IClientsRepository;
-import weterynarz.Model.Doctors.Doctor;
-import weterynarz.Model.Doctors.DoctorsRepository;
-import weterynarz.Model.Doctors.IDoctorsRepository;
-import weterynarz.Model.Users.IUsersManager;
-import weterynarz.Model.Users.User;
-import weterynarz.Model.Users.UsersManager;
+import weterynarz.Model.Entities.Clients.Client;
+import weterynarz.Model.Entities.Clients.ClientsRepository;
+import weterynarz.Model.Entities.Clients.IClientsRepository;
+import weterynarz.Model.Entities.Doctors.Doctor;
+import weterynarz.Model.Entities.Doctors.DoctorsRepository;
+import weterynarz.Model.Entities.Doctors.IDoctorsRepository;
+import weterynarz.Model.Entities.Users.IUsersManager;
+import weterynarz.Model.Entities.Users.User;
+import weterynarz.Model.Entities.Users.UsersManager;
+import weterynarz.Model.UnitOfWork.UnitOfWorkFactory;
+import weterynarz.Model.UnitOfWork.UnitOfWorkNonTransactional;
+import weterynarz.Model.UnitOfWork.UnitOfWorkTransactional;
 
 /**
  * Created by Uprzejmy on 2016-07-20.
@@ -18,9 +21,9 @@ import weterynarz.Model.Users.UsersManager;
 public class UserModel implements IUserModel {
     public Context registerUser(String email, String password, String name, String surname, String address, String phone, EContexts type)
     {
-        UnitOfWork unitOfWork = new UnitOfWork();
+        UnitOfWorkTransactional uow = (UnitOfWorkTransactional) UnitOfWorkFactory.createUnitOfWork(true);
 
-        IUsersManager usersManager = new UsersManager(unitOfWork.getSession());
+        IUsersManager usersManager = new UsersManager(uow.getSession());
         User user = usersManager.register(email,password);
 
         switch(type)
@@ -28,7 +31,7 @@ public class UserModel implements IUserModel {
             case DOCTOR:
             {
                 System.out.println("Registering doctor");
-                IDoctorsRepository doctorsRepository = new DoctorsRepository(unitOfWork.getSession());
+                IDoctorsRepository doctorsRepository = new DoctorsRepository(uow.getSession());
                 Doctor doctor = new Doctor(name,surname,address,phone);
                 doctor.setUser(user);
                 doctorsRepository.add(doctor);
@@ -37,7 +40,7 @@ public class UserModel implements IUserModel {
             case CLIENT:
             {
                 System.out.println("Registering client");
-                IClientsRepository clientsRepository = new ClientsRepository(unitOfWork.getSession());
+                IClientsRepository clientsRepository = new ClientsRepository(uow.getSession());
                 Client client = new Client(name,surname,address,phone);
                 client.setUser(user);
                 clientsRepository.add(client);
@@ -45,13 +48,13 @@ public class UserModel implements IUserModel {
             }
             default:
             {
-                unitOfWork.discardChanges();
+                uow.discardChanges();
                 throw new RuntimeException("Unsupported user type");
             }
 
         }
 
-        unitOfWork.saveChanges();
+        uow.saveChanges();
         //registration is done, now login part
 
         if(user == null)
@@ -66,10 +69,14 @@ public class UserModel implements IUserModel {
 
     public Context loginUser(String email, String password)
     {
-        UnitOfWork unitOfWork = new UnitOfWork();
+        UnitOfWorkNonTransactional uow = (UnitOfWorkNonTransactional) UnitOfWorkFactory.createUnitOfWork(false);
 
-        IUsersManager usersManager = new UsersManager(unitOfWork.getSession());
+        IUsersManager usersManager = new UsersManager(uow.getSession());
         User user = usersManager.login(email,password);
+
+        EContexts type = usersManager.getUserType(user);
+
+        uow.close();
 
         if(user == null)
         {
@@ -78,8 +85,8 @@ public class UserModel implements IUserModel {
         }
 
         System.out.println("User logged in correctly");
-        EContexts type = usersManager.getUserType(user);
-        unitOfWork.saveChanges();
+
+
         return new Context(user,type);
 
 

@@ -6,7 +6,7 @@ import java.util.List;
 
 import javax.swing.*;
 
-import weterynarz.Model.Patients.Patient;
+import weterynarz.Model.Entities.Patients.Patient;
 
 
 public class ClientSeeAnimalBox {
@@ -19,7 +19,7 @@ public class ClientSeeAnimalBox {
 
     public ClientSeeAnimalBox()
     {
-        frame = new JFrame("Twoje zwierzêta");                                                                            
+        frame = new JFrame("Twoje zwierzï¿½ta");                                                                            
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
         frame.setLayout(new GridLayout(10,0));
         backToWelcomeButton = new JButton("Wroc");
@@ -54,7 +54,7 @@ public class ClientSeeAnimalBox {
     
     private void resetFrame()
     {
-    	frame = new JFrame("Twoje zwierzêta");                                                                            
+    	frame = new JFrame("Twoje zwierzï¿½ta");                                                                            
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
         frame.setLayout(new GridLayout(10,0));
         frame.add(backToWelcomeButton);

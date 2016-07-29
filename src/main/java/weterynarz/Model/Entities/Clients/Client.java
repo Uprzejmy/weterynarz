@@ -1,8 +1,8 @@
-package weterynarz.Model.Clients;
+package weterynarz.Model.Entities.Clients;
 
 import org.hibernate.annotations.NaturalId;
-import weterynarz.Model.Patients.Patient;
-import weterynarz.Model.Users.User;
+import weterynarz.Model.Entities.Patients.Patient;
+import weterynarz.Model.Entities.Users.User;
 
 import javax.persistence.*;
 import java.util.ArrayList;

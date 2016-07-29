@@ -1,7 +1,6 @@
 package weterynarz.Controller;
 
 import weterynarz.Context;
-import weterynarz.Model.IClientModel;
 import weterynarz.View.ClientView.ClientAddAnimalBox;
 import weterynarz.View.ClientView.ClientSeeAnimalBox;
 import weterynarz.View.ClientView.ClientWelcomeBox;

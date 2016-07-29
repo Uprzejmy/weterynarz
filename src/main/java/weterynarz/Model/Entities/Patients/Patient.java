@@ -1,4 +1,4 @@
-package weterynarz.Model.Patients;
+package weterynarz.Model.Entities.Patients;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,8 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import weterynarz.Model.Clients.Client;
-import weterynarz.Model.Doctors.Doctor;
+import weterynarz.Model.Entities.Clients.Client;
+import weterynarz.Model.Entities.Doctors.Doctor;
 
 @Entity
 @SequenceGenerator(initialValue = 1, allocationSize=1, name = "patients_ids", sequenceName = "patients_ids")

@@ -1,7 +1,8 @@
-package weterynarz.Model;
+package weterynarz.Model.Client;
 
-import weterynarz.Model.Patients.Patient;
-import weterynarz.Model.Users.User;
+import weterynarz.Model.Entities.Patients.Patient;
+import weterynarz.Model.Entities.Users.User;
+import weterynarz.Model.IModel;
 
 import java.util.List;
 

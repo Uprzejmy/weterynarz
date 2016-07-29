@@ -1,11 +1,10 @@
-package weterynarz.Model.Patients;
+package weterynarz.Model.Entities.Patients;
 
 import java.util.List;
 
 import org.hibernate.Session;
-import weterynarz.Model.UnitOfWork;
-import weterynarz.Model.Clients.Client;
-import weterynarz.Model.Doctors.Doctor;
+import weterynarz.Model.Entities.Clients.Client;
+import weterynarz.Model.Entities.Doctors.Doctor;
 
 public class PatientsRepository implements IPatientsRepository{
 	

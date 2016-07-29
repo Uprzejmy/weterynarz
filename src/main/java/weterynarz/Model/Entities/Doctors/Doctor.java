@@ -1,4 +1,4 @@
-package weterynarz.Model.Doctors;
+package weterynarz.Model.Entities.Doctors;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,8 +18,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.NaturalId;
 
-import weterynarz.Model.Patients.Patient;
-import weterynarz.Model.Users.User;
+import weterynarz.Model.Entities.Patients.Patient;
+import weterynarz.Model.Entities.Users.User;
 
 @Entity
 @SequenceGenerator(initialValue = 1, allocationSize=1, name = "doctors_ids", sequenceName = "doctors_ids")

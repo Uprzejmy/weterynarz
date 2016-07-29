@@ -1,4 +1,4 @@
-package weterynarz.Model.Users;
+package weterynarz.Model.Entities.Users;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -9,13 +9,12 @@ import java.util.Random;
 
 import org.hibernate.Session;
 import weterynarz.EContexts;
-import weterynarz.Model.UnitOfWork;
-import weterynarz.Model.Clients.Client;
-import weterynarz.Model.Clients.ClientsRepository;
-import weterynarz.Model.Clients.IClientsRepository;
-import weterynarz.Model.Doctors.Doctor;
-import weterynarz.Model.Doctors.DoctorsRepository;
-import weterynarz.Model.Doctors.IDoctorsRepository;
+import weterynarz.Model.Entities.Clients.Client;
+import weterynarz.Model.Entities.Clients.ClientsRepository;
+import weterynarz.Model.Entities.Clients.IClientsRepository;
+import weterynarz.Model.Entities.Doctors.Doctor;
+import weterynarz.Model.Entities.Doctors.DoctorsRepository;
+import weterynarz.Model.Entities.Doctors.IDoctorsRepository;
 
 public class UsersManager implements IUsersManager
 {
@@ -28,6 +27,9 @@ public class UsersManager implements IUsersManager
 	
 	public EContexts getUserType(User user)
 	{
+		if (user == null)
+			return EContexts.USER;
+
 		IDoctorsRepository doctorsRepository = new DoctorsRepository(_session);
 		Doctor doctor = doctorsRepository.findByUser(user);
 		if(doctor!=null)

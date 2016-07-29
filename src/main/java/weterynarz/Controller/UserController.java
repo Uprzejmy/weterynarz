@@ -3,7 +3,7 @@ package weterynarz.Controller;
 import weterynarz.Context;
 import weterynarz.ContextManager;
 import weterynarz.EContexts;
-import weterynarz.Model.IUserModel;
+import weterynarz.Model.User.IUserModel;
 import weterynarz.View.UserView.LoginBox;
 import weterynarz.View.UserView.RegistrationBox;
 

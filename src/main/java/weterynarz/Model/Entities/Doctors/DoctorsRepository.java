@@ -1,10 +1,9 @@
-package weterynarz.Model.Doctors;
+package weterynarz.Model.Entities.Doctors;
 
 import java.util.List;
 
 import org.hibernate.Session;
-import weterynarz.Model.UnitOfWork;
-import weterynarz.Model.Users.User;
+import weterynarz.Model.Entities.Users.User;
 
 public class DoctorsRepository implements IDoctorsRepository{
 

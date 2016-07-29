@@ -31,10 +31,10 @@
    <property name="format_sql">false</property>
    <property name="hibernate.connection.requireSSL">false</property>
    
-   <mapping class="weterynarz.Model.Users.User"></mapping>
-   <mapping class="weterynarz.Model.Doctors.Doctor"></mapping>
-   <mapping class="weterynarz.Model.Clients.Client"></mapping>
-   <mapping class="weterynarz.Model.Patients.Patient"></mapping>
+   <mapping class="weterynarz.Model.Entities.Users.User"></mapping>
+   <mapping class="weterynarz.Model.Entities.Doctors.Doctor"></mapping>
+   <mapping class="weterynarz.Model.Entities.Clients.Client"></mapping>
+   <mapping class="weterynarz.Model.Entities.Patients.Patient"></mapping>
 
 
 </session-factory>
