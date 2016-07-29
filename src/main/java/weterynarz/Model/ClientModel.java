@@ -18,9 +18,7 @@ public class ClientModel implements IClientModel {
     {
         UnitOfWork unitOfWork = new UnitOfWork();
 
-        unitOfWork.beginTransaction();
-
-        IClientsRepository clientsRepository = new ClientsRepository(unitOfWork);
+        IClientsRepository clientsRepository = new ClientsRepository(unitOfWork.getSession());
         Client client = clientsRepository.findByUser(user);
         List<Patient> patients = client.getPatients();
 
@@ -33,16 +31,14 @@ public class ClientModel implements IClientModel {
     {
         UnitOfWork unitOfWork = new UnitOfWork();
 
-        unitOfWork.beginTransaction();
-
-        IClientsRepository clientsRepository = new ClientsRepository(unitOfWork);
+        IClientsRepository clientsRepository = new ClientsRepository(unitOfWork.getSession());
         Client client = clientsRepository.findByUser(user);
 
         Patient patient = new Patient(name,breed,breed,Integer.parseInt(pawsNumber),color);
         patient.setOwner(client);
         client.addPatient(patient);
 
-        IPatientsRepository patientsRepository = new PatientsRepository(unitOfWork);
+        IPatientsRepository patientsRepository = new PatientsRepository(unitOfWork.getSession());
         patientsRepository.add(patient);
 
         clientsRepository.update(client);

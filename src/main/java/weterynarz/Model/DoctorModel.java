@@ -13,9 +13,7 @@ public class DoctorModel implements IDoctorModel {
     {
         UnitOfWork unitOfWork = new UnitOfWork();
 
-        unitOfWork.beginTransaction();
-
-        IDoctorsRepository doctorsRepository = new DoctorsRepository(unitOfWork);
+        IDoctorsRepository doctorsRepository = new DoctorsRepository(unitOfWork.getSession());
         Doctor doctor = doctorsRepository.findByUser(user);
 
         unitOfWork.saveChanges();

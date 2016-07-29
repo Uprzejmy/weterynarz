@@ -7,6 +7,7 @@ import java.security.SecureRandom;
 import java.util.Base64;
 import java.util.Random;
 
+import org.hibernate.Session;
 import weterynarz.EContexts;
 import weterynarz.Model.UnitOfWork;
 import weterynarz.Model.Clients.Client;
@@ -18,23 +19,23 @@ import weterynarz.Model.Doctors.IDoctorsRepository;
 
 public class UsersManager implements IUsersManager
 {
-	UnitOfWork _unitOfWork;
+	Session _session;
 	
-	public UsersManager(UnitOfWork unitOfWork)
+	public UsersManager(Session session)
 	{
-		_unitOfWork = unitOfWork;
+		_session = session;
 	}
 	
 	public EContexts getUserType(User user)
 	{
-		IDoctorsRepository doctorsRepository = new DoctorsRepository(_unitOfWork);
+		IDoctorsRepository doctorsRepository = new DoctorsRepository(_session);
 		Doctor doctor = doctorsRepository.findByUser(user);
 		if(doctor!=null)
 		{
 			return EContexts.DOCTOR;
 		}
 		
-		IClientsRepository clientsRepository = new ClientsRepository(_unitOfWork);
+		IClientsRepository clientsRepository = new ClientsRepository(_session);
 		Client client = clientsRepository.findByUser(user);
 		if(client!=null)
 		{
@@ -46,7 +47,7 @@ public class UsersManager implements IUsersManager
 	
 	public User register(String email, String password)
 	{
-		User user = _unitOfWork.getSession().byNaturalId(User.class).using("_email",email).load();
+		User user = _session.byNaturalId(User.class).using("_email",email).load();
 		
 		if(user != null) //when user with such email already exists
 			return null; //don't allow any registration
@@ -55,15 +56,15 @@ public class UsersManager implements IUsersManager
 	    user = new User(email);
 	    user.setSalt(generateSalt());
 	    user.setHashedPassword(getHash(password+user.getSalt()));
-	     
-	    _unitOfWork.getSession().save(user);
+
+		_session.save(user);
 	    
 	    return user;
 	}
 	
 	public User login(String email, String password)
 	{
-		User user = _unitOfWork.getSession().byNaturalId(User.class).using("_email",email).load();
+		User user = _session.byNaturalId(User.class).using("_email",email).load();
 		if(user == null) //can't find user with such email
 			return null;
 		

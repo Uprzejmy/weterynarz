@@ -2,42 +2,43 @@ package weterynarz.Model.Doctors;
 
 import java.util.List;
 
+import org.hibernate.Session;
 import weterynarz.Model.UnitOfWork;
 import weterynarz.Model.Users.User;
 
 public class DoctorsRepository implements IDoctorsRepository{
+
+	Session _session;
 	
-	UnitOfWork _unitOfWork;
-	
-	public DoctorsRepository(UnitOfWork unitOfWork)
+	public DoctorsRepository(Session session)
 	{
-		_unitOfWork = unitOfWork;
+		_session = session;
 	}
 	
 	public void add(Doctor doctor)
 	{
-	    _unitOfWork.getSession().save(doctor);
+		_session.save(doctor);
 	}
 
 	public void remove(Doctor doctor) 
 	{
-		 _unitOfWork.getSession().delete(doctor);
+		_session.delete(doctor);
 	}
 	
 	public Doctor findById(int id)
 	{
-		return _unitOfWork.getSession().get(Doctor.class, id);
+		return _session.get(Doctor.class, id);
 	}
 	
 	public Doctor findByUser(User user)
 	{
-		return _unitOfWork.getSession().byNaturalId(Doctor.class).using("_user",user).load();
+		return _session.byNaturalId(Doctor.class).using("_user",user).load();
 	}
 	
 	@SuppressWarnings("unchecked")
 	public List<Doctor> findAll()
 	{
-		List<Doctor> doctors = _unitOfWork.getSession().createQuery("select d from Doctor d").getResultList();
+		List<Doctor> doctors = _session.createQuery("select d from Doctor d").getResultList();
 		return doctors;
 	}
 }

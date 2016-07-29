@@ -26,22 +26,41 @@ public class UnitOfWork {
 			throw he;
 		}
 	}
-	
-	public UnitOfWork()
-	{
-		_session = _sessionFactory.openSession();	
-	}
-	
+
 	public Session getSession()
 	{
+		System.out.println("Obtaining session");
+		try //zmienic na try with resources
+		{
+			if (_session == null)
+			{
+				System.out.println("Session doesn't exists, opening new session");
+				_session = _sessionFactory.openSession();
+			}
+
+			if(_transaction == null)
+			{
+				System.out.println("transaction doesn't exists, beginning new transaction");
+				_transaction = _session.beginTransaction();
+			}
+
+			System.out.println("Got the session");
+		}
+		catch(HibernateException he)
+		{
+			System.out.println("Failed to get session");
+			if (_transaction != null)
+				_transaction.rollback();
+
+			if(_session != null)
+				_session.close();
+
+			throw he;
+		}
+
 		return _session;
 	}
-	
-	public void beginTransaction()
-	{
-		_transaction = _session.beginTransaction();
-	}
-	
+
 	public void saveChanges()
     {
         try
@@ -57,10 +76,14 @@ public class UnitOfWork {
  
             throw he;
         }
-        finally
-        {
-        	_session.close();
-        }
+		finally
+		{
+			if(_session != null)
+				_session.close();
+
+			_session = null;
+		}
+
     }
 	
 	public void discardChanges()
@@ -71,14 +94,11 @@ public class UnitOfWork {
                 _transaction.rollback();
         }
         catch(HibernateException he)
-        {
-        	System.out.println("Failed to discard changes");
-        	throw he;
-        }
-        finally
-        {
-            _session.close();
-        }
+		{
+			System.out.println("Failed to discard changes");
+
+			throw he;
+		}
     }
 
 }

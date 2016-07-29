@@ -1,40 +1,41 @@
 package weterynarz.Model.Clients;
 
+import org.hibernate.Session;
 import weterynarz.Model.UnitOfWork;
 import weterynarz.Model.Users.User;
 
 public class ClientsRepository implements IClientsRepository{
 	
-	UnitOfWork _unitOfWork;
+	Session _session;
 	
-	public ClientsRepository(UnitOfWork unitOfWork)
+	public ClientsRepository(Session session)
 	{
-		_unitOfWork = unitOfWork;
+		_session = session;
 	}
 	
 	public void add(Client client)
 	{
-	    _unitOfWork.getSession().save(client);
+		_session.save(client);
 	}
 
 	public void remove(Client client) 
 	{
-		 _unitOfWork.getSession().delete(client);
+		_session.delete(client);
 	}
 	
 	public void update(Client client) 
 	{
-		 _unitOfWork.getSession().update(client);
+		_session.update(client);
 	}
 	
 	public Client findById(int id)
 	{
-		return _unitOfWork.getSession().get(Client.class, id);
+		return _session.get(Client.class, id);
 	}
 	
 	public Client findByUser(User user)
 	{
-		return _unitOfWork.getSession().byNaturalId(Client.class).using("_user",user).load();
+		return _session.byNaturalId(Client.class).using("_user",user).load();
 	}
 
 }
