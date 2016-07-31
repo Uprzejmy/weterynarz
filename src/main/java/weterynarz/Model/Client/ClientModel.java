@@ -7,9 +7,7 @@ import weterynarz.Model.Entities.Patients.IPatientsRepository;
 import weterynarz.Model.Entities.Patients.Patient;
 import weterynarz.Model.Entities.Patients.PatientsRepository;
 import weterynarz.Model.Entities.Users.User;
-import weterynarz.Model.UnitOfWork.UnitOfWorkFactory;
-import weterynarz.Model.UnitOfWork.UnitOfWorkNonTransactional;
-import weterynarz.Model.UnitOfWork.UnitOfWorkTransactional;
+import weterynarz.Model.UnitOfWork.*;
 
 import java.util.List;
 
@@ -19,7 +17,7 @@ import java.util.List;
 public class ClientModel implements IClientModel {
     public List<Patient> findPatientsByUser(User user)
     {
-        UnitOfWorkNonTransactional uow = (UnitOfWorkNonTransactional) UnitOfWorkFactory.createUnitOfWork(false);
+        IUnitOfWorkNonTransactional uow = (UnitOfWorkNonTransactional) UnitOfWorkFactory.createUnitOfWork(false);
 
         IClientsRepository clientsRepository = new ClientsRepository(uow.getSession());
         Client client = clientsRepository.findByUser(user);
@@ -32,7 +30,7 @@ public class ClientModel implements IClientModel {
 
     public void createPatient(User user,String name, String breed,String pawsNumber,String color)
     {
-        UnitOfWorkTransactional uow = (UnitOfWorkTransactional) UnitOfWorkFactory.createUnitOfWork(true);
+        IUnitOfWorkTransactional uow = (UnitOfWorkTransactional) UnitOfWorkFactory.createUnitOfWork(true);
 
         IClientsRepository clientsRepository = new ClientsRepository(uow.getSession());
         Client client = clientsRepository.findByUser(user);

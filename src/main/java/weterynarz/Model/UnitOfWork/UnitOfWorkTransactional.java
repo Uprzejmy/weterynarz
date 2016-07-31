@@ -5,10 +5,9 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import weterynarz.Utils.HibernateUtil;
 
-public class UnitOfWorkTransactional implements IUnitOfWork {
+public class UnitOfWorkTransactional extends UnitOfWorkNonTransactional implements IUnitOfWorkTransactional {
 
-	private Session _session;
-	private Transaction _transaction;
+	protected Transaction _transaction;
 
 	public Session getSession()
 	{
@@ -32,6 +31,7 @@ public class UnitOfWorkTransactional implements IUnitOfWork {
 			if(_session != null)
 				_session.close();
 
+			_transaction = null;
 			_session = null;
 
 			throw he;
@@ -51,7 +51,7 @@ public class UnitOfWorkTransactional implements IUnitOfWork {
         {
             if (_transaction != null)
                 _transaction.rollback();
- 
+
             throw he;
         }
 		finally
@@ -59,6 +59,7 @@ public class UnitOfWorkTransactional implements IUnitOfWork {
 			if(_session != null)
 				_session.close();
 
+			_transaction = null;
 			_session = null;
 		}
     }
@@ -79,8 +80,14 @@ public class UnitOfWorkTransactional implements IUnitOfWork {
 			if(_session != null)
 				_session.close();
 
+			_transaction = null;
 			_session = null;
 		}
     }
+
+	public void close()
+	{
+		discardChanges();
+	}
 
 }

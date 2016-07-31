@@ -8,8 +8,8 @@ import weterynarz.Utils.HibernateUtil;
 /**
  * Created by Uprzejmy on 2016-07-29.
  */
-public class UnitOfWorkNonTransactional implements IUnitOfWork {
-    Session _session;
+public class UnitOfWorkNonTransactional implements IUnitOfWorkNonTransactional {
+    protected Session _session;
 
     public Session getSession()
     {

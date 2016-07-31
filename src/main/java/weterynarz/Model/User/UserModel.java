@@ -11,9 +11,7 @@ import weterynarz.Model.Entities.Doctors.IDoctorsRepository;
 import weterynarz.Model.Entities.Users.IUsersManager;
 import weterynarz.Model.Entities.Users.User;
 import weterynarz.Model.Entities.Users.UsersManager;
-import weterynarz.Model.UnitOfWork.UnitOfWorkFactory;
-import weterynarz.Model.UnitOfWork.UnitOfWorkNonTransactional;
-import weterynarz.Model.UnitOfWork.UnitOfWorkTransactional;
+import weterynarz.Model.UnitOfWork.*;
 
 /**
  * Created by Uprzejmy on 2016-07-20.
@@ -21,7 +19,7 @@ import weterynarz.Model.UnitOfWork.UnitOfWorkTransactional;
 public class UserModel implements IUserModel {
     public Context registerUser(String email, String password, String name, String surname, String address, String phone, EContexts type)
     {
-        UnitOfWorkTransactional uow = (UnitOfWorkTransactional) UnitOfWorkFactory.createUnitOfWork(true);
+        IUnitOfWorkTransactional uow = (UnitOfWorkTransactional) UnitOfWorkFactory.createUnitOfWork(true);
 
         IUsersManager usersManager = new UsersManager(uow.getSession());
         User user = usersManager.register(email,password);
@@ -69,7 +67,7 @@ public class UserModel implements IUserModel {
 
     public Context loginUser(String email, String password)
     {
-        UnitOfWorkNonTransactional uow = (UnitOfWorkNonTransactional) UnitOfWorkFactory.createUnitOfWork(false);
+        IUnitOfWorkNonTransactional uow = (UnitOfWorkNonTransactional) UnitOfWorkFactory.createUnitOfWork(false);
 
         IUsersManager usersManager = new UsersManager(uow.getSession());
         User user = usersManager.login(email,password);
