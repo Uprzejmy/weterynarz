@@ -5,7 +5,6 @@ import weterynarz.Model.Entities.Doctors.DoctorsRepository;
 import weterynarz.Model.Entities.Doctors.IDoctorsRepository;
 import weterynarz.Model.Entities.Users.User;
 import weterynarz.Model.UnitOfWork.IUnitOfWorkNonTransactional;
-import weterynarz.Model.UnitOfWork.UnitOfWorkFactory;
 import weterynarz.Model.UnitOfWork.UnitOfWorkNonTransactional;
 
 /**
@@ -14,7 +13,7 @@ import weterynarz.Model.UnitOfWork.UnitOfWorkNonTransactional;
 public class DoctorModel implements IDoctorModel {
     public Doctor findDoctorByUser(User user)
     {
-        IUnitOfWorkNonTransactional uow = (UnitOfWorkNonTransactional) UnitOfWorkFactory.createUnitOfWork(false);
+        IUnitOfWorkNonTransactional uow = new UnitOfWorkNonTransactional();
 
         IDoctorsRepository doctorsRepository = new DoctorsRepository(uow.getSession());
         Doctor doctor = doctorsRepository.findByUser(user);

@@ -19,7 +19,7 @@ import weterynarz.Model.UnitOfWork.*;
 public class UserModel implements IUserModel {
     public Context registerUser(String email, String password, String name, String surname, String address, String phone, EContexts type)
     {
-        IUnitOfWorkTransactional uow = (UnitOfWorkTransactional) UnitOfWorkFactory.createUnitOfWork(true);
+        IUnitOfWorkTransactional uow = new UnitOfWorkTransactional();
 
         IUsersManager usersManager = new UsersManager(uow.getSession());
         User user = usersManager.register(email,password);
@@ -46,7 +46,7 @@ public class UserModel implements IUserModel {
             }
             default:
             {
-                uow.discardChanges();
+                uow.close();
                 throw new RuntimeException("Unsupported user type");
             }
 
@@ -67,7 +67,7 @@ public class UserModel implements IUserModel {
 
     public Context loginUser(String email, String password)
     {
-        IUnitOfWorkNonTransactional uow = (UnitOfWorkNonTransactional) UnitOfWorkFactory.createUnitOfWork(false);
+        IUnitOfWorkNonTransactional uow = new UnitOfWorkNonTransactional();
 
         IUsersManager usersManager = new UsersManager(uow.getSession());
         User user = usersManager.login(email,password);

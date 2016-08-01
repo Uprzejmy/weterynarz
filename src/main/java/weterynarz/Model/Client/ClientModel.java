@@ -17,7 +17,7 @@ import java.util.List;
 public class ClientModel implements IClientModel {
     public List<Patient> findPatientsByUser(User user)
     {
-        IUnitOfWorkNonTransactional uow = (UnitOfWorkNonTransactional) UnitOfWorkFactory.createUnitOfWork(false);
+        IUnitOfWorkNonTransactional uow = new UnitOfWorkNonTransactional();
 
         IClientsRepository clientsRepository = new ClientsRepository(uow.getSession());
         Client client = clientsRepository.findByUser(user);
@@ -30,7 +30,7 @@ public class ClientModel implements IClientModel {
 
     public void createPatient(User user,String name, String breed,String pawsNumber,String color)
     {
-        IUnitOfWorkTransactional uow = (UnitOfWorkTransactional) UnitOfWorkFactory.createUnitOfWork(true);
+        IUnitOfWorkTransactional uow = new UnitOfWorkTransactional();
 
         IClientsRepository clientsRepository = new ClientsRepository(uow.getSession());
         Client client = clientsRepository.findByUser(user);
