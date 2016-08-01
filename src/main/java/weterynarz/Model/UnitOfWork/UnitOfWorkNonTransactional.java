@@ -2,14 +2,29 @@ package weterynarz.Model.UnitOfWork;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.boot.archive.scan.spi.PackageDescriptor;
-import weterynarz.Utils.HibernateUtil;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 
 /**
  * Created by Uprzejmy on 2016-07-29.
  */
 public class UnitOfWorkNonTransactional implements IUnitOfWorkNonTransactional {
+
+    protected static SessionFactory _sessionFactory;
     protected Session _session;
+
+    static
+    {
+        try
+        {
+            _sessionFactory = new Configuration().configure().buildSessionFactory();
+        }
+        catch(HibernateException he)
+        {
+            System.out.println("Failed to build session factory");
+            throw he;
+        }
+    }
 
     public Session getSession()
     {
@@ -17,7 +32,7 @@ public class UnitOfWorkNonTransactional implements IUnitOfWorkNonTransactional {
         {
             if (_session == null)
             {
-                _session = HibernateUtil.openSession();
+                _session = _sessionFactory.openSession();
             }
         }
         catch(HibernateException he)

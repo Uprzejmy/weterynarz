@@ -3,7 +3,6 @@ package weterynarz.Model.UnitOfWork;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import weterynarz.Utils.HibernateUtil;
 
 public class UnitOfWorkTransactional extends UnitOfWorkNonTransactional implements IUnitOfWorkTransactional {
 
@@ -15,7 +14,7 @@ public class UnitOfWorkTransactional extends UnitOfWorkNonTransactional implemen
 		{
 			if (_session == null)
 			{
-				_session = HibernateUtil.openSession();
+				_session = _sessionFactory.openSession();
 			}
 
 			if(_transaction == null)
