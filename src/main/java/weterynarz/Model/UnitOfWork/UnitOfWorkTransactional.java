@@ -3,6 +3,7 @@ package weterynarz.Model.UnitOfWork;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.resource.transaction.spi.TransactionStatus;
 
 public class UnitOfWorkTransactional extends UnitOfWorkNonTransactional implements IUnitOfWorkTransactional {
 
@@ -43,7 +44,7 @@ public class UnitOfWorkTransactional extends UnitOfWorkNonTransactional implemen
     {
         try
         {
-            if (_transaction != null)
+            if (transactionExists())
                 _transaction.commit();
         }
         catch(HibernateException he)
@@ -67,7 +68,7 @@ public class UnitOfWorkTransactional extends UnitOfWorkNonTransactional implemen
     {
         try
         {
-            if (_transaction != null)
+            if (transactionExists())
                 _transaction.rollback();
         }
         catch(HibernateException he)
@@ -87,6 +88,13 @@ public class UnitOfWorkTransactional extends UnitOfWorkNonTransactional implemen
 	public void close()
 	{
 		discardChanges();
+	}
+
+	private boolean transactionExists()
+	{
+		return 	_transaction != null
+				&& _transaction.isActive()
+				&& _transaction.getStatus().isNotOneOf(TransactionStatus.COMMITTED,TransactionStatus.ROLLED_BACK);
 	}
 
 }
